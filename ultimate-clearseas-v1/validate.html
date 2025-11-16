@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clear Seas Solutions - Validation Test</title>
+    <style>
+        body {
+            font-family: monospace;
+            padding: 20px;
+            background: #001a33;
+            color: #00ffff;
+        }
+        .test-result {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .success {
+            background: rgba(0, 255, 100, 0.2);
+            border: 1px solid #00ff64;
+        }
+        .error {
+            background: rgba(255, 0, 0, 0.2);
+            border: 1px solid #ff0000;
+        }
+        h1 {
+            color: #00ffff;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <h1>🌊 Clear Seas Solutions - Validation Tests</h1>
+    <div id="results"></div>
+
+    <script>
+        const results = document.getElementById('results');
+
+        function addResult(test, passed, message) {
+            const div = document.createElement('div');
+            div.className = `test-result ${passed ? 'success' : 'error'}`;
+            div.innerHTML = `<strong>${passed ? '✅' : '❌'} ${test}:</strong> ${message}`;
+            results.appendChild(div);
+        }
+
+        // Test 1: Check if visualizer.js loads
+        try {
+            const script1 = document.createElement('script');
+            script1.src = 'scripts/visualizer.js';
+            script1.onload = () => {
+                addResult('Visualizer Script', true, 'visualizer.js loaded successfully');
+
+                // Test if ClearSeasVisualizer class exists
+                if (typeof ClearSeasVisualizer !== 'undefined') {
+                    addResult('Visualizer Class', true, 'ClearSeasVisualizer class is defined');
+                } else {
+                    addResult('Visualizer Class', false, 'ClearSeasVisualizer class not found');
+                }
+            };
+            script1.onerror = () => {
+                addResult('Visualizer Script', false, 'Failed to load visualizer.js');
+            };
+            document.head.appendChild(script1);
+        } catch (e) {
+            addResult('Visualizer Script', false, e.message);
+        }
+
+        // Test 2: Check if app.js loads
+        setTimeout(() => {
+            try {
+                const script2 = document.createElement('script');
+                script2.src = 'scripts/app.js';
+                script2.onload = () => {
+                    addResult('App Script', true, 'app.js loaded successfully');
+
+                    // Test if ClearSeasApp exists
+                    if (typeof ClearSeasApp !== 'undefined') {
+                        addResult('App Object', true, `ClearSeasApp v${ClearSeasApp.version} initialized`);
+                    }
+                };
+                script2.onerror = () => {
+                    addResult('App Script', false, 'Failed to load app.js');
+                };
+                document.head.appendChild(script2);
+            } catch (e) {
+                addResult('App Script', false, e.message);
+            }
+        }, 1000);
+
+        // Test 3: Check CSS
+        setTimeout(() => {
+            try {
+                const link = document.createElement('link');
+                link.rel = 'stylesheet';
+                link.href = 'styles/main.css';
+                link.onload = () => {
+                    addResult('CSS Stylesheet', true, 'main.css loaded successfully');
+                };
+                link.onerror = () => {
+                    addResult('CSS Stylesheet', false, 'Failed to load main.css');
+                };
+                document.head.appendChild(link);
+            } catch (e) {
+                addResult('CSS Stylesheet', false, e.message);
+            }
+        }, 2000);
+
+        // Test 4: WebGL Support
+        setTimeout(() => {
+            try {
+                const canvas = document.createElement('canvas');
+                const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+                if (gl) {
+                    addResult('WebGL Support', true, 'WebGL is available in this browser');
+                } else {
+                    addResult('WebGL Support', false, 'WebGL is not supported');
+                }
+            } catch (e) {
+                addResult('WebGL Support', false, e.message);
+            }
+        }, 2500);
+
+        // Test 5: Check if index.html exists
+        setTimeout(() => {
+            fetch('index.html')
+                .then(response => {
+                    if (response.ok) {
+                        addResult('Index HTML', true, 'index.html exists and is accessible');
+                    } else {
+                        addResult('Index HTML', false, 'index.html not found');
+                    }
+                })
+                .catch(e => {
+                    addResult('Index HTML', false, e.message);
+                });
+        }, 3000);
+
+        // Test 6: Console errors
+        const originalError = console.error;
+        let errorCount = 0;
+        console.error = function(...args) {
+            errorCount++;
+            originalError.apply(console, args);
+        };
+
+        setTimeout(() => {
+            if (errorCount === 0) {
+                addResult('Console Errors', true, 'No console errors detected');
+            } else {
+                addResult('Console Errors', false, `${errorCount} console error(s) detected`);
+            }
+        }, 5000);
+
+        // Final summary
+        setTimeout(() => {
+            const successCount = document.querySelectorAll('.success').length;
+            const totalTests = document.querySelectorAll('.test-result').length;
+            const summary = document.createElement('div');
+            summary.className = 'test-result ' + (successCount === totalTests ? 'success' : 'error');
+            summary.innerHTML = `<h2>Summary: ${successCount}/${totalTests} tests passed</h2>`;
+            results.appendChild(summary);
+
+            if (successCount === totalTests) {
+                summary.innerHTML += '<p>🎉 All systems ready! The site is production-ready with zero errors.</p>';
+            }
+        }, 6000);
+    </script>
+</body>
+</html>

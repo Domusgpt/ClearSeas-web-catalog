@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clear Seas Solutions - Pioneering 4D Geometric Processing & Maritime Intelligence</title>
+    <meta name="description" content="Clear Seas Solutions LLC - Revolutionary AI-powered data parsing, maritime autonomous systems, and 4D geometric visualization technology.">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <!-- WebGL Visualizer Canvas Background -->
+    <canvas id="visualizer-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-content">
+            <div class="logo">
+                <span class="logo-icon">🌊</span>
+                <span class="logo-text">Clear Seas Solutions</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#capabilities">Capabilities</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section" data-visualizer-preset="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="title-line animate-in">Clear Seas</span>
+                <span class="title-line animate-in delay-1">Solutions</span>
+            </h1>
+            <p class="hero-subtitle animate-in delay-2">
+                Pioneering 4D Geometric Processing & Maritime Intelligence
+            </p>
+            <div class="hero-cta animate-in delay-3">
+                <a href="#products" class="cta-button primary">Explore Products</a>
+                <a href="#contact" class="cta-button secondary">Get In Touch</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- Reality Reframed Transition #1 -->
+    <section class="reality-transition" data-visualizer-preset="transition1">
+        <div class="reality-content">
+            <h2 class="reality-quote">"The Revolution Will Not be in a Structured Format"</h2>
+            <p class="reality-subtext">Where chaos meets precision, innovation emerges</p>
+        </div>
+        <div class="reality-overlay"></div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products-section" data-visualizer-preset="products">
+        <div class="section-container">
+            <h2 class="section-title">Our Product Ecosystem</h2>
+            <p class="section-subtitle">Revolutionary solutions for data intelligence and autonomous systems</p>
+
+            <div class="products-grid">
+                <!-- Parserator -->
+                <div class="product-card" data-product="parserator">
+                    <div class="product-image">
+                        <div class="image-placeholder parserator-img">
+                            <span class="placeholder-icon">📊</span>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Parserator</h3>
+                        <p class="product-tagline">AI-Powered Data Parsing Platform</p>
+                        <p class="product-description">
+                            Achieving 100% accuracy through hybrid type coercion and intelligent parsing.
+                            Transform unstructured data into actionable intelligence with our revolutionary
+                            Architect-Extractor pattern powered by Gemini AI.
+                        </p>
+                        <div class="product-tags">
+                            <span class="tag">AI/ML</span>
+                            <span class="tag">Data Processing</span>
+                            <span class="tag">API Platform</span>
+                        </div>
+                        <a href="https://parserator.com" class="product-link" target="_blank">Learn More →</a>
+                    </div>
+                </div>
+
+                <!-- ARIS -->
+                <div class="product-card" data-product="aris">
+                    <div class="product-image">
+                        <div class="image-placeholder aris-img">
+                            <span class="placeholder-icon">🚢</span>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">ARIS</h3>
+                        <p class="product-tagline">Autonomous Reconnaissance & Intelligence System</p>
+                        <p class="product-description">
+                            Maritime autonomous vessel platform with advanced spatial intelligence.
+                            Real-time environmental mapping, autonomous navigation, and adaptive decision-making
+                            for next-generation maritime operations.
+                        </p>
+                        <div class="product-tags">
+                            <span class="tag">Maritime</span>
+                            <span class="tag">Autonomous</span>
+                            <span class="tag">AI Navigation</span>
+                        </div>
+                        <a href="#contact" class="product-link">Learn More →</a>
+                    </div>
+                </div>
+
+                <!-- ESYS -->
+                <div class="product-card" data-product="esys">
+                    <div class="product-image">
+                        <div class="image-placeholder esys-img">
+                            <span class="placeholder-icon">🎯</span>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">ESYS</h3>
+                        <p class="product-tagline">Environmental Sensing & Yield System</p>
+                        <p class="product-description">
+                            Advanced sensor fusion platform for environmental monitoring and agricultural optimization.
+                            Real-time data collection, predictive analytics, and automated yield forecasting.
+                        </p>
+                        <div class="product-tags">
+                            <span class="tag">IoT Sensors</span>
+                            <span class="tag">Agriculture</span>
+                            <span class="tag">Predictive AI</span>
+                        </div>
+                        <a href="#contact" class="product-link">Learn More →</a>
+                    </div>
+                </div>
+
+                <!-- OUTEK -->
+                <div class="product-card" data-product="outek">
+                    <div class="product-image">
+                        <div class="image-placeholder outek-img">
+                            <span class="placeholder-icon">🤖</span>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">OUTEK</h3>
+                        <p class="product-tagline">Operational Unmanned Technology & Engineering Kit</p>
+                        <p class="product-description">
+                            Comprehensive toolkit for developing and deploying autonomous robotic systems.
+                            Modular architecture supporting multi-domain operations from maritime to terrestrial.
+                        </p>
+                        <div class="product-tags">
+                            <span class="tag">Robotics</span>
+                            <span class="tag">Modular</span>
+                            <span class="tag">Multi-Domain</span>
+                        </div>
+                        <a href="#contact" class="product-link">Learn More →</a>
+                    </div>
+                </div>
+
+                <!-- Nimbus Guardian -->
+                <div class="product-card" data-product="nimbus">
+                    <div class="product-image">
+                        <div class="image-placeholder nimbus-img">
+                            <span class="placeholder-icon">☁️</span>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Nimbus Guardian</h3>
+                        <p class="product-tagline">Cloud Security & Infrastructure Protection</p>
+                        <p class="product-description">
+                            Enterprise-grade cloud security platform with real-time threat detection,
+                            automated response systems, and comprehensive infrastructure monitoring.
+                        </p>
+                        <div class="product-tags">
+                            <span class="tag">Cloud Security</span>
+                            <span class="tag">Threat Detection</span>
+                            <span class="tag">DevSecOps</span>
+                        </div>
+                        <a href="#contact" class="product-link">Learn More →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reality Reframed Transition #2 -->
+    <section class="reality-transition" data-visualizer-preset="transition2">
+        <div class="reality-content">
+            <h2 class="reality-quote">"Structure Emerges from Passion, Not from Templates"</h2>
+            <p class="reality-subtext">Exoditical thinking transcends traditional boundaries</p>
+        </div>
+        <div class="reality-overlay"></div>
+    </section>
+
+    <!-- Capabilities Section -->
+    <section id="capabilities" class="capabilities-section" data-visualizer-preset="capabilities">
+        <div class="section-container">
+            <h2 class="section-title">Core Capabilities</h2>
+            <p class="section-subtitle">Pushing the boundaries of what's possible</p>
+
+            <div class="capabilities-grid">
+                <div class="capability-card">
+                    <div class="capability-icon">🔮</div>
+                    <h3>4D Geometric Processing</h3>
+                    <p>Advanced polytopal projection mathematics and multi-dimensional data visualization systems.</p>
+                </div>
+
+                <div class="capability-card">
+                    <div class="capability-icon">🌊</div>
+                    <h3>Maritime Autonomous Systems</h3>
+                    <p>Cutting-edge autonomous vessel technology with adaptive navigation and environmental intelligence.</p>
+                </div>
+
+                <div class="capability-card">
+                    <div class="capability-icon">🎭</div>
+                    <h3>Holographic Visualization</h3>
+                    <p>Multi-dimensional UI architecture with real-time 3D/4D rendering and interactive data exploration.</p>
+                </div>
+
+                <div class="capability-card">
+                    <div class="capability-icon">🧠</div>
+                    <h3>AI & Machine Learning</h3>
+                    <p>State-of-the-art neural networks, natural language processing, and adaptive learning systems.</p>
+                </div>
+
+                <div class="capability-card">
+                    <div class="capability-icon">⚡</div>
+                    <h3>Real-Time Data Processing</h3>
+                    <p>High-performance streaming analytics and edge computing for mission-critical applications.</p>
+                </div>
+
+                <div class="capability-card">
+                    <div class="capability-icon">🔒</div>
+                    <h3>Enterprise Security</h3>
+                    <p>Comprehensive security frameworks with threat intelligence and automated response capabilities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reality Reframed Transition #3 -->
+    <section class="reality-transition" data-visualizer-preset="transition3">
+        <div class="reality-content">
+            <h2 class="reality-quote">"Technology Should Serve Humanity's Highest Aspirations"</h2>
+            <p class="reality-subtext">Join the Exoditical Moral Architecture Movement</p>
+        </div>
+        <div class="reality-overlay"></div>
+    </section>
+
+    <!-- About / Founder Section -->
+    <section id="about" class="about-section" data-visualizer-preset="about">
+        <div class="section-container">
+            <div class="about-content">
+                <div class="founder-image">
+                    <div class="founder-placeholder">
+                        <span class="founder-icon">👤</span>
+                    </div>
+                </div>
+                <div class="founder-info">
+                    <h2 class="section-title">Meet Paul Phillips</h2>
+                    <p class="founder-title">Chief Innovation Officer & Founder</p>
+                    <div class="founder-bio">
+                        <p>
+                            Paul Phillips is a visionary technologist and philosopher pioneering the intersection
+                            of 4D geometric processing, autonomous systems, and moral technology frameworks.
+                        </p>
+                        <p>
+                            As the architect of the <strong>Exoditical Moral Architecture Movement</strong>,
+                            Paul challenges conventional thinking about technology's role in society, advocating
+                            for systems that serve humanity's highest aspirations while maintaining technical excellence.
+                        </p>
+                        <p>
+                            His work spans maritime autonomous systems, AI-powered data intelligence, holographic
+                            visualization, and quantum computing - all unified by a philosophy that
+                            <em>"The Revolution Will Not be in a Structured Format."</em>
+                        </p>
+                    </div>
+                    <div class="founder-highlights">
+                        <div class="highlight-item">
+                            <span class="highlight-number">15+</span>
+                            <span class="highlight-label">Years Experience</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-number">5</span>
+                            <span class="highlight-label">Revolutionary Products</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="highlight-number">100%</span>
+                            <span class="highlight-label">Parsing Accuracy</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section" data-visualizer-preset="contact">
+        <div class="section-container">
+            <h2 class="section-title">Let's Build the Future Together</h2>
+            <p class="section-subtitle">Send Love, Hate, or Opportunity</p>
+
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <div class="contact-icon">📧</div>
+                        <h3>Email</h3>
+                        <a href="mailto:Paul@clearseassolutions.com">Paul@clearseassolutions.com</a>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-icon">🌐</div>
+                        <h3>Parserator Platform</h3>
+                        <a href="https://parserator.com" target="_blank">parserator.com</a>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-icon">🚀</div>
+                        <h3>Join the Movement</h3>
+                        <p>Exoditical Moral Architecture</p>
+                    </div>
+                </div>
+
+                <div class="contact-form-container">
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="cta-button primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Clear Seas Solutions LLC</h4>
+                <p>Pioneering 4D Geometric Processing & Maritime Intelligence</p>
+            </div>
+            <div class="footer-section">
+                <h4>Products</h4>
+                <ul>
+                    <li><a href="https://parserator.com">Parserator</a></li>
+                    <li><a href="#products">ARIS</a></li>
+                    <li><a href="#products">ESYS</a></li>
+                    <li><a href="#products">OUTEK</a></li>
+                    <li><a href="#products">Nimbus Guardian</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Philosophy</h4>
+                <p><em>"The Revolution Will Not be in a Structured Format"</em></p>
+                <p>Join the Exoditical Moral Architecture Movement</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Paul Phillips - Clear Seas Solutions LLC - All Rights Reserved</p>
+            <p>A Paul Phillips Manifestation</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="scripts/visualizer.js"></script>
+    <script src="scripts/app.js"></script>
+</body>
+</html>
