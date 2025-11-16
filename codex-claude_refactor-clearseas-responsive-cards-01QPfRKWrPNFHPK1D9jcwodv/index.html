@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clear Seas Solutions — Spatial AI & Geometric Cognition Architecture</title>
+    <meta name="description" content="Founded by Paul Phillips, Clear Seas Solutions pioneers spatial AI, geometric cognition systems, and custom AI solutions informed by decades of global operations experience.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/clear-seas-home.css">
+    <link rel="stylesheet" href="styles/founders-profile.css">
+    <!-- <link rel="stylesheet" href="styles/responsive-cards.css"> REMOVED: Conflicts with neoskeumorphic-cards.css -->
+    <link rel="stylesheet" href="styles/neoskeumorphic-cards.css">
+
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Flip.min.js" defer></script>
+</head>
+<body>
+    <!-- Polytopal Field Background (Main) -->
+    <div id="polytopal-field" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;"></div>
+
+    <!-- Quantum Background Layer -->
+    <!-- Created dynamically by app-enhanced.js -->
+
+    <div class="texture-layer" aria-hidden="true"></div>
+
+    <header class="site-header" data-animate="reveal">
+        <div class="container header-inner">
+            <a class="brand" href="#hero">
+                <span class="brand-mark">◇</span>
+                <span class="brand-name">Clear Seas Solutions</span>
+            </a>
+            <button class="nav-toggle" aria-expanded="false" aria-controls="primary-navigation">
+                <span class="nav-toggle-icon" aria-hidden="true"></span>
+                <span class="sr-only">Toggle navigation</span>
+            </button>
+            <nav id="primary-navigation" class="primary-navigation">
+                <a href="#capabilities">Capabilities</a>
+                <a href="#research">Research</a>
+                <a href="#founder">Founder</a>
+                <a href="#platforms">Platforms</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <a class="nav-cta" href="mailto:Paul@clearseassolutions.com">Start a project</a>
+        </div>
+    </header>
+
+    <main class="site-main">
+        <section id="hero" class="hero hero--immersive" data-section="hero" data-hero-section>
+            <div class="hero-immersive" data-hero-immersive>
+                <div class="hero-immersive__content" id="hero-immersive-content">
+                    <button class="hero-immersive__logo" type="button" data-hero-logo id="immersive-logo" aria-label="Cycle Clear Seas Solutions signature visuals">
+                        <img src="assets/images/css-logo.png" alt="Clear Seas Solutions" class="hero-immersive__logo-image" id="immersive-logo-image">
+                        <div class="hero-immersive__flourish" aria-hidden="true" id="immersive-flourish"></div>
+                    </button>
+
+                    <svg class="hero-immersive__title" id="immersive-title" viewBox="0 0 1600 600" role="img" aria-labelledby="hero-immersive-title-label">
+                        <title id="hero-immersive-title-label">Clear Seas Solutions</title>
+                        <defs>
+                            <pattern id="hero-title-pattern" patternUnits="userSpaceOnUse" width="1600" height="600">
+                                <foreignObject width="1600" height="600">
+                                    <div xmlns="http://www.w3.org/1999/xhtml" class="hero-title-pattern" data-hero-visual></div>
+                                </foreignObject>
+                            </pattern>
+                        </defs>
+                        <g class="hero-title-group" aria-hidden="true">
+                            <text class="hero-title-text" x="50%" y="45%" text-anchor="middle">CLEAR SEAS</text>
+                            <text class="hero-title-text" x="50%" y="82%" text-anchor="middle">SOLUTIONS</text>
+                            <text class="hero-title-outline" x="50%" y="45%" text-anchor="middle">CLEAR SEAS</text>
+                            <text class="hero-title-outline" x="50%" y="82%" text-anchor="middle">SOLUTIONS</text>
+                        </g>
+                    </svg>
+
+                    <p class="hero-immersive__subtitle">Spatial AI • Geometric Cognition • Custom Intelligence Systems</p>
+                    <button class="hero-immersive__enter" type="button" data-hero-enter>
+                        Enter the experience
+                    </button>
+                    <div class="hero-immersive__scroll-cue" data-hero-progress role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Intro progression">
+                        <span class="hero-immersive__scroll-indicator" aria-hidden="true"></span>
+                        <span class="hero-immersive__scroll-label">Scroll to unveil</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-main" data-hero-main>
+                <div class="container hero-grid">
+                <div class="hero-text" data-animate="reveal">
+                    <p class="eyebrow">Spatial AI • Geometric Cognition • Custom Intelligence Systems</p>
+                    <h1>Advanced AI solutions for businesses ready to pioneer the future.</h1>
+                    <p class="hero-lede">We're an independent AI research & development consultancy specializing in spatial computing, geometric cognition, and custom AI architecture. From ambitious startups to global enterprises, we build intelligent systems that actually work.</p>
+                    <div class="hero-cta">
+                        <a class="btn btn-primary" href="mailto:Paul@clearseassolutions.com">Free consultation</a>
+                        <a class="btn btn-ghost" href="#platforms">Explore our research</a>
+                    </div>
+                    <ul class="hero-tags">
+                        <li>Proprietary 4D Processing</li>
+                        <li>Spatial AI Research</li>
+                        <li>Custom Solutions</li>
+                        <li>Independent & Agile</li>
+                    </ul>
+                </div>
+                <div class="hero-panels" data-animate="reveal" style="--reveal-delay: 0.15s;">
+                    <article class="signal-card" data-fractal-card>
+                        <h2>Research-Driven Innovation</h2>
+                        <p>Original research in 4D geometric cognition, spatial AI, and autonomous systems. Our Polytopal Projection Processing (PPP) framework represents a breakthrough in machine perception.</p>
+                        <div class="signal-metadata">
+                            <span>Our foundation</span>
+                            <strong>Proprietary technology</strong>
+                        </div>
+                    </article>
+                    <article class="signal-card" data-fractal-card>
+                        <h2>Real-World Experience</h2>
+                        <p>14 years managing complex international operations provides deep intuition for building AI that handles real-world chaos, not just laboratory conditions.</p>
+                        <div class="signal-metadata">
+                            <span>Domain expertise</span>
+                            <strong>Battle-tested solutions</strong>
+                        </div>
+                    </article>
+                    <article class="signal-card maritime" data-fractal-card>
+                        <h2>Independent Excellence</h2>
+                        <p>No corporate overhead, no sales quotas, no forced platform lock-ins. Just lean, effective AI solutions tailored to your actual needs and budget.</p>
+                        <div class="signal-metadata">
+                            <span>Our advantage</span>
+                            <strong>Boutique & agile</strong>
+                        </div>
+                    </article>
+                </div>
+            </div>
+            </div>
+        </section>
+
+        <section id="capabilities" class="section capabilities" data-section="capabilities">
+            <div class="container">
+                <div class="section-heading" data-animate="reveal">
+                    <p class="eyebrow">What we do</p>
+                    <h2>Custom AI that adapts to your business, not templates.</h2>
+                    <p>From quick-win automations to transformative spatial AI platforms, we build solutions scaled to your needs—whether you're a three-person startup or a multinational corporation.</p>
+                </div>
+                <div class="capabilities-grid morph-cards-grid">
+                    <article class="capability-card neo-morph-card" data-animate="reveal" data-fractal-card data-behavior="expand" tabindex="0">
+                        <div class="morph-card__content">
+                            <div class="morph-card__header">
+                                <div class="morph-card__icon">
+                                    <svg width="100%" height="100%" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M50 10L80 30V70L50 90L20 70V30L50 10Z" stroke="currentColor" stroke-width="2" fill="rgba(0, 212, 255, 0.1)"/>
+                                        <circle cx="50" cy="50" r="15" stroke="currentColor" stroke-width="2" fill="rgba(0, 212, 255, 0.2)"/>
+                                    </svg>
+                                </div>
+                                <h3 class="morph-card__title">Spatial AI & Robotics</h3>
+                            </div>
+                            <div>
+                                <p class="morph-card__description">Advanced perception systems for GPS-denied navigation, autonomous vehicles, and XR devices. Our Polytopal Projection Processing framework enables robust machine cognition in complex environments.</p>
+                                <div class="morph-card__details">
+                                    <div class="morph-card__features">
+                                        <div class="morph-card__feature">
+                                            <h4>4D State Representation</h4>
+                                            <p>Quaternion-based spatial tracking with temporal braiding for robust state estimation.</p>
+                                        </div>
+                                        <div class="morph-card__feature">
+                                            <h4>Visual-Inertial Odometry</h4>
+                                            <p>Fused sensor data for precise localization in GPS-denied environments.</p>
+                                        </div>
+                                        <div class="morph-card__feature">
+                                            <h4>Embodied AI Platforms</h4>
+                                            <p>Full-stack robotics integration from perception to control systems.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="capability-card neo-morph-card" data-animate="reveal" style="--reveal-delay: 0.1s;" data-fractal-card data-behavior="split" tabindex="0">
+                        <div class="morph-card__content">
+                            <div class="morph-card__header">
+                                <div class="morph-card__icon">
+                                    <svg width="100%" height="100%" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="20" y="30" width="25" height="25" stroke="currentColor" stroke-width="2" fill="rgba(255, 0, 110, 0.1)"/>
+                                        <rect x="55" y="30" width="25" height="25" stroke="currentColor" stroke-width="2" fill="rgba(255, 0, 110, 0.15)"/>
+                                        <rect x="20" y="65" width="25" height="25" stroke="currentColor" stroke-width="2" fill="rgba(255, 0, 110, 0.15)"/>
+                                        <rect x="55" y="65" width="25" height="25" stroke="currentColor" stroke-width="2" fill="rgba(255, 0, 110, 0.2)"/>
+                                    </svg>
+                                </div>
+                                <h3 class="morph-card__title">Custom AI Development</h3>
+                            </div>
+                            <div>
+                                <p class="morph-card__description">Bespoke AI solutions designed around your specific workflow, data, and goals—from intelligent automation to predictive analytics and adaptive systems.</p>
+                                <div class="morph-card__details">
+                                    <div class="morph-card__features">
+                                        <div class="morph-card__feature">
+                                            <h4>Process Automation</h4>
+                                            <p>Intelligent agentic systems that handle complex workflows autonomously.</p>
+                                        </div>
+                                        <div class="morph-card__feature">
+                                            <h4>Custom ML Models</h4>
+                                            <p>Tailored machine learning solutions trained on your specific domain data.</p>
+                                        </div>
+                                        <div class="morph-card__feature">
+                                            <h4>Data Intelligence</h4>
+                                            <p>End-to-end pipelines from ingestion to insights and decision support.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="capability-card neo-morph-card" data-animate="reveal" style="--reveal-delay: 0.2s;" data-fractal-card data-behavior="expand" tabindex="0">
+                        <div class="morph-card__content">
+                            <div class="morph-card__header">
+                                <div class="morph-card__icon">
+                                    <svg width="100%" height="100%" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M50 20L65 35L50 50L35 35L50 20Z" stroke="currentColor" stroke-width="2" fill="rgba(0, 255, 110, 0.1)"/>
+                                        <path d="M50 50L65 65L50 80L35 65L50 50Z" stroke="currentColor" stroke-width="2" fill="rgba(0, 255, 110, 0.2)"/>
+                                        <circle cx="50" cy="50" r="5" fill="currentColor"/>
+                                    </svg>
+                                </div>
+                                <h3 class="morph-card__title">AI Strategy & Research</h3>
+                            </div>
+                            <div>
+                                <p class="morph-card__description">Not sure where advanced AI fits in your operations? We assess opportunities, create practical roadmaps, and provide ongoing research partnerships.</p>
+                                <div class="morph-card__details">
+                                    <div class="morph-card__features">
+                                        <div class="morph-card__feature">
+                                            <h4>AI Readiness Assessment</h4>
+                                            <p>Free consultation to evaluate your organization's AI maturity and opportunities.</p>
+                                        </div>
+                                        <div class="morph-card__feature">
+                                            <h4>ROI-Focused Planning</h4>
+                                            <p>Practical roadmaps that prioritize high-impact, achievable AI initiatives.</p>
+                                        </div>
+                                        <div class="morph-card__feature">
+                                            <h4>Research Partnership</h4>
+                                            <p>Collaborative R&D for custom IP development and competitive advantage.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="research" class="section research" data-section="research">
+            <div class="container">
+                <div class="section-heading" data-animate="reveal">
+                    <p class="eyebrow">Active research</p>
+                    <h2>Pioneering the next generation of spatial AI and geometric cognition.</h2>
+                    <p>Our research programs push the boundaries of machine perception, 4D cognition, and autonomous systems.</p>
+                </div>
+                <div class="capabilities-grid morph-cards-grid">
+                    <article class="capability-card neo-morph-card" data-animate="reveal" data-fractal-card data-behavior="takeover" tabindex="0">
+                        <div class="morph-card__content">
+                            <div class="morph-card__header">
+                                <div class="morph-card__icon">
+                                    <svg width="100%" height="100%" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M50 20L70 35L60 55L50 50L40 55L30 35L50 20Z" stroke="currentColor" stroke-width="2" fill="rgba(120, 80, 255, 0.1)"/>
+                                        <path d="M50 50L60 65L50 80L40 65L50 50Z" stroke="currentColor" stroke-width="2" fill="rgba(120, 80, 255, 0.15)"/>
+                                        <circle cx="50" cy="50" r="8" stroke="currentColor" stroke-width="2" fill="rgba(120, 80, 255, 0.2)"/>
+                                    </svg>
+                                </div>
+                                <h3 class="morph-card__title">Polytopal Projection Processing</h3>
+                            </div>
+                            <div>
+                                <p class="morph-card__description">Revolutionary 4D cognition framework enabling GPS-denied navigation and robust autonomous systems through spinorial rotations, metric coupling, and temporal braiding.</p>
+                                <div class="morph-card__details">
+                                    <div class="morph-card__features">
+                                        <div class="morph-card__feature">
+                                            <h4>Spinorial Rotations</h4>
+                                            <p>Quaternion-based 4D rotations for robust orientation tracking in complex environments.</p>
+                                        </div>
+                                        <div class="morph-card__feature">
+                                            <h4>Metric Coupling</h4>
+                                            <p>Multi-modal sensor fusion with adaptive weighting for optimal state estimation.</p>
+                                        </div>
+                                        <div class="morph-card__feature">
+                                            <h4>Temporal Braiding</h4>
+                                            <p>Time-aware state evolution with predictive lookahead for smooth trajectories.</p>
+                                        </div>
+                                    </div>
+                                    <a href="https://domusgpt.github.io/ppp-info-site/" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top: 2rem;">Explore PPP Research →</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="capability-card neo-morph-card" data-animate="reveal" style="--reveal-delay: 0.1s;" data-fractal-card data-behavior="split" tabindex="0">
+                        <div class="morph-card__content">
+                            <div class="morph-card__header">
+                                <div class="morph-card__icon">
+                                    <svg width="100%" height="100%" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="25" y="25" width="50" height="50" rx="10" stroke="currentColor" stroke-width="2" fill="rgba(80, 200, 255, 0.1)"/>
+                                        <circle cx="40" cy="40" r="8" fill="currentColor" opacity="0.3"/>
+                                        <circle cx="60" cy="40" r="8" fill="currentColor" opacity="0.5"/>
+                                        <circle cx="40" cy="60" r="8" fill="currentColor" opacity="0.5"/>
+                                        <circle cx="60" cy="60" r="8" fill="currentColor" opacity="0.7"/>
+                                    </svg>
+                                </div>
+                                <h3 class="morph-card__title">VIB34D XR SDK</h3>
+                            </div>
+                            <div>
+                                <p class="morph-card__description">Spatial computing toolkit with advanced quaternion mathematics for OpenXR and WebXR platforms, enabling next-generation immersive experiences.</p>
+                                <div class="morph-card__details">
+                                    <div class="morph-card__features">
+                                        <div class="morph-card__feature">
+                                            <h4>Quaternion Math</h4>
+                                            <p>High-performance 4D rotation library optimized for WebXR and OpenXR.</p>
+                                        </div>
+                                        <div class="morph-card__feature">
+                                            <h4>Spatial Rendering</h4>
+                                            <p>Advanced rendering pipeline for stereoscopic and volumetric displays.</p>
+                                        </div>
+                                        <div class="morph-card__feature">
+                                            <h4>Hand Tracking</h4>
+                                            <p>Real-time gesture recognition and interaction primitives for XR interfaces.</p>
+                                        </div>
+                                    </div>
+                                    <a href="https://domusgpt.github.io/vib3-plus-engine/" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top: 2rem;">View Live Demo →</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="capability-card neo-morph-card" data-animate="reveal" style="--reveal-delay: 0.2s;" data-fractal-card data-behavior="expand" tabindex="0">
+                        <div class="morph-card__content">
+                            <div class="morph-card__header">
+                                <div class="morph-card__icon">
+                                    <svg width="100%" height="100%" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M30 50Q40 30, 50 50T70 50" stroke="currentColor" stroke-width="2" fill="none"/>
+                                        <path d="M30 60Q40 40, 50 60T70 60" stroke="currentColor" stroke-width="2" fill="none" opacity="0.7"/>
+                                        <path d="M30 70Q40 50, 50 70T70 70" stroke="currentColor" stroke-width="2" fill="none" opacity="0.4"/>
+                                        <circle cx="50" cy="50" r="5" fill="currentColor"/>
+                                    </svg>
+                                </div>
+                                <h3 class="morph-card__title">Entropic Principles</h3>
+                            </div>
+                            <div>
+                                <p class="morph-card__description">Research exploring how entropic flows produce large-scale organization, with applications in information theory and AI ethics frameworks.</p>
+                                <div class="morph-card__details">
+                                    <div class="morph-card__features">
+                                        <div class="morph-card__feature">
+                                            <h4>Emergence Theory</h4>
+                                            <p>Mathematical frameworks for understanding how order arises from chaos.</p>
+                                        </div>
+                                        <div class="morph-card__feature">
+                                            <h4>Information Dynamics</h4>
+                                            <p>Entropy-based models of knowledge formation and cognitive processes.</p>
+                                        </div>
+                                        <div class="morph-card__feature">
+                                            <h4>AI Ethics</h4>
+                                            <p>Principled approaches to alignment using thermodynamic analogies.</p>
+                                        </div>
+                                    </div>
+                                    <a href="https://entropic-principles.web.app/" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top: 2rem;">Read the Research →</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="founder" class="section founder" data-section="founder">
+            <div class="container">
+                <div class="section-heading" data-animate="reveal">
+                    <p class="eyebrow">Founded by Paul Phillips</p>
+                    <h2>14 years managing complex global operations meets cutting-edge AI research.</h2>
+                    <p>Deep expertise in maritime systems, international logistics, and real-world operational complexity informs every solution we build.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="platforms" class="section platforms" data-section="platforms">
+            <div class="container">
+                <div class="section-heading" data-animate="reveal">
+                    <p class="eyebrow">Platforms & Products</p>
+                    <h2>Extensible products that amplify our consulting DNA.</h2>
+                    <p>From production AI tools to experimental research platforms, our products demonstrate the depth of our technical capabilities.</p>
+                </div>
+                <div class="platform-grid">
+                    <a class="platform-card" href="https://parserator.com" target="_blank" rel="noopener" data-animate="reveal" data-fractal-card>
+                        <div class="platform-heading">
+                            <h3>Parserator</h3>
+                            <span class="status">Beta</span>
+                        </div>
+                        <p>Transforms unstructured maritime, regulatory, and commercial data into structured agent-ready JSON with 95% accuracy. Features exoditical moral architecture preventing vendor lock-in.</p>
+                        <span class="platform-link">Visit parserator.com →</span>
+                    </a>
+                    <a class="platform-card" href="https://reposiologist-beta.web.app" target="_blank" rel="noopener" data-animate="reveal" style="--reveal-delay: 0.1s;" data-fractal-card>
+                        <div class="platform-heading">
+                            <h3>Reposiologist</h3>
+                            <span class="status">Live Beta</span>
+                        </div>
+                        <p>Automated Git repository analysis and branch archaeology. Intelligent insights into your codebase's evolution and technical debt.</p>
+                        <span class="platform-link">Try the beta →</span>
+                    </a>
+                    <a class="platform-card" href="https://nimbus-guardian.web.app" target="_blank" rel="noopener" data-animate="reveal" style="--reveal-delay: 0.2s;" data-fractal-card>
+                        <div class="platform-heading">
+                            <h3>Nimbus Guardian</h3>
+                            <span class="status">Live</span>
+                        </div>
+                        <p>Advanced security and monitoring platform leveraging AI for intelligent threat detection and system protection.</p>
+                        <span class="platform-link">Explore Nimbus Guardian →</span>
+                    </a>
+                    <a class="platform-card" href="https://github.com/Domusgpt/minoots-timer-system/" target="_blank" rel="noopener" data-animate="reveal" style="--reveal-delay: 0.3s;" data-fractal-card>
+                        <div class="platform-heading">
+                            <h3>Minoots</h3>
+                            <span class="status">Production</span>
+                        </div>
+                        <p>The Metronome for Autonomous AI. Timer service with ±1 second precision, zero CPU hibernation, crash recovery, and multi-agent coordination.</p>
+                        <span class="platform-link">View on GitHub →</span>
+                    </a>
+                    <div class="platform-card" data-animate="reveal" style="--reveal-delay: 0.4s;" data-fractal-card>
+                        <div class="platform-heading">
+                            <h3>Vib3-Scribe</h3>
+                            <span class="status soon">Coming Soon</span>
+                        </div>
+                        <p>Train Agents in Your Writing Style. Multi-channel AI scribe that learns your unique communication patterns and voice.</p>
+                        <span class="platform-link">Launching soon →</span>
+                    </div>
+                    <a class="platform-card" href="https://domusgpt.github.io/Orthonotone/" target="_blank" rel="noopener" data-animate="reveal" style="--reveal-delay: 0.5s;" data-fractal-card>
+                        <div class="platform-heading">
+                            <h3>Orthonotone</h3>
+                            <span class="status">Prototype</span>
+                        </div>
+                        <p>Experimental "extrument" rendering 4D polytope rotations as spatialized audio. A unique intersection of geometry and sound.</p>
+                        <span class="platform-link">Experience the prototype →</span>
+                    </a>
+                    <div class="platform-card" data-animate="reveal" style="--reveal-delay: 0.6s;" data-fractal-card>
+                        <div class="platform-heading">
+                            <h3>Client Intelligence Stacks</h3>
+                            <span class="status">Tailored</span>
+                        </div>
+                        <p>Custom-built data fabrics, knowledge graphs, and adaptive systems aligned to your organization's unique needs and workflows.</p>
+                        <span class="platform-link">Build your intelligence layer →</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section contact" data-section="contact">
+            <div class="container">
+                <div class="section-heading" data-animate="reveal">
+                    <p class="eyebrow">Let's talk</p>
+                    <h2>Ready to build something extraordinary?</h2>
+                    <p>Whether you're exploring AI opportunities or have a specific project in mind, we'd love to hear from you.</p>
+                </div>
+                <div class="hero-cta" data-animate="reveal" style="--reveal-delay: 0.1s;">
+                    <a class="btn btn-primary" href="mailto:Paul@clearseassolutions.com">Start a conversation</a>
+                    <a class="btn btn-ghost" href="mailto:Paul@clearseassolutions.com">Free consultation</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div class="footer-brand">
+                <span class="brand-mark" aria-hidden="true">◇</span>
+                <span>Clear Seas Solutions</span>
+            </div>
+            <p class="footer-copy">© <span id="current-year"></span> Clear Seas Solutions. Spatial AI & Geometric Cognition Architecture.</p>
+            <p class="footer-signature">🌟 A Paul Phillips Manifestation</p>
+            <p class="footer-philosophy">"The Revolution Will Not Be In A Structured Format"</p>
+        </div>
+    </footer>
+
+    <!-- Core Application with VisualOrchestrator + Visualizers -->
+    <script type="module" src="src/js/app-enhanced.js"></script>
+
+    <!-- Advanced Card System -->
+    <script type="module" src="src/js/AdvancedCardSystem.js"></script>
+
+    <!-- Immersive Logo & Title Interactive GIF System with Fluid Fade -->
+    <script>
+        (function() {
+            const gifPaths = [
+                'assets/images/gifs/1000161066 (3).gif',
+                'assets/images/gifs/1000161066 (4).gif',
+                'assets/images/gifs/1000161066-1 (1).gif',
+                'assets/images/gifs/1000161066-1 (2).gif',
+                'assets/images/gifs/1000161066-1 (3).gif',
+                'assets/images/gifs/1000161066-1 (5).gif',
+                'assets/images/gifs/1000161066-1 (6).gif',
+                'assets/images/gifs/1000161066-1 (8).gif',
+                'assets/images/gifs/1000161066-1 (9).gif',
+                'assets/images/gifs/1000161066-2 (1).gif',
+                'assets/images/gifs/1000161066-3.gif',
+                'assets/images/gifs/1000161066.gif',
+                'assets/images/gifs/26de614b-b6c2-4087-a3fd-351d047eeea1-1_all_104226-1.gif',
+                'assets/images/gifs/26de614b-b6c2-4087-a3fd-351d047eeea1-1_all_104226-2.gif'
+            ];
+
+            // Wait for DOM to be ready
+            setTimeout(() => {
+                const logo = document.getElementById('immersive-logo');
+                const logoImage = document.getElementById('immersive-logo-image');
+                const flourish = document.getElementById('immersive-flourish');
+                const title = document.getElementById('immersive-title');
+                const content = document.getElementById('hero-immersive-content');
+
+                if (!logo || !logoImage || !flourish || !title) {
+                    console.warn('Immersive elements not found, retrying...');
+                    return;
+                }
+
+                const originalSrc = logoImage.src;
+                let isGifShowing = false;
+                let currentGif = null;
+                let cycleInterval = null;
+
+                function getRandomGif() {
+                    const randomIndex = Math.floor(Math.random() * gifPaths.length);
+                    return gifPaths[randomIndex];
+                }
+
+                function fadeLogoAndTitle(fadeOut = false) {
+                    const opacity = fadeOut ? '0.15' : '1';
+                    const logoOpacity = fadeOut ? '0.3' : '1';
+
+                    // Smooth fade transition on logo and title
+                    if (logo) logo.style.opacity = logoOpacity;
+                    if (title) title.style.opacity = opacity;
+                    if (content) content.style.opacity = fadeOut ? '0.95' : '1';
+                }
+
+                function showRandomGif() {
+                    if (isGifShowing) return;
+                    isGifShowing = true;
+
+                    // Fade logo and title to translucent
+                    fadeLogoAndTitle(true);
+
+                    // Small delay before showing GIF for smooth transition
+                    setTimeout(() => {
+                        currentGif = getRandomGif();
+                        flourish.style.backgroundImage = `url('${currentGif}')`;
+                        flourish.classList.add('is-active');
+                        logoImage.src = currentGif;
+                    }, 300);
+                }
+
+                function restoreLogo() {
+                    isGifShowing = false;
+
+                    // Fade logo and title back to full opacity
+                    fadeLogoAndTitle(false);
+
+                    flourish.classList.remove('is-active');
+                    setTimeout(() => {
+                        logoImage.src = originalSrc;
+                        flourish.style.backgroundImage = '';
+                    }, 600);
+                }
+
+                function startCyclingGifs() {
+                    if (cycleInterval) return;
+
+                    showRandomGif();
+                    cycleInterval = setInterval(() => {
+                        restoreLogo();
+                        setTimeout(showRandomGif, 1200);
+                    }, 4000);
+                }
+
+                function stopCyclingGifs() {
+                    if (cycleInterval) {
+                        clearInterval(cycleInterval);
+                        cycleInterval = null;
+                    }
+                    restoreLogo();
+                }
+
+                // Hover effect - cycle through GIFs
+                logo.addEventListener('mouseenter', startCyclingGifs);
+                logo.addEventListener('mouseleave', stopCyclingGifs);
+
+                // Click effect - show single GIF for 3 seconds with fade
+                logo.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    stopCyclingGifs();
+                    showRandomGif();
+                    setTimeout(restoreLogo, 3000);
+                });
+
+                // Automatic cycling every 15 seconds (ambient effect)
+                setInterval(() => {
+                    if (!isGifShowing && !cycleInterval) {
+                        showRandomGif();
+                        setTimeout(restoreLogo, 2500);
+                    }
+                }, 15000);
+
+                console.log('✨ Immersive logo & title GIF system with fluid fade initialized:', gifPaths.length, 'animations');
+            }, 500);
+        })();
+    </script>
+
+    <!-- ScrollChoreographer (NEW) -->
+    <script type="module">
+        // Wait for GSAP to load
+        window.addEventListener('load', () => {
+            if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+                console.error('GSAP or ScrollTrigger not loaded');
+                return;
+            }
+
+            gsap.registerPlugin(ScrollTrigger, Flip);
+            console.log('🎬 GSAP ScrollTrigger + Flip loaded');
+
+            // Wait for VisualOrchestrator to initialize
+            window.addEventListener('clearSeasEnhancedReady', ({ detail }) => {
+                console.log('🎭 Clear Seas Enhanced ready, setting up scroll choreography');
+
+                // ScrollTrigger for each section
+                const sections = ['hero', 'capabilities', 'research', 'founder', 'platforms', 'contact'];
+
+                sections.forEach((sectionId, index) => {
+                    const element = document.querySelector(`[data-section="${sectionId}"]`);
+                    if (!element) return;
+
+                    ScrollTrigger.create({
+                        trigger: element,
+                        start: 'top 70%',
+                        end: 'bottom 30%',
+                        scrub: 1, // Smooth scrubbing
+                        onEnter: () => {
+                            console.log(`🎬 ScrollTrigger: Entering ${sectionId}`);
+                            // VisualOrchestrator already handles section transitions
+                        },
+                        onLeave: () => {
+                            console.log(`🎬 ScrollTrigger: Leaving ${sectionId}`);
+                        },
+                        markers: false // Set to true for debugging
+                    });
+
+                    // Extended morph transition for each section
+                    gsap.from(element, {
+                        scrollTrigger: {
+                            trigger: element,
+                            start: 'top 90%',
+                            end: 'top 20%',
+                            scrub: 2,
+                            markers: false
+                        },
+                        opacity: 0,
+                        y: 100,
+                        scale: 0.95,
+                        duration: 2.5,
+                        ease: 'power3.out'
+                    });
+                });
+
+                // Enhanced Card-to-background GSAP Flip (on hover) with extended morphing
+                document.querySelectorAll('[data-fractal-card]').forEach(card => {
+                    card.addEventListener('mouseenter', () => {
+                        // Get initial state
+                        const state = Flip.getState(card);
+
+                        // Transform (add class that changes scale/position)
+                        card.classList.add('is-emerging');
+
+                        // Extended Flip animate with more dramatic effect
+                        Flip.from(state, {
+                            duration: 1.2,
+                            ease: 'power3.out',
+                            absolute: false,
+                            scale: true,
+                            simple: true
+                        });
+
+                        // Additional GSAP animation for enhanced morphing
+                        gsap.to(card, {
+                            boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
+                            duration: 1.2,
+                            ease: 'power3.out'
+                        });
+                    });
+
+                    card.addEventListener('mouseleave', () => {
+                        const state = Flip.getState(card);
+                        card.classList.remove('is-emerging');
+
+                        // Extended exit animation
+                        Flip.from(state, {
+                            duration: 0.9,
+                            ease: 'power3.inOut'
+                        });
+
+                        gsap.to(card, {
+                            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+                            duration: 0.9,
+                            ease: 'power3.inOut'
+                        });
+                    });
+                });
+
+                console.log('✅ Scroll choreography initialized');
+            });
+        });
+    </script>
+</body>
+</html>

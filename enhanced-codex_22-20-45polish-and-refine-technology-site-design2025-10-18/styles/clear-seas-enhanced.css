@@ -1,0 +1,408 @@
+/*
+ * Clear Seas Solutions — Enhanced with Visual Codex Integration
+ * Combining polytopal field aesthetics with VIB34D holographic effects
+ * Interactive VIB3+ Card System
+ * © 2025 Clear Seas Solutions
+ */
+
+/* ===== VIB3+ DYNAMIC VISUALIZATION CONTAINER ===== */
+.vib3-dynamic-viz {
+  position: fixed;
+  pointer-events: none;
+  will-change: opacity, transform;
+}
+
+/* ===== ENHANCED CARD BASE STYLES FOR 3D TRANSFORMS ===== */
+.vcodex-neoskeu-card {
+  transform-style: preserve-3d;
+  transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1),
+              box-shadow 0.2s ease,
+              border-color 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ===== ENHANCED SIGNAL CARDS WITH MELLOW NEOSKEU STYLING ===== */
+.signal-card.vcodex-neoskeu-card {
+  position: relative;
+  background: linear-gradient(145deg, rgba(18, 22, 35, 0.90), rgba(12, 16, 26, 0.85));
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow:
+    12px 12px 35px rgba(0, 0, 0, 0.6),
+    -6px -6px 18px rgba(255, 255, 255, 0.02),
+    inset 1px 1px 4px rgba(255, 255, 255, 0.04);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.signal-card.vcodex-neoskeu-card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    16px 16px 45px rgba(0, 0, 0, 0.7),
+    -8px -8px 22px rgba(255, 255, 255, 0.025),
+    inset 2px 2px 6px rgba(255, 255, 255, 0.05),
+    0 0 30px rgba(0, 212, 255, 0.15);
+  border-color: rgba(0, 212, 255, 0.25);
+}
+
+/* Glass morphism enhancement */
+.signal-card.vcodex-glass {
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+}
+
+/* ===== CAPABILITY CARDS WITH MELLOW VISUAL CODEX STYLING ===== */
+.capability-card.vcodex-neoskeu-card {
+  background: linear-gradient(145deg, rgba(16, 20, 32, 0.88), rgba(12, 16, 26, 0.82));
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow:
+    10px 10px 30px rgba(0, 0, 0, 0.5),
+    -5px -5px 15px rgba(255, 255, 255, 0.02),
+    inset 1px 1px 3px rgba(255, 255, 255, 0.03);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.capability-card.vcodex-neoskeu-card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    14px 14px 40px rgba(0, 0, 0, 0.65),
+    -7px -7px 20px rgba(255, 255, 255, 0.025),
+    inset 2px 2px 5px rgba(255, 255, 255, 0.04),
+    0 0 25px rgba(0, 212, 255, 0.15);
+  border-color: rgba(0, 212, 255, 0.25);
+}
+
+/* Hover lift effect */
+.vcodex-hover-lift {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+/* ===== PLATFORM CARDS MELLOW ENHANCEMENT ===== */
+.platform-card.vcodex-neoskeu-card {
+  background: linear-gradient(145deg, rgba(14, 18, 28, 0.88), rgba(10, 14, 22, 0.85));
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow:
+    10px 10px 30px rgba(0, 0, 0, 0.55),
+    -5px -5px 15px rgba(255, 255, 255, 0.02),
+    inset 1px 1px 4px rgba(255, 255, 255, 0.03);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.platform-card.vcodex-neoskeu-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.06), transparent);
+  transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.platform-card.vcodex-neoskeu-card:hover::before {
+  left: 100%;
+}
+
+.platform-card.vcodex-neoskeu-card:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    14px 14px 42px rgba(0, 0, 0, 0.65),
+    -7px -7px 20px rgba(255, 255, 255, 0.025),
+    inset 2px 2px 6px rgba(255, 255, 255, 0.04),
+    0 0 30px rgba(0, 212, 255, 0.18);
+  border-color: rgba(0, 212, 255, 0.28);
+}
+
+/* Coming soon status enhancement */
+.platform-card .status.soon {
+  background: linear-gradient(120deg, rgba(255, 0, 110, 0.2), rgba(255, 100, 200, 0.15));
+  box-shadow: 0 0 20px rgba(255, 0, 110, 0.3);
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 0, 110, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 0, 110, 0.5);
+  }
+}
+
+/* Live status enhancement */
+.platform-card .status {
+  background: linear-gradient(120deg, rgba(0, 212, 255, 0.2), rgba(56, 189, 248, 0.15));
+  box-shadow: 0 0 15px rgba(0, 212, 255, 0.25);
+  transition: all 0.3s ease;
+}
+
+.platform-card:hover .status {
+  box-shadow: 0 0 25px rgba(0, 212, 255, 0.4);
+}
+
+/* ===== RESEARCH LAB CARDS - MELLOW ===== */
+.research-lab.vcodex-neoskeu-card {
+  background: linear-gradient(145deg, rgba(12, 16, 26, 0.90), rgba(8, 10, 18, 0.88));
+  border: 1px solid rgba(0, 212, 255, 0.18);
+  box-shadow:
+    12px 12px 35px rgba(0, 0, 0, 0.6),
+    -6px -6px 18px rgba(255, 255, 255, 0.02),
+    inset 1px 1px 4px rgba(255, 255, 255, 0.03),
+    0 0 20px rgba(0, 212, 255, 0.10);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.research-lab.vcodex-neoskeu-card:hover {
+  transform: translateY(-5px);
+  box-shadow:
+    16px 16px 45px rgba(0, 0, 0, 0.7),
+    -8px -8px 22px rgba(255, 255, 255, 0.025),
+    inset 2px 2px 6px rgba(255, 255, 255, 0.04),
+    0 0 32px rgba(0, 212, 255, 0.18);
+  border-color: rgba(0, 212, 255, 0.3);
+}
+
+/* ===== ENGAGEMENT STEPS MELLOW ENHANCEMENT ===== */
+.step.vcodex-neoskeu-card {
+  background: linear-gradient(145deg, rgba(14, 18, 28, 0.88), rgba(10, 14, 22, 0.85));
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow:
+    10px 10px 28px rgba(0, 0, 0, 0.5),
+    -5px -5px 14px rgba(255, 255, 255, 0.02),
+    inset 1px 1px 3px rgba(255, 255, 255, 0.03);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.step.vcodex-neoskeu-card:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    12px 12px 35px rgba(0, 0, 0, 0.6),
+    -6px -6px 18px rgba(255, 255, 255, 0.025),
+    inset 2px 2px 5px rgba(255, 255, 255, 0.04),
+    0 0 20px rgba(0, 212, 255, 0.12);
+  border-color: rgba(0, 212, 255, 0.2);
+}
+
+/* Step index enhancement */
+.step-index {
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(56, 189, 248, 0.1));
+  box-shadow:
+    0 0 20px rgba(0, 212, 255, 0.3),
+    inset 0 0 15px rgba(0, 212, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.step:hover .step-index {
+  box-shadow:
+    0 0 30px rgba(0, 212, 255, 0.5),
+    inset 0 0 20px rgba(0, 212, 255, 0.15);
+  transform: scale(1.1);
+}
+
+/* ===== LEGACY SIGNAL ENHANCEMENT ===== */
+.legacy-signal.vcodex-neoskeu-card {
+  background: linear-gradient(145deg, rgba(14, 18, 26, 0.95), rgba(10, 14, 22, 0.92));
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    20px 20px 55px rgba(0, 0, 0, 0.8),
+    -10px -10px 28px rgba(255, 255, 255, 0.02),
+    inset 2px 2px 7px rgba(255, 255, 255, 0.05);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.legacy-signal.vcodex-neoskeu-card:hover {
+  transform: translateY(-8px);
+  box-shadow:
+    25px 25px 65px rgba(0, 0, 0, 0.9),
+    -12px -12px 32px rgba(255, 255, 255, 0.03),
+    inset 3px 3px 9px rgba(255, 255, 255, 0.07),
+    0 0 50px rgba(255, 0, 110, 0.2);
+  border-color: rgba(255, 0, 110, 0.25);
+}
+
+/* ===== HEADER ENHANCEMENT ===== */
+.site-header.vcodex-holo-header {
+  position: relative;
+}
+
+.site-header.vcodex-holo-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.6), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.site-header.is-scrolled.vcodex-holo-header::before {
+  opacity: 1;
+}
+
+/* ===== BUTTON ENHANCEMENTS ===== */
+.btn.vcodex-holo-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn.vcodex-holo-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.btn.vcodex-holo-button:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* ===== HOLOGRAPHIC BACKGROUND INTEGRATION ===== */
+.vcodex-holographic-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: -1;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+/* Depth layers for parallax effect */
+:root {
+  --depth-near: 100px;
+  --depth-mid: 50px;
+  --depth-far: 20px;
+}
+
+.vcodex-holo-layer {
+  position: absolute;
+  inset: 0;
+  opacity: 0.4;
+  mix-blend-mode: screen;
+  will-change: transform;
+  transition: transform 0.3s ease-out;
+}
+
+.vcodex-holo-layer-1 {
+  background: radial-gradient(circle at 30% 30%, rgba(0, 212, 255, 0.15), transparent 60%);
+  transform: translateZ(var(--depth-near));
+}
+
+.vcodex-holo-layer-2 {
+  background: radial-gradient(circle at 70% 40%, rgba(56, 189, 248, 0.12), transparent 55%);
+  transform: translateZ(var(--depth-mid));
+}
+
+.vcodex-holo-layer-3 {
+  background: radial-gradient(circle at 50% 70%, rgba(255, 0, 110, 0.08), transparent 65%);
+  transform: translateZ(var(--depth-far));
+}
+
+.vcodex-holo-layer-4 {
+  background: radial-gradient(circle at 80% 80%, rgba(192, 132, 252, 0.06), transparent 60%);
+  transform: translateZ(var(--depth-far));
+}
+
+/* ===== GRADIENT BAR STYLING ===== */
+.platform-card .platform-heading::before {
+  content: '';
+  position: absolute;
+  top: -var(--space-6);
+  left: 0;
+  height: 3px;
+  width: 50px;
+  background: linear-gradient(90deg, #00d4ff, #ff006e);
+  border-radius: 999px;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.platform-card:hover .platform-heading::before {
+  opacity: 1;
+  width: 70px;
+}
+
+/* ===== SCROLL-TRIGGERED ANIMATIONS ===== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+[data-animate="reveal"].is-visible {
+  animation: fadeInUp 0.85s cubic-bezier(0, 0, 0.2, 1) forwards;
+}
+
+/* ===== RESPONSIVE ENHANCEMENTS ===== */
+@media (max-width: 1080px) {
+  .signal-card.vcodex-neoskeu-card:hover,
+  .capability-card.vcodex-neoskeu-card:hover,
+  .platform-card.vcodex-neoskeu-card:hover,
+  .research-lab.vcodex-neoskeu-card:hover {
+    transform: translateY(-6px) scale(1.01);
+  }
+}
+
+@media (max-width: 720px) {
+  .vcodex-holo-layer {
+    opacity: 0.2;
+  }
+
+  .signal-card.vcodex-neoskeu-card,
+  .capability-card.vcodex-neoskeu-card,
+  .platform-card.vcodex-neoskeu-card {
+    box-shadow:
+      15px 15px 40px rgba(0, 0, 0, 0.6),
+      -8px -8px 20px rgba(255, 255, 255, 0.02);
+  }
+}
+
+/* ===== ACCESSIBILITY: REDUCED MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+  .vcodex-holo-layer {
+    transform: none !important;
+  }
+
+  .signal-card.vcodex-neoskeu-card,
+  .capability-card.vcodex-neoskeu-card,
+  .platform-card.vcodex-neoskeu-card,
+  .research-lab.vcodex-neoskeu-card,
+  .step.vcodex-neoskeu-card {
+    transition: none !important;
+  }
+
+  .platform-card.vcodex-neoskeu-card::before {
+    display: none;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 20px rgba(255, 0, 110, 0.3);
+    }
+  }
+}
+
+/*
+ * © 2025 Paul Phillips - Clear Seas Solutions LLC
+ * A Paul Phillips Manifestation
+ * Paul@clearseassolutions.com
+ * "The Revolution Will Not be in a Structured Format"
+ */

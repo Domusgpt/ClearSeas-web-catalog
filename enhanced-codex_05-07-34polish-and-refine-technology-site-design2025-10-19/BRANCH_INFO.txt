@@ -1,0 +1,1 @@
+Refine VIB3 shader swapping with node-aware frame management|2025-10-19 01:07:37 -0400|ClearSeas-Enhanced

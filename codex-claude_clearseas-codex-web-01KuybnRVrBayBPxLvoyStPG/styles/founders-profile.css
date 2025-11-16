@@ -1,0 +1,472 @@
+/**
+ * Founders Profile Section Styling
+ * A Paul Phillips Manifestation
+ */
+
+.founder-profile {
+    background: linear-gradient(135deg, rgba(0, 15, 35, 0.98) 0%, rgba(10, 25, 47, 0.95) 100%);
+    border-top: 1px solid rgba(0, 212, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 0, 110, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.founder-profile::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 300px;
+    background: radial-gradient(ellipse at top, rgba(0, 212, 255, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.founder-content {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 4rem;
+    margin-top: 3rem;
+}
+
+@media (max-width: 1024px) {
+    .founder-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .founder-sidebar {
+        order: -1;
+    }
+}
+
+/* Bio Section */
+.founder-bio {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.bio-section {
+    margin-bottom: 3rem;
+}
+
+.bio-section h3 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #00d4ff 0%, #a855f7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.bio-section p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.bio-section strong {
+    color: #00d4ff;
+    font-weight: 600;
+}
+
+.bio-section em {
+    color: #a855f7;
+    font-style: italic;
+}
+
+/* Founder Quote */
+.founder-quote {
+    border-left: 3px solid #00d4ff;
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+    font-size: 1.15rem;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.95);
+    line-height: 1.7;
+    background: rgba(0, 212, 255, 0.03);
+    padding: 1.5rem 1.5rem 1.5rem 2rem;
+    border-radius: 4px;
+}
+
+/* Innovation Highlights */
+.innovation-highlight {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.08) 0%, rgba(168, 85, 247, 0.05) 100%);
+    border: 1px solid rgba(0, 212, 255, 0.15);
+    border-radius: 8px;
+    padding: 2rem;
+    margin: 1.5rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.innovation-highlight::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, #00d4ff 0%, #a855f7 100%);
+}
+
+.innovation-highlight h4 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: #00d4ff;
+    font-weight: 600;
+}
+
+.innovation-highlight p {
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.7;
+}
+
+.innovation-highlight ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 1rem 0;
+}
+
+.innovation-highlight ul li {
+    padding-left: 1.5rem;
+    margin-bottom: 0.75rem;
+    position: relative;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.innovation-highlight ul li::before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    color: #00d4ff;
+    font-weight: bold;
+}
+
+.tech-note {
+    font-size: 0.9rem;
+    color: rgba(168, 85, 247, 0.9);
+    margin-top: 1rem;
+    font-weight: 500;
+}
+
+.tech-note a {
+    color: #a855f7;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(168, 85, 247, 0.3);
+    transition: all 0.2s ease;
+}
+
+.tech-note a:hover {
+    color: #00d4ff;
+    border-bottom-color: #00d4ff;
+}
+
+/* Product List */
+.product-list {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.product-item {
+    background: rgba(0, 212, 255, 0.05);
+    border: 1px solid rgba(0, 212, 255, 0.1);
+    border-radius: 6px;
+    padding: 1.25rem;
+}
+
+.product-item strong {
+    display: block;
+    font-size: 1.1rem;
+    color: #00d4ff;
+    margin-bottom: 0.5rem;
+}
+
+.product-item p {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.75);
+    margin: 0;
+}
+
+/* Expertise Grid */
+.expertise-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.expertise-col h4 {
+    font-size: 1.1rem;
+    color: #a855f7;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.expertise-col ul {
+    list-style: none;
+    padding: 0;
+}
+
+.expertise-col ul li {
+    padding: 0.5rem 0;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.expertise-col ul li:last-child {
+    border-bottom: none;
+}
+
+/* Publication List */
+.publication-list {
+    list-style: none;
+    padding: 0;
+}
+
+.publication-list li {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.publication-list li::before {
+    content: '📄';
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.publication-list strong {
+    display: block;
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 0.25rem;
+    font-size: 1.05rem;
+}
+
+.pub-meta {
+    display: block;
+    font-size: 0.9rem;
+    color: rgba(168, 85, 247, 0.8);
+    font-style: italic;
+}
+
+.pub-meta a {
+    color: #a855f7;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(168, 85, 247, 0.3);
+    transition: all 0.2s ease;
+}
+
+.pub-meta a:hover {
+    color: #00d4ff;
+    border-bottom-color: #00d4ff;
+}
+
+/* Philosophy Section */
+.bio-section.philosophy {
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.08) 0%, rgba(0, 212, 255, 0.05) 100%);
+    border: 1px solid rgba(168, 85, 247, 0.15);
+    border-radius: 8px;
+    padding: 2rem;
+    margin-top: 3rem;
+}
+
+/* Sidebar */
+.founder-sidebar {
+    position: sticky;
+    top: 100px;
+    align-self: start;
+}
+
+.sidebar-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(0, 212, 255, 0.15);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(10px);
+}
+
+.sidebar-card h4 {
+    font-size: 1.1rem;
+    color: #00d4ff;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.sidebar-card p {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+}
+
+.sidebar-card strong {
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.education-note {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+/* Position List */
+.position-list {
+    list-style: none;
+    padding: 0;
+}
+
+.position-list li {
+    margin-bottom: 1.25rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.position-list li:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.position-list strong {
+    display: block;
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.position-list span {
+    display: block;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.position-list .year {
+    margin-top: 0.25rem;
+    color: rgba(0, 212, 255, 0.8);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* Recognition List */
+.recognition-list {
+    list-style: none;
+    padding: 0;
+}
+
+.recognition-list li {
+    padding: 0.75rem 0;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.recognition-list li:last-child {
+    border-bottom: none;
+}
+
+/* Contact Card */
+.contact-card {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(168, 85, 247, 0.08) 100%);
+    border-color: rgba(0, 212, 255, 0.3);
+}
+
+.contact-card p {
+    margin: 0.5rem 0;
+}
+
+.contact-card a {
+    color: #00d4ff;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.contact-card a:hover {
+    color: #a855f7;
+}
+
+/* Platform Grid Updates for Founders Section */
+.platform-card.featured {
+    grid-column: span 2;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(168, 85, 247, 0.08) 100%);
+    border-color: rgba(0, 212, 255, 0.3);
+}
+
+@media (max-width: 768px) {
+    .platform-card.featured {
+        grid-column: span 1;
+    }
+}
+
+.status {
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status.research {
+    background: rgba(168, 85, 247, 0.2);
+    color: #a855f7;
+    border: 1px solid rgba(168, 85, 247, 0.4);
+}
+
+.status.demo {
+    background: rgba(0, 212, 255, 0.2);
+    color: #00d4ff;
+    border: 1px solid rgba(0, 212, 255, 0.4);
+}
+
+.status.production {
+    background: rgba(34, 197, 94, 0.2);
+    color: #22c55e;
+    border: 1px solid rgba(34, 197, 94, 0.4);
+}
+
+.status.beta {
+    background: rgba(251, 191, 36, 0.2);
+    color: #fbbf24;
+    border: 1px solid rgba(251, 191, 36, 0.4);
+}
+
+.status.prototype {
+    background: rgba(255, 0, 110, 0.2);
+    color: #ff006e;
+    border: 1px solid rgba(255, 0, 110, 0.4);
+}
+
+/* Footer Updates */
+.footer-philosophy {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    opacity: 0.7;
+    font-style: italic;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.founder-profile [data-animate="reveal"] {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.founder-profile [data-animate="reveal"].is-visible {
+    opacity: 1;
+}

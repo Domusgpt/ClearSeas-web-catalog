@@ -1,0 +1,85 @@
+/* Clear Seas Enhanced Styles
+ * Additional styles for combined visualization system
+ * © 2025 Clear Seas Solutions LLC - Paul Phillips
+ */
+
+/* ========================================
+ * Z-INDEX HIERARCHY - CRITICAL FOR VISIBILITY
+ * ========================================
+ * -3: Polytopal field (bottom background)
+ * -2: Texture layer
+ * 1: Quantum background (WebGL geometry)
+ * 2-5: Element visualizers (behind card content)
+ * 10: Content (.site-main)
+ * 12: Header (sticky)
+ */
+
+#polytopal-field {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -3;
+    pointer-events: none;
+}
+
+#quantum-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Make sure main content is above visualizers */
+.site-main {
+    position: relative;
+    z-index: 10;
+}
+
+/* Cards need relative positioning for element visualizers */
+.signal-card,
+.card,
+.capability-card {
+    position: relative;
+    /* Element visualizers will be positioned absolutely inside with z-index 0 */
+    /* Card content will be above with z-index 1 */
+}
+
+/* Ensure card content is above visualizers */
+.signal-card > *:not(canvas),
+.card > *:not(canvas),
+.capability-card > *:not(canvas) {
+    position: relative;
+    z-index: 1;
+}
+
+/* Element visualizer canvases */
+.element-visualizer-canvas {
+    position: absolute;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Video backgrounds should be behind element visualizers */
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+    opacity: 0.3;
+}
+
+.video-background video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.4;
+}

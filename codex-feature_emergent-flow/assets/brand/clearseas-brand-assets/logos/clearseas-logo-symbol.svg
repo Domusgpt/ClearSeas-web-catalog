@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="navyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#0D3B66;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0A2540;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="aquaGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00C8E0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00A9CE;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background Circle -->
+  <circle cx="100" cy="100" r="95" fill="url(#navyGradient)" stroke="#0A2540" stroke-width="2"/>
+  
+  <!-- Outer Diamond (Navigation Frame) -->
+  <path d="M 100 25 L 165 100 L 100 175 L 35 100 Z" 
+        fill="none" 
+        stroke="#F8FAFB" 
+        stroke-width="4" 
+        stroke-linejoin="miter"/>
+  
+  <!-- Inner Geometric Structure (Double Triangle/Diamond Core) -->
+  <!-- Top Triangle -->
+  <path d="M 100 55 L 130 100 L 100 100 Z" 
+        fill="url(#aquaGradient)" 
+        stroke="#F8FAFB" 
+        stroke-width="2.5" 
+        stroke-linejoin="miter"/>
+  
+  <!-- Bottom Triangle -->
+  <path d="M 100 145 L 70 100 L 100 100 Z" 
+        fill="url(#aquaGradient)" 
+        stroke="#F8FAFB" 
+        stroke-width="2.5" 
+        stroke-linejoin="miter"/>
+  
+  <!-- Left Inner Diamond Facet -->
+  <path d="M 70 100 L 100 85 L 100 115 Z" 
+        fill="#0D3B66" 
+        stroke="#F8FAFB" 
+        stroke-width="2"/>
+  
+  <!-- Right Inner Diamond Facet -->
+  <path d="M 130 100 L 100 85 L 100 115 Z" 
+        fill="#0D3B66" 
+        stroke="#F8FAFB" 
+        stroke-width="2"/>
+  
+  <!-- Central Core Diamond (4D Projection Hint) -->
+  <path d="M 100 85 L 115 100 L 100 115 L 85 100 Z" 
+        fill="none" 
+        stroke="#F8FAFB" 
+        stroke-width="2.5" 
+        stroke-linejoin="miter"/>
+  
+  <!-- Navigation Cross (Cardinal Points) -->
+  <circle cx="100" cy="25" r="3" fill="#00C8E0"/>
+  <circle cx="165" cy="100" r="3" fill="#00C8E0"/>
+  <circle cx="100" cy="175" r="3" fill="#00C8E0"/>
+  <circle cx="35" cy="100" r="3" fill="#00C8E0"/>
+</svg>

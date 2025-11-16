@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orchestration Test Suite - Clear Seas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0e16;
+            color: white;
+            padding: 20px;
+        }
+
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #00d4ff;
+            margin-bottom: 30px;
+        }
+
+        .test-section {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .test-section h2 {
+            color: #00d4ff;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .test-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            margin-bottom: 8px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+        }
+
+        .test-status {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #666;
+            flex-shrink: 0;
+        }
+
+        .test-status.pass {
+            background: #0f0;
+        }
+
+        .test-status.fail {
+            background: #f00;
+        }
+
+        .test-status.pending {
+            background: #ff0;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .test-name {
+            flex: 1;
+        }
+
+        .test-details {
+            font-size: 12px;
+            color: #888;
+            font-family: monospace;
+        }
+
+        .test-card {
+            width: 300px;
+            height: 200px;
+            background: linear-gradient(145deg, rgba(18, 22, 35, 0.90), rgba(12, 16, 26, 0.85));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .console-output {
+            background: #000;
+            border: 1px solid #333;
+            border-radius: 4px;
+            padding: 15px;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+            margin-top: 15px;
+        }
+
+        .console-line {
+            margin-bottom: 5px;
+        }
+
+        .console-line.error {
+            color: #f00;
+        }
+
+        .console-line.success {
+            color: #0f0;
+        }
+
+        .console-line.info {
+            color: #00d4ff;
+        }
+
+        .run-tests-btn {
+            background: linear-gradient(90deg, #00d4ff, #ff006e);
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 30px;
+        }
+
+        .run-tests-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .cursor-test-area {
+            width: 100%;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 2px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+
+        .scroll-test-section {
+            height: 150vh;
+            background: linear-gradient(180deg, rgba(0, 212, 255, 0.1), rgba(255, 0, 110, 0.1));
+            margin-top: 30px;
+            padding: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🧪 Orchestration System Test Suite</h1>
+
+        <button class="run-tests-btn" onclick="runAllTests()">Run All Tests</button>
+
+        <!-- Library Loading Tests -->
+        <div class="test-section">
+            <h2>📚 Library Loading</h2>
+            <div class="test-item">
+                <div class="test-status" id="test-lenis"></div>
+                <div class="test-name">Lenis Library</div>
+                <div class="test-details" id="details-lenis">Not tested</div>
+            </div>
+            <div class="test-item">
+                <div class="test-status" id="test-gsap"></div>
+                <div class="test-name">GSAP Library</div>
+                <div class="test-details" id="details-gsap">Not tested</div>
+            </div>
+            <div class="test-item">
+                <div class="test-status" id="test-scrolltrigger"></div>
+                <div class="test-name">ScrollTrigger Plugin</div>
+                <div class="test-details" id="details-scrolltrigger">Not tested</div>
+            </div>
+        </div>
+
+        <!-- Orchestration Initialization -->
+        <div class="test-section">
+            <h2>🎭 Orchestration Systems</h2>
+            <div class="test-item">
+                <div class="test-status" id="test-smooth-scroll"></div>
+                <div class="test-name">Smooth Scroll (Lenis)</div>
+                <div class="test-details" id="details-smooth-scroll">Not tested</div>
+            </div>
+            <div class="test-item">
+                <div class="test-status" id="test-gsap-integration"></div>
+                <div class="test-name">GSAP + Lenis Integration</div>
+                <div class="test-details" id="details-gsap-integration">Not tested</div>
+            </div>
+            <div class="test-item">
+                <div class="test-status" id="test-canvas"></div>
+                <div class="test-name">Canvas Background</div>
+                <div class="test-details" id="details-canvas">Not tested</div>
+            </div>
+        </div>
+
+        <!-- Interactive Features -->
+        <div class="test-section">
+            <h2>🎮 Interactive Features</h2>
+            <div class="test-item">
+                <div class="test-status" id="test-cursor"></div>
+                <div class="test-name">Magnetic Cursor</div>
+                <div class="test-details" id="details-cursor">Not tested</div>
+            </div>
+            <div class="test-item">
+                <div class="test-status" id="test-vib3-cards"></div>
+                <div class="test-name">VIB3+ Card Interactions</div>
+                <div class="test-details" id="details-vib3-cards">Not tested</div>
+            </div>
+
+            <h3 style="margin-top: 20px; margin-bottom: 10px; font-size: 14px; color: #00d4ff;">Test Card (Hover to Test VIB3+)</h3>
+            <div class="test-card signal-card" id="interactive-test-card">
+                <h3>Hover Over Me</h3>
+                <p>This card should tilt in 3D when you move your mouse over it.</p>
+            </div>
+
+            <h3 style="margin-top: 20px; margin-bottom: 10px; font-size: 14px; color: #00d4ff;">Cursor Test Area</h3>
+            <div class="cursor-test-area">
+                Move your cursor here to test magnetic effect
+            </div>
+        </div>
+
+        <!-- Console Output -->
+        <div class="test-section">
+            <h2>📊 Console Output</h2>
+            <div class="console-output" id="console-output">
+                <div class="console-line info">Waiting for tests to run...</div>
+            </div>
+        </div>
+
+        <!-- Scroll Test Area -->
+        <div class="scroll-test-section">
+            <h2>Scroll down to test smooth scrolling</h2>
+            <p>The scroll should feel smooth and have momentum</p>
+        </div>
+    </div>
+
+    <!-- Load Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+    <!-- Test Suite -->
+    <script>
+        const consoleOutput = document.getElementById('console-output');
+
+        function log(message, type = 'info') {
+            const line = document.createElement('div');
+            line.className = `console-line ${type}`;
+            line.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            consoleOutput.appendChild(line);
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+            console.log(message);
+        }
+
+        function updateTest(testId, status, details = '') {
+            const statusEl = document.getElementById(`test-${testId}`);
+            const detailsEl = document.getElementById(`details-${testId}`);
+
+            if (statusEl) {
+                statusEl.className = `test-status ${status}`;
+            }
+            if (detailsEl) {
+                detailsEl.textContent = details;
+            }
+        }
+
+        function runAllTests() {
+            log('Starting orchestration system tests...', 'info');
+            consoleOutput.innerHTML = '';
+
+            // Test 1: Library Loading
+            setTimeout(() => testLibraries(), 100);
+
+            // Test 2: Orchestration Systems
+            setTimeout(() => testOrchestration(), 500);
+
+            // Test 3: Interactive Features
+            setTimeout(() => testInteractive(), 1000);
+        }
+
+        function testLibraries() {
+            log('Testing library loading...', 'info');
+
+            // Test Lenis
+            if (typeof Lenis !== 'undefined') {
+                updateTest('lenis', 'pass', `v${Lenis.version || 'unknown'}`);
+                log('✓ Lenis loaded successfully', 'success');
+            } else {
+                updateTest('lenis', 'fail', 'Not found');
+                log('✗ Lenis failed to load', 'error');
+            }
+
+            // Test GSAP
+            if (typeof gsap !== 'undefined') {
+                updateTest('gsap', 'pass', `v${gsap.version}`);
+                log('✓ GSAP loaded successfully', 'success');
+            } else {
+                updateTest('gsap', 'fail', 'Not found');
+                log('✗ GSAP failed to load', 'error');
+            }
+
+            // Test ScrollTrigger
+            if (typeof ScrollTrigger !== 'undefined') {
+                updateTest('scrolltrigger', 'pass', 'Plugin loaded');
+                log('✓ ScrollTrigger loaded successfully', 'success');
+            } else {
+                updateTest('scrolltrigger', 'fail', 'Not found');
+                log('✗ ScrollTrigger failed to load', 'error');
+            }
+        }
+
+        function testOrchestration() {
+            log('Testing orchestration systems...', 'info');
+
+            // Test Lenis instance
+            if (window.lenis) {
+                updateTest('smooth-scroll', 'pass', 'Instance found');
+                log('✓ Lenis instance created', 'success');
+            } else {
+                updateTest('smooth-scroll', 'fail', 'No instance');
+                log('✗ Lenis instance not found', 'error');
+            }
+
+            // Test GSAP + Lenis integration
+            if (typeof gsap !== 'undefined' && gsap.ticker) {
+                updateTest('gsap-integration', 'pass', 'Ticker active');
+                log('✓ GSAP ticker integration', 'success');
+            } else {
+                updateTest('gsap-integration', 'fail', 'No ticker');
+                log('✗ GSAP ticker not found', 'error');
+            }
+
+            // Test Canvas
+            const canvas = document.getElementById('polytopal-field');
+            if (canvas) {
+                updateTest('canvas', 'pass', 'Element found');
+                log('✓ Canvas element exists', 'success');
+            } else {
+                updateTest('canvas', 'fail', 'Not found');
+                log('✗ Canvas element not found', 'error');
+            }
+        }
+
+        function testInteractive() {
+            log('Testing interactive features...', 'info');
+
+            // Test Cursor
+            const cursorDot = document.querySelector('.cursor-dot');
+            const cursorFollower = document.querySelector('.cursor-follower');
+            if (cursorDot && cursorFollower) {
+                updateTest('cursor', 'pass', 'Elements found');
+                log('✓ Cursor elements created', 'success');
+            } else {
+                updateTest('cursor', 'fail', 'Elements not found');
+                log('✗ Cursor elements not found', 'error');
+            }
+
+            // Test VIB3+ system
+            const vib3Container = document.querySelector('.vib3-viz-container');
+            if (vib3Container) {
+                updateTest('vib3-cards', 'pass', 'Container found');
+                log('✓ VIB3+ container created', 'success');
+            } else {
+                updateTest('vib3-cards', 'fail', 'Container not found');
+                log('✗ VIB3+ container not found', 'error');
+            }
+
+            log('All tests complete!', 'info');
+        }
+
+        // Auto-run tests on load
+        window.addEventListener('load', () => {
+            setTimeout(runAllTests, 1000);
+        });
+
+        // Monitor card interactions
+        const testCard = document.getElementById('interactive-test-card');
+        if (testCard) {
+            testCard.addEventListener('mouseenter', () => {
+                log('Card hover detected', 'success');
+            });
+
+            testCard.addEventListener('mousemove', () => {
+                // Only log once
+                if (!testCard.dataset.logged) {
+                    log('Card mousemove active', 'success');
+                    testCard.dataset.logged = 'true';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

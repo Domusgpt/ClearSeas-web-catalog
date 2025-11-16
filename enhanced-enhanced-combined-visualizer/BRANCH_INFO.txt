@@ -1,0 +1,1 @@
+🔧 FIX: Card positioning - remove absolute centering that broke mobile layout|2025-11-04 14:25:16 -0500|ClearSeas-Enhanced

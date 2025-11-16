@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clear Seas Builds</title>
+    <style>
+        :root {
+            color-scheme: dark;
+            --bg: #04060a;
+            --card: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+            background: radial-gradient(circle at 30% 20%, rgba(0,212,255,0.2), transparent 60%), var(--bg);
+            color: #f4f7ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 1.5rem;
+        }
+        main {
+            width: min(960px, 100%);
+        }
+        h1 {
+            font-size: clamp(2.2rem, 5vw, 3.2rem);
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .builds {
+            display: grid;
+            gap: 1.5rem;
+        }
+        .build-card {
+            padding: 2rem;
+            border-radius: 1.5rem;
+            border: 1px solid var(--border);
+            background: var(--card);
+            backdrop-filter: blur(18px);
+        }
+        .build-card h2 {
+            margin: 0 0 0.5rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        .build-card p {
+            margin: 0 0 1.5rem;
+            color: rgba(255, 255, 255, 0.65);
+            letter-spacing: 0.08em;
+        }
+        .build-card a {
+            display: inline-flex;
+            gap: 0.5rem;
+            align-items: center;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: #8bf0ff;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Clear Seas Builds</h1>
+        <div class="builds">
+            <section class="build-card">
+                <h2>Emergent Flow</h2>
+                <p>Original holographic choreography with the first-generation hero + section locks.</p>
+                <a href="builds/emergent-flow/index.html" target="_blank" rel="noopener">Open Build ↗</a>
+            </section>
+            <section class="build-card">
+                <h2>Minoots Flow</h2>
+                <p>Simone-inspired orbitals, digest locks, and synchronized visualizer reactions.</p>
+                <a href="builds/minoots-flow/index.html" target="_blank" rel="noopener">Open Build ↗</a>
+            </section>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,1 @@
+🔧 FIX: Set visualizer opacity to 0.8 so it's visible|2025-11-07 16:17:07 -0500|ClearSeas-Enhanced

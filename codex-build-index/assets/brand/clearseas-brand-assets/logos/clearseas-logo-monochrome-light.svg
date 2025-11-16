@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" 
+     xmlns="http://www.w3.org/2000/svg">
+  <title>ClearSeas Solutions</title>
+  <desc>Geometric navigation symbol</desc>
+  
+  
+  
+  <path d="M 256.0,76.80000000000001 
+           L 435.2,256.0 
+           L 256.0,435.2 
+           L 76.80000000000001,256.0 Z" 
+        fill="#FFFFFF" 
+         />
+  
+  <path d="M 256.0,102.4 
+           L 409.6,256.0 
+           L 256.0,409.6 
+           L 102.4,256.0 Z" 
+        fill="#FFFFFF" opacity="0.9" />
+  
+  <path d="M 256.0,215.04 
+           L 296.96,256.0 
+           L 256.0,296.96 
+           L 215.04,256.0 Z" 
+        fill="#0A2540" />
+  
+  <circle cx="256.0" cy="256.0" r="243.2" 
+          fill="none" stroke="#FFFFFF" 
+          stroke-width="2" opacity="0.3" />
+</svg>

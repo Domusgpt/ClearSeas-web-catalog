@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clear Seas Web Catalog - 66 Professional Builds</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --ocean-deep: #001f3f;
+            --ocean-mid: #0a4d68;
+            --ocean-light: #088395;
+            --teal-bright: #05c3dd;
+            --foam: #e0f4ff;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.18);
+            --shadow-soft: rgba(0, 0, 0, 0.1);
+            --shadow-deep: rgba(0, 0, 0, 0.3);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--ocean-deep) 0%, var(--ocean-mid) 50%, var(--ocean-light) 100%);
+            min-height: 100vh;
+            color: #fff;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(5, 195, 221, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(8, 131, 149, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px var(--shadow-soft);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff 0%, var(--teal-bright) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 20px rgba(5, 195, 221, 0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: var(--foam);
+            margin-bottom: 20px;
+        }
+
+        .stats-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .stat-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px var(--shadow-deep);
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: var(--teal-bright);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            color: var(--foam);
+            margin-top: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .controls {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px var(--shadow-soft);
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 1.1em;
+            border-radius: 12px;
+            border: 2px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: var(--teal-bright);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 20px rgba(5, 195, 221, 0.3);
+        }
+
+        .search-box::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .filter-section {
+            margin-bottom: 20px;
+        }
+
+        .filter-label {
+            font-size: 0.9em;
+            color: var(--foam);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border-radius: 25px;
+            border: 2px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95em;
+            font-weight: 500;
+        }
+
+        .filter-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--ocean-light), var(--teal-bright));
+            border-color: var(--teal-bright);
+            box-shadow: 0 4px 15px rgba(5, 195, 221, 0.4);
+        }
+
+        .builds-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .build-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            border: 1px solid var(--glass-border);
+            padding: 25px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .build-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--ocean-light), var(--teal-bright));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .build-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px var(--shadow-deep);
+            border-color: var(--teal-bright);
+        }
+
+        .build-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .repo-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            width: fit-content;
+        }
+
+        .badge-v2 {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .badge-solutions {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            box-shadow: 0 4px 15px rgba(240, 147, 251, 0.3);
+        }
+
+        .badge-enhanced {
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            box-shadow: 0 4px 15px rgba(79, 172, 254, 0.3);
+        }
+
+        .badge-codex {
+            background: linear-gradient(135deg, #43e97b, #38f9d7);
+            box-shadow: 0 4px 15px rgba(67, 233, 123, 0.3);
+        }
+
+        .build-title {
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #fff;
+            line-height: 1.3;
+        }
+
+        .build-branch {
+            font-size: 0.85em;
+            color: var(--teal-bright);
+            margin-bottom: 12px;
+            font-family: 'Courier New', monospace;
+            background: rgba(5, 195, 221, 0.1);
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .build-description {
+            font-size: 0.95em;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+            flex-grow: 1;
+            line-height: 1.5;
+        }
+
+        .launch-btn {
+            padding: 12px 24px;
+            border-radius: 10px;
+            border: none;
+            background: linear-gradient(135deg, var(--ocean-light), var(--teal-bright));
+            color: #fff;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            display: block;
+            box-shadow: 0 4px 15px rgba(5, 195, 221, 0.3);
+        }
+
+        .launch-btn:hover {
+            background: linear-gradient(135deg, var(--teal-bright), var(--ocean-light));
+            box-shadow: 0 6px 25px rgba(5, 195, 221, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .no-results h2 {
+            font-size: 2em;
+            margin-bottom: 15px;
+            color: var(--teal-bright);
+        }
+
+        .no-results p {
+            font-size: 1.1em;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        footer {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            padding: 40px;
+            margin-top: 40px;
+            text-align: center;
+            box-shadow: 0 8px 32px var(--shadow-soft);
+        }
+
+        .signature {
+            font-size: 1.1em;
+            color: var(--foam);
+            margin-bottom: 15px;
+        }
+
+        .signature h2 {
+            font-size: 2em;
+            background: linear-gradient(135deg, #fff 0%, var(--teal-bright) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+
+        .signature-links {
+            margin: 20px 0;
+        }
+
+        .signature-links a {
+            color: var(--teal-bright);
+            text-decoration: none;
+            margin: 0 15px;
+            transition: all 0.3s ease;
+        }
+
+        .signature-links a:hover {
+            color: #fff;
+            text-shadow: 0 0 10px var(--teal-bright);
+        }
+
+        .quote {
+            font-style: italic;
+            font-size: 1.2em;
+            color: var(--teal-bright);
+            margin: 20px 0;
+        }
+
+        .copyright {
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .builds-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-buttons {
+                justify-content: center;
+            }
+
+            header {
+                padding: 30px 20px;
+            }
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            font-size: 1.2em;
+            color: var(--teal-bright);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Clear Seas Web Catalog</h1>
+            <p class="subtitle">66 Professional Website Builds Across 4 Repositories</p>
+
+            <div class="stats-dashboard">
+                <div class="stat-card">
+                    <div class="stat-number" id="total-builds">66</div>
+                    <div class="stat-label">Total Builds</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="v2-count">3</div>
+                    <div class="stat-label">V2 Refactored</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="solutions-count">7</div>
+                    <div class="stat-label">Solutions Web</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="enhanced-count">50</div>
+                    <div class="stat-label">Enhanced</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="codex-count">6</div>
+                    <div class="stat-label">Codex Web</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="visible-count">66</div>
+                    <div class="stat-label">Visible</div>
+                </div>
+            </div>
+        </header>
+
+        <div class="controls">
+            <input
+                type="text"
+                class="search-box"
+                id="search-input"
+                placeholder="Search builds by name, branch, or description..."
+            >
+
+            <div class="filter-section">
+                <div class="filter-label">Filter by Repository</div>
+                <div class="filter-buttons" id="repo-filters">
+                    <button class="filter-btn active" data-filter="all">All Repositories</button>
+                    <button class="filter-btn" data-filter="v2">V2 Refactored</button>
+                    <button class="filter-btn" data-filter="solutions">Solutions Web</button>
+                    <button class="filter-btn" data-filter="enhanced">Enhanced</button>
+                    <button class="filter-btn" data-filter="codex">Codex Web</button>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <div class="filter-label">Filter by Branch Type</div>
+                <div class="filter-buttons" id="branch-filters">
+                    <button class="filter-btn active" data-filter="all">All Branches</button>
+                    <button class="filter-btn" data-filter="claude">Claude Branches</button>
+                    <button class="filter-btn" data-filter="codex">Codex Branches</button>
+                    <button class="filter-btn" data-filter="feature">Feature Branches</button>
+                    <button class="filter-btn" data-filter="main">Main Branches</button>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <div class="filter-label">Filter by Category</div>
+                <div class="filter-buttons" id="category-filters">
+                    <button class="filter-btn active" data-filter="all">All Categories</button>
+                    <button class="filter-btn" data-filter="polish">Polish & Refine</button>
+                    <button class="filter-btn" data-filter="analyze">Analysis</button>
+                    <button class="filter-btn" data-filter="fix">Bug Fixes</button>
+                    <button class="filter-btn" data-filter="enhance">Enhancements</button>
+                    <button class="filter-btn" data-filter="visualizer">Visualizers</button>
+                    <button class="filter-btn" data-filter="performance">Performance</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="builds-grid" id="builds-grid">
+            <div class="loading">Loading builds...</div>
+        </div>
+
+        <footer>
+            <div class="signature">
+                <h2>A Paul Phillips Manifestation</h2>
+                <p><strong>Send Love, Hate, or Opportunity to:</strong> Paul@clearseassolutions.com</p>
+                <div class="signature-links">
+                    <a href="https://parserator.com" target="_blank">Join The Exoditical Moral Architecture Movement</a>
+                    <span style="color: rgba(255,255,255,0.3)">|</span>
+                    <a href="mailto:Paul@clearseassolutions.com">Contact Paul Phillips</a>
+                </div>
+                <p class="quote">"The Revolution Will Not be in a Structured Format"</p>
+                <p class="copyright">
+                    © 2025 Paul Phillips - Clear Seas Solutions LLC<br>
+                    All Rights Reserved - Proprietary Technology
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Build data parsed from directory structure
+        const builds = [
+            // V2 Refactored Builds (3)
+            {
+                repo: 'v2',
+                directory: 'v2-claude_smooth-section-animations-011CV1TeKrYc6MPzt3BqXTBy',
+                branch: 'claude/smooth-section-animations-011CV1TeKrYc6MPzt3BqXTBy',
+                title: 'Smooth Section Animations',
+                description: 'Claude-powered smooth scrolling and section transition animations for enhanced user experience',
+                category: 'enhance'
+            },
+            {
+                repo: 'v2',
+                directory: 'v2-feature_dynamic-sections-pinned',
+                branch: 'feature/dynamic-sections-pinned',
+                title: 'Dynamic Sections Pinned',
+                description: 'Feature branch implementing pinned sections with dynamic scroll behavior',
+                category: 'feature'
+            },
+            {
+                repo: 'v2',
+                directory: 'v2-main',
+                branch: 'main',
+                title: 'V2 Main Branch',
+                description: 'Primary production build of the V2 refactored architecture',
+                category: 'main'
+            },
+
+            // Solutions Web Builds (7)
+            {
+                repo: 'solutions',
+                directory: 'solutions-2025-11-10_17-47-04enhance-homepage-with-logo-and-visual-effectscodex',
+                branch: 'codex/2025-11-10_17-47-04/enhance-homepage-with-logo-and-visual-effects',
+                title: 'Enhanced Homepage with Logo & Effects',
+                description: 'Homepage enhancement featuring updated logo and advanced visual effects (Nov 10, 2025 - 17:47)',
+                category: 'enhance'
+            },
+            {
+                repo: 'solutions',
+                directory: 'solutions-2025-11-10_17-50-17enhance-homepage-with-logo-and-visual-effectscodex',
+                branch: 'codex/2025-11-10_17-50-17/enhance-homepage-with-logo-and-visual-effects',
+                title: 'Enhanced Homepage v2',
+                description: 'Second iteration of homepage enhancements with refined logo and effects (Nov 10, 2025 - 17:50)',
+                category: 'enhance'
+            },
+            {
+                repo: 'solutions',
+                directory: 'solutions-claude_clearseas-solutions-web-011CUzwq5xCuZNSydSseBKfN',
+                branch: 'claude/clearseas-solutions-web-011CUzwq5xCuZNSydSseBKfN',
+                title: 'Clear Seas Solutions Web',
+                description: 'Claude-generated comprehensive web presence for Clear Seas Solutions',
+                category: 'main'
+            },
+            {
+                repo: 'solutions',
+                directory: 'solutions-claude_merge-visualizer-styles-011CUqNhWu2cjw9nbxUncrxN',
+                branch: 'claude/merge-visualizer-styles-011CUqNhWu2cjw9nbxUncrxN',
+                title: 'Merge Visualizer Styles',
+                description: 'Integration and harmonization of multiple visualizer styling systems',
+                category: 'visualizer'
+            },
+            {
+                repo: 'solutions',
+                directory: 'solutions-claude_update-logo-linked-products-011CUzRPUPrnHV1CLAsp48Ar',
+                branch: 'claude/update-logo-linked-products-011CUzRPUPrnHV1CLAsp48Ar',
+                title: 'Update Logo & Linked Products',
+                description: 'Brand refresh with updated logo and improved product linking architecture',
+                category: 'enhance'
+            },
+            {
+                repo: 'solutions',
+                directory: 'solutions-claude_vib3-holographic-integration-011CUqNhWu2cjw9nbxUncrxN',
+                branch: 'claude/vib3-holographic-integration-011CUqNhWu2cjw9nbxUncrxN',
+                title: 'VIB3+ Holographic Integration',
+                description: 'Advanced 4D holographic visualization integration using VIB3+ engine',
+                category: 'visualizer'
+            },
+            {
+                repo: 'solutions',
+                directory: 'solutions-main',
+                branch: 'main',
+                title: 'Solutions Main Branch',
+                description: 'Primary production build of Clear Seas Solutions Web',
+                category: 'main'
+            },
+
+            // Enhanced Builds (50)
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-2025-10-31_17-39-08fix-or-remove-visual-glitchescodex',
+                branch: 'codex/2025-10-31_17-39-08/fix-or-remove-visual-glitches',
+                title: 'Visual Glitch Fixes',
+                description: 'Comprehensive visual glitch detection and resolution (Oct 31, 2025 - 17:39)',
+                category: 'fix'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-2025-10-31_17-39-48fix-or-remove-visual-glitchescodex',
+                branch: 'codex/2025-10-31_17-39-48/fix-or-remove-visual-glitches',
+                title: 'Visual Glitch Fixes v2',
+                description: 'Second iteration of visual glitch resolution (Oct 31, 2025 - 17:39)',
+                category: 'fix'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-2025-10-31_17-40-26fix-or-remove-visual-glitchescodex',
+                branch: 'codex/2025-10-31_17-40-26/fix-or-remove-visual-glitches',
+                title: 'Visual Glitch Fixes v3',
+                description: 'Third iteration with refined visual glitch corrections (Oct 31, 2025 - 17:40)',
+                category: 'fix'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-2025-11-02_20-54-57analyze-scrolling-and-visualization-stylescodex',
+                branch: 'codex/2025-11-02_20-54-57/analyze-scrolling-and-visualization-styles',
+                title: 'Scroll & Visualization Analysis',
+                description: 'In-depth analysis of scrolling behavior and visualization styling systems (Nov 2, 2025)',
+                category: 'analyze'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-claude_analyze-latest-pr-011CUoNYxm28ga2bzuBPiRfm',
+                branch: 'claude/analyze-latest-pr-011CUoNYxm28ga2bzuBPiRfm',
+                title: 'Latest PR Analysis',
+                description: 'Claude-powered analysis of most recent pull request changes',
+                category: 'analyze'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-claude_analyze-layout-screenshots-011CUqM7GhCqLQ9aPCCsgR2o',
+                branch: 'claude/analyze-layout-screenshots-011CUqM7GhCqLQ9aPCCsgR2o',
+                title: 'Layout Screenshot Analysis',
+                description: 'Visual regression testing and layout analysis from screenshots',
+                category: 'analyze'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-claude_fix-core-performance-issues-011CUhKzBcmDwHdMrV7XxssC',
+                branch: 'claude/fix-core-performance-issues-011CUhKzBcmDwHdMrV7XxssC',
+                title: 'Core Performance Fixes',
+                description: 'Critical performance optimization and bottleneck resolution',
+                category: 'performance'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-claude_improve-website-interaction-011CUJxzMTKLvBMy6wRDH6KX',
+                branch: 'claude/improve-website-interaction-011CUJxzMTKLvBMy6wRDH6KX',
+                title: 'Improved Website Interaction',
+                description: 'Enhanced user interaction patterns and responsive behaviors',
+                category: 'enhance'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-claude_red-team-analysis-011CUqMB3BCsjVUVuLT6kC7w',
+                branch: 'claude/red-team-analysis-011CUqMB3BCsjVUVuLT6kC7w',
+                title: 'Red Team Analysis',
+                description: 'Security audit and adversarial testing of web application',
+                category: 'analyze'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-codex_00-46-23polish-and-refine-technology-site-design2025-10-19',
+                branch: 'codex/00-46-23/polish-and-refine-technology-site-design/2025-10-19',
+                title: 'Technology Site Polish',
+                description: 'Design refinement and polish for technology showcase site (Oct 19, 00:46)',
+                category: 'polish'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-codex_00-49-24polish-and-refine-technology-site-design2025-10-19',
+                branch: 'codex/00-49-24/polish-and-refine-technology-site-design/2025-10-19',
+                title: 'Technology Site Polish v2',
+                description: 'Continued design refinement for tech site (Oct 19, 00:49)',
+                category: 'polish'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-codex_01-11-25analyze-scrolling-and-visualization-styles2025-10-20',
+                branch: 'codex/01-11-25/analyze-scrolling-and-visualization-styles/2025-10-20',
+                title: 'Scroll Analysis Deep Dive',
+                description: 'Comprehensive scrolling behavior and visualization analysis (Oct 20, 01:11)',
+                category: 'analyze'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-codex_01-27-57analyze-scrolling-and-visualization-styles2025-10-20',
+                branch: 'codex/01-27-57/analyze-scrolling-and-visualization-styles/2025-10-20',
+                title: 'Scroll Analysis v2',
+                description: 'Extended scrolling and visualization analysis (Oct 20, 01:27)',
+                category: 'analyze'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-codex_02-06-03polish-and-refine-technology-site-design2025-10-19',
+                branch: 'codex/02-06-03/polish-and-refine-technology-site-design/2025-10-19',
+                title: 'Technology Site Polish v3',
+                description: 'Final polish iteration for technology site design (Oct 19, 02:06)',
+                category: 'polish'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-codex_02-35-56add-more-details-to-user-instructions2025-10-15',
+                branch: 'codex/02-35-56/add-more-details-to-user-instructions/2025-10-15',
+                title: 'Enhanced User Instructions',
+                description: 'Expanded and detailed user instruction documentation (Oct 15, 02:35)',
+                category: 'enhance'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-codex_03-08-23analyze-scrolling-and-visualization-styles2025-10-20',
+                branch: 'codex/03-08-23/analyze-scrolling-and-visualization-styles/2025-10-20',
+                title: 'Scroll Analysis v3',
+                description: 'Third iteration of scrolling behavior analysis (Oct 20, 03:08)',
+                category: 'analyze'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-codex_03-26-11analyze-scrolling-and-visualization-styles2025-10-20',
+                branch: 'codex/03-26-11/analyze-scrolling-and-visualization-styles/2025-10-20',
+                title: 'Scroll Analysis v4',
+                description: 'Fourth iteration focusing on edge cases (Oct 20, 03:26)',
+                category: 'analyze'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-codex_03-33-20polish-and-refine-technology-site-design2025-10-19',
+                branch: 'codex/03-33-20/polish-and-refine-technology-site-design/2025-10-19',
+                title: 'Technology Site Polish v4',
+                description: 'Late-night design refinement session (Oct 19, 03:33)',
+                category: 'polish'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-codex_03-41-07polish-and-refine-technology-site-design2025-10-19',
+                branch: 'codex/03-41-07/polish-and-refine-technology-site-design/2025-10-19',
+                title: 'Technology Site Polish v5',
+                description: 'Continued late-night polish work (Oct 19, 03:41)',
+                category: 'polish'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-codex_05-07-34polish-and-refine-technology-site-design2025-10-19',
+                branch: 'codex/05-07-34/polish-and-refine-technology-site-design/2025-10-19',
+                title: 'Technology Site Polish v6',
+                description: 'Early morning final polish refinements (Oct 19, 05:07)',
+                category: 'polish'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-codex_15-14-54fix-or-remove-visual-glitches2025-10-29',
+                branch: 'codex/15-14-54/fix-or-remove-visual-glitches/2025-10-29',
+                title: 'Visual Glitch Fixes',
+                description: 'Afternoon session fixing visual rendering issues (Oct 29, 15:14)',
+                category: 'fix'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-codex_15-20-18analyze-scrolling-and-visualization-styles2025-10-29',
+                branch: 'codex/15-20-18/analyze-scrolling-and-visualization-styles/2025-10-29',
+                title: 'Scroll & Viz Analysis',
+                description: 'Afternoon scrolling and visualization analysis (Oct 29, 15:20)',
+                category: 'analyze'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-codex_15-45-00fix-or-remove-visual-glitches2025-10-29',
+                branch: 'codex/15-45-00/fix-or-remove-visual-glitches/2025-10-29',
+                title: 'Visual Glitch Fixes v2',
+                description: 'Continued visual glitch resolution (Oct 29, 15:45)',
+                category: 'fix'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-codex_15-45-45fix-or-remove-visual-glitches2025-10-29',
+                branch: 'codex/15-45-45/fix-or-remove-visual-glitches/2025-10-29',
+                title: 'Visual Glitch Fixes v3',
+                description: 'Additional visual glitch corrections (Oct 29, 15:45)',
+                category: 'fix'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-codex_15-52-15analyze-scrolling-and-visualization-styles2025-10-29',
+                branch: 'codex/15-52-15/analyze-scrolling-and-visualization-styles/2025-10-29',
+                title: 'Scroll Analysis Session',
+                description: 'Detailed scroll behavior investigation (Oct 29, 15:52)',
+                category: 'analyze'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-codex_16-07-37analyze-scrolling-and-visualization-styles2025-10-29',
+                branch: 'codex/16-07-37/analyze-scrolling-and-visualization-styles/2025-10-29',
+                title: 'Scroll Analysis Continued',
+                description: 'Extended scroll analysis with performance metrics (Oct 29, 16:07)',
+                category: 'analyze'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-codex_16-09-16analyze-scrolling-and-visualization-styles2025-10-29',
+                branch: 'codex/16-09-16/analyze-scrolling-and-visualization-styles/2025-10-29',
+                title: 'Final Scroll Analysis',
+                description: 'Concluding scroll behavior analysis session (Oct 29, 16:09)',
+                category: 'analyze'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-codex_17-41-24analyze-scrolling-and-visualization-styles2025-10-24',
+                branch: 'codex/17-41-24/analyze-scrolling-and-visualization-styles/2025-10-24',
+                title: 'Evening Scroll Analysis',
+                description: 'Evening session analyzing scroll and visualization patterns (Oct 24, 17:41)',
+                category: 'analyze'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-codex_18-19-46fix-or-remove-visual-glitches2025-10-25',
+                branch: 'codex/18-19-46/fix-or-remove-visual-glitches/2025-10-25',
+                title: 'Visual Glitch Evening Fix',
+                description: 'Evening visual glitch repair session (Oct 25, 18:19)',
+                category: 'fix'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-codex_18-20-24fix-or-remove-visual-glitches2025-10-24',
+                branch: 'codex/18-20-24/fix-or-remove-visual-glitches/2025-10-24',
+                title: 'Visual Glitch Fix Session',
+                description: 'Comprehensive glitch fixing in evening session (Oct 24, 18:20)',
+                category: 'fix'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-codex_18-21-14fix-or-remove-visual-glitches2025-10-24',
+                branch: 'codex/18-21-14/fix-or-remove-visual-glitches/2025-10-24',
+                title: 'Visual Glitch Fix v2',
+                description: 'Continued glitch resolution work (Oct 24, 18:21)',
+                category: 'fix'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-codex_18-32-51fix-or-remove-visual-glitches2025-10-24',
+                branch: 'codex/18-32-51/fix-or-remove-visual-glitches/2025-10-24',
+                title: 'Visual Glitch Fix v3',
+                description: 'Extended glitch fixing session (Oct 24, 18:32)',
+                category: 'fix'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-codex_18-38-59fix-or-remove-visual-glitches2025-10-25',
+                branch: 'codex/18-38-59/fix-or-remove-visual-glitches/2025-10-25',
+                title: 'Visual Glitch Final Fix',
+                description: 'Final visual glitch resolution for the day (Oct 25, 18:38)',
+                category: 'fix'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-codex_20-40-18analyze-scrolling-and-visualization-styles2025-10-19',
+                branch: 'codex/20-40-18/analyze-scrolling-and-visualization-styles/2025-10-19',
+                title: 'Night Scroll Analysis',
+                description: 'Evening scroll and visualization analysis session (Oct 19, 20:40)',
+                category: 'analyze'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-codex_21-11-11analyze-scrolling-and-visualization-styles2025-10-19',
+                branch: 'codex/21-11-11/analyze-scrolling-and-visualization-styles/2025-10-19',
+                title: 'Late Night Analysis',
+                description: 'Late evening analysis of scroll behaviors (Oct 19, 21:11)',
+                category: 'analyze'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-codex_21-51-41polish-and-refine-technology-site-design2025-10-18',
+                branch: 'codex/21-51-41/polish-and-refine-technology-site-design/2025-10-18',
+                title: 'Night Polish Session',
+                description: 'Late evening technology site polish work (Oct 18, 21:51)',
+                category: 'polish'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-codex_21-56-40polish-and-refine-technology-site-design2025-10-18',
+                branch: 'codex/21-56-40/polish-and-refine-technology-site-design/2025-10-18',
+                title: 'Night Polish Continued',
+                description: 'Continued late evening polish refinements (Oct 18, 21:56)',
+                category: 'polish'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-codex_22-20-45polish-and-refine-technology-site-design2025-10-18',
+                branch: 'codex/22-20-45/polish-and-refine-technology-site-design/2025-10-18',
+                title: 'Late Night Polish',
+                description: 'Late night design polish session (Oct 18, 22:20)',
+                category: 'polish'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-codex_22-21-31polish-and-refine-technology-site-design2025-10-18',
+                branch: 'codex/22-21-31/polish-and-refine-technology-site-design/2025-10-18',
+                title: 'Late Night Polish v2',
+                description: 'Extended late night polish work (Oct 18, 22:21)',
+                category: 'polish'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-codex_22-47-55polish-and-refine-technology-site-design2025-10-18',
+                branch: 'codex/22-47-55/polish-and-refine-technology-site-design/2025-10-18',
+                title: 'Late Night Polish v3',
+                description: 'Deep night polish refinements (Oct 18, 22:47)',
+                category: 'polish'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-codex_23-25-23polish-and-refine-technology-site-design2025-10-18',
+                branch: 'codex/23-25-23/polish-and-refine-technology-site-design/2025-10-18',
+                title: 'Midnight Polish Session',
+                description: 'Pre-midnight design polish work (Oct 18, 23:25)',
+                category: 'polish'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-codex_23-35-39analyze-scrolling-and-visualization-styles2025-10-19',
+                branch: 'codex/23-35-39/analyze-scrolling-and-visualization-styles/2025-10-19',
+                title: 'Midnight Analysis',
+                description: 'Late night scroll and visualization analysis (Oct 19, 23:35)',
+                category: 'analyze'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-enhanced-combined-visualizer',
+                branch: 'enhanced-combined-visualizer',
+                title: 'Combined Visualizer System',
+                description: 'Unified multi-visualizer system combining multiple rendering approaches',
+                category: 'visualizer'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-fix-hero-animation',
+                branch: 'fix-hero-animation',
+                title: 'Hero Animation Fix',
+                description: 'Resolution of hero section animation timing and performance issues',
+                category: 'fix'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-gsap-fluid-choreography',
+                branch: 'gsap-fluid-choreography',
+                title: 'GSAP Fluid Choreography',
+                description: 'Advanced GSAP-powered fluid animation choreography system',
+                category: 'enhance'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-iframe-vib3-implementation',
+                branch: 'iframe-vib3-implementation',
+                title: 'iFrame VIB3+ Implementation',
+                description: 'VIB3+ engine integration via iframe for isolated rendering',
+                category: 'visualizer'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-main',
+                branch: 'main',
+                title: 'Enhanced Main Branch',
+                description: 'Primary production build of the enhanced architecture',
+                category: 'main'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-simple-fluid-choreography',
+                branch: 'simple-fluid-choreography',
+                title: 'Simple Fluid Choreography',
+                description: 'Lightweight fluid choreography system for basic animations',
+                category: 'enhance'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-v2-complete-optimization',
+                branch: 'v2-complete-optimization',
+                title: 'V2 Complete Optimization',
+                description: 'Comprehensive performance optimization for V2 architecture',
+                category: 'performance'
+            },
+            {
+                repo: 'enhanced',
+                directory: 'enhanced-webgl-polytope-shaders',
+                branch: 'webgl-polytope-shaders',
+                title: 'WebGL Polytope Shaders',
+                description: 'Advanced WebGL shader system for 4D polytope rendering',
+                category: 'visualizer'
+            },
+
+            // Codex Web Builds (6)
+            {
+                repo: 'codex',
+                directory: 'codex-build-index',
+                branch: 'build-index',
+                title: 'Build Index System',
+                description: 'Automated build indexing and catalog generation system',
+                category: 'feature'
+            },
+            {
+                repo: 'codex',
+                directory: 'codex-claude_clearseas-codex-web-01KuybnRVrBayBPxLvoyStPG',
+                branch: 'claude/clearseas-codex-web-01KuybnRVrBayBPxLvoyStPG',
+                title: 'Clear Seas Codex Web',
+                description: 'Claude-powered comprehensive codex web implementation',
+                category: 'main'
+            },
+            {
+                repo: 'codex',
+                directory: 'codex-claude_refactor-clearseas-responsive-cards-01QPfRKWrPNFHPK1D9jcwodv',
+                branch: 'claude/refactor-clearseas-responsive-cards-01QPfRKWrPNFHPK1D9jcwodv',
+                title: 'Responsive Cards Refactor',
+                description: 'Claude-driven refactoring of responsive card system',
+                category: 'enhance'
+            },
+            {
+                repo: 'codex',
+                directory: 'codex-feature_emergent-flow',
+                branch: 'feature/emergent-flow',
+                title: 'Emergent Flow System',
+                description: 'Feature implementing emergent flow patterns in UI/UX',
+                category: 'feature'
+            },
+            {
+                repo: 'codex',
+                directory: 'codex-feature_minoots-flow',
+                branch: 'feature/minoots-flow',
+                title: 'MINOOTS Flow Integration',
+                description: 'Integration of MINOOTS timer flow patterns into codex',
+                category: 'feature'
+            },
+            {
+                repo: 'codex',
+                directory: 'codex-main',
+                branch: 'main',
+                title: 'Codex Main Branch',
+                description: 'Primary production build of the Clear Seas Codex Web',
+                category: 'main'
+            }
+        ];
+
+        // State management
+        let currentFilters = {
+            repo: 'all',
+            branch: 'all',
+            category: 'all',
+            search: ''
+        };
+
+        // Initialize the catalog
+        function initializeCatalog() {
+            renderBuilds();
+            setupEventListeners();
+            updateStats();
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Search input
+            document.getElementById('search-input').addEventListener('input', (e) => {
+                currentFilters.search = e.target.value.toLowerCase();
+                renderBuilds();
+            });
+
+            // Repository filters
+            document.querySelectorAll('#repo-filters .filter-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('#repo-filters .filter-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentFilters.repo = btn.dataset.filter;
+                    renderBuilds();
+                });
+            });
+
+            // Branch type filters
+            document.querySelectorAll('#branch-filters .filter-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('#branch-filters .filter-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentFilters.branch = btn.dataset.filter;
+                    renderBuilds();
+                });
+            });
+
+            // Category filters
+            document.querySelectorAll('#category-filters .filter-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('#category-filters .filter-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentFilters.category = btn.dataset.filter;
+                    renderBuilds();
+                });
+            });
+        }
+
+        // Filter builds based on current filters
+        function filterBuilds() {
+            return builds.filter(build => {
+                // Repository filter
+                if (currentFilters.repo !== 'all' && build.repo !== currentFilters.repo) {
+                    return false;
+                }
+
+                // Branch type filter
+                if (currentFilters.branch !== 'all') {
+                    const branchType = getBranchType(build.branch);
+                    if (branchType !== currentFilters.branch) {
+                        return false;
+                    }
+                }
+
+                // Category filter
+                if (currentFilters.category !== 'all' && build.category !== currentFilters.category) {
+                    return false;
+                }
+
+                // Search filter
+                if (currentFilters.search) {
+                    const searchText = currentFilters.search;
+                    return (
+                        build.title.toLowerCase().includes(searchText) ||
+                        build.branch.toLowerCase().includes(searchText) ||
+                        build.description.toLowerCase().includes(searchText) ||
+                        build.directory.toLowerCase().includes(searchText)
+                    );
+                }
+
+                return true;
+            });
+        }
+
+        // Get branch type from branch name
+        function getBranchType(branch) {
+            if (branch.includes('claude/')) return 'claude';
+            if (branch.includes('codex/')) return 'codex';
+            if (branch.includes('feature/')) return 'feature';
+            if (branch === 'main') return 'main';
+            return 'other';
+        }
+
+        // Render builds to the grid
+        function renderBuilds() {
+            const grid = document.getElementById('builds-grid');
+            const filteredBuilds = filterBuilds();
+
+            if (filteredBuilds.length === 0) {
+                grid.innerHTML = `
+                    <div class="no-results">
+                        <h2>No builds found</h2>
+                        <p>Try adjusting your filters or search terms</p>
+                    </div>
+                `;
+                document.getElementById('visible-count').textContent = '0';
+                return;
+            }
+
+            grid.innerHTML = filteredBuilds.map(build => `
+                <div class="build-card" data-repo="${build.repo}" data-category="${build.category}">
+                    <span class="repo-badge badge-${build.repo}">${getRepoName(build.repo)}</span>
+                    <h3 class="build-title">${build.title}</h3>
+                    <div class="build-branch">${build.branch}</div>
+                    <p class="build-description">${build.description}</p>
+                    <a href="${build.directory}/index.html" class="launch-btn" target="_blank">Launch Build →</a>
+                </div>
+            `).join('');
+
+            document.getElementById('visible-count').textContent = filteredBuilds.length;
+        }
+
+        // Get repository display name
+        function getRepoName(repo) {
+            const names = {
+                'v2': 'V2 Refactored',
+                'solutions': 'Solutions Web',
+                'enhanced': 'Enhanced',
+                'codex': 'Codex Web'
+            };
+            return names[repo] || repo;
+        }
+
+        // Update statistics
+        function updateStats() {
+            const stats = {
+                total: builds.length,
+                v2: builds.filter(b => b.repo === 'v2').length,
+                solutions: builds.filter(b => b.repo === 'solutions').length,
+                enhanced: builds.filter(b => b.repo === 'enhanced').length,
+                codex: builds.filter(b => b.repo === 'codex').length
+            };
+
+            document.getElementById('total-builds').textContent = stats.total;
+            document.getElementById('v2-count').textContent = stats.v2;
+            document.getElementById('solutions-count').textContent = stats.solutions;
+            document.getElementById('enhanced-count').textContent = stats.enhanced;
+            document.getElementById('codex-count').textContent = stats.codex;
+            document.getElementById('visible-count').textContent = stats.total;
+        }
+
+        // Initialize when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeCatalog);
+        } else {
+            initializeCatalog();
+        }
+    </script>
+</body>
+</html>

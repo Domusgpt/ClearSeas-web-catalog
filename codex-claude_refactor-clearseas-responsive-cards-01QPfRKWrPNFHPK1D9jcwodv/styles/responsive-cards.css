@@ -1,0 +1,468 @@
+/**
+ * RESPONSIVE MORPHING CARDS
+ * Inspired by minoots-web intelligent card system
+ * Integrated with Clear Seas visualizer parameter sweeps
+ *
+ * Features:
+ * - Circular to expanded transformations
+ * - Responsive breakpoints (mobile, tablet, desktop)
+ * - Smooth cubic-bezier transitions
+ * - Visualizer-driven dynamic effects
+ * - Grid-based flexible layouts
+ */
+
+/* ===== MORPHING CARD BASE SYSTEM ===== */
+
+.morph-card {
+  /* Base circular state */
+  position: relative;
+  width: min(420px, 90vw);
+  height: min(420px, 90vw);
+  aspect-ratio: 1 / 1;
+
+  /* Center content alignment */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  /* Styling */
+  padding: 3.5rem;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: linear-gradient(
+    165deg,
+    rgba(12, 16, 26, 0.92),
+    rgba(24, 28, 38, 0.65)
+  );
+  backdrop-filter: blur(18px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+
+  /* Smooth morphing transition - cubic-bezier for organic feel */
+  transition:
+    width 1.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    height 1.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    border-radius 1.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    padding 1.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 1.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+    border-color 1.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background 1.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Visualizer integration - cards respond to visual parameters */
+body[data-visual-system="enhanced"] .morph-card {
+  border-color: hsla(
+    var(--visual-hue),
+    70%,
+    65%,
+    calc(0.12 + var(--visual-intensity) * 0.15)
+  );
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.25),
+    0 0 calc(20px + var(--visual-energy) * 40px) hsla(
+      var(--visual-hue),
+      80%,
+      60%,
+      calc(0.1 + var(--visual-intensity) * 0.2)
+    );
+}
+
+/* Expanded state - triggered on hover or focus */
+.morph-card:hover,
+.morph-card:focus-within,
+.morph-card.is-expanded {
+  /* Transform to expanded layout */
+  width: min(92vw, 1300px);
+  height: auto;
+  aspect-ratio: unset;
+  min-height: min(520px, 80vh);
+
+  /* Switch from circular to rounded corners */
+  border-radius: 40px;
+
+  /* Adjust padding for expanded state */
+  padding: 4rem;
+
+  /* Content switches to left-aligned */
+  text-align: left;
+  align-items: flex-start;
+
+  /* Enhanced glow effect with visualizer integration */
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.35),
+    0 0 calc(40px + var(--visual-energy, 0.5) * 60px) hsla(
+      var(--visual-hue, 180deg),
+      85%,
+      65%,
+      calc(0.2 + var(--visual-intensity, 0.5) * 0.3)
+    );
+
+  /* Subtle lift */
+  transform: translateY(-8px) scale(1.02);
+
+  /* Enhanced border with visualizer color */
+  border-color: hsla(
+    var(--visual-hue, 180deg),
+    80%,
+    60%,
+    calc(0.3 + var(--visual-intensity, 0.5) * 0.2)
+  );
+}
+
+/* Two-column grid layout for expanded state */
+.morph-card:hover .morph-card__content,
+.morph-card:focus-within .morph-card__content,
+.morph-card.is-expanded .morph-card__content {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 4rem;
+  width: 100%;
+}
+
+/* ===== CARD INNER CONTENT ===== */
+
+.morph-card__content {
+  width: 100%;
+  position: relative;
+  z-index: 2;
+  transition: all 1.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.morph-card__header {
+  margin-bottom: 1.5rem;
+  transition: all 1.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.morph-card__icon {
+  width: 90px;
+  height: 90px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 1.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  filter: drop-shadow(0 0 calc(10px + var(--visual-energy, 0.5) * 20px) hsla(
+    var(--visual-hue, 180deg),
+    80%,
+    60%,
+    0.4
+  ));
+}
+
+/* Icon scales up on expand */
+.morph-card:hover .morph-card__icon,
+.morph-card:focus-within .morph-card__icon,
+.morph-card.is-expanded .morph-card__icon {
+  width: 120px;
+  height: 120px;
+}
+
+.morph-card__title {
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  transition: all 1.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Title gets gradient on expand with visualizer color */
+.morph-card:hover .morph-card__title,
+.morph-card:focus-within .morph-card__title,
+.morph-card.is-expanded .morph-card__title {
+  font-size: clamp(2.25rem, 4vw, 3rem);
+  background: linear-gradient(
+    135deg,
+    hsla(var(--visual-hue, 180deg), 85%, 65%, 1),
+    hsla(calc(var(--visual-hue, 180deg) + 60deg), 80%, 60%, 1)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.morph-card__description {
+  font-size: var(--font-size-base);
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  transition: all 1.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Details revealed progressively with opacity and max-height */
+.morph-card__details {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition:
+    opacity 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s,
+    max-height 1.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.morph-card:hover .morph-card__details,
+.morph-card:focus-within .morph-card__details,
+.morph-card.is-expanded .morph-card__details {
+  opacity: 1;
+  max-height: 2000px;
+}
+
+/* Feature grid within expanded cards */
+.morph-card__features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.morph-card__feature {
+  padding: 1.5rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.morph-card__feature:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: hsla(
+    var(--visual-hue, 180deg),
+    70%,
+    60%,
+    0.3
+  );
+  transform: translateY(-4px);
+}
+
+/* ===== RESPONSIVE BREAKPOINTS ===== */
+
+/* Tablet: 768px - 1200px */
+@media (min-width: 768px) and (max-width: 1200px) {
+  .morph-card {
+    width: min(340px, 85vw);
+    height: min(340px, 85vw);
+    padding: 3rem;
+  }
+
+  .morph-card:hover,
+  .morph-card:focus-within,
+  .morph-card.is-expanded {
+    width: min(90vw, 1100px);
+    padding: 3.5rem;
+  }
+
+  .morph-card:hover .morph-card__content,
+  .morph-card:focus-within .morph-card__content,
+  .morph-card.is-expanded .morph-card__content {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .morph-card__features {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+/* Mobile: < 768px */
+@media (max-width: 767px) {
+  .morph-card {
+    width: min(300px, 88vw);
+    height: min(300px, 88vw);
+    padding: 2rem;
+  }
+
+  .morph-card:hover,
+  .morph-card:focus-within,
+  .morph-card.is-expanded {
+    width: min(94vw, 500px);
+    min-height: auto;
+    padding: 2.5rem;
+    border-radius: 32px;
+    /* Remove 3D transforms on mobile for performance */
+    transform: translateY(-4px) scale(1);
+  }
+
+  .morph-card:hover .morph-card__content,
+  .morph-card:focus-within .morph-card__content,
+  .morph-card.is-expanded .morph-card__content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .morph-card__icon {
+    width: 70px;
+    height: 70px;
+  }
+
+  .morph-card:hover .morph-card__icon,
+  .morph-card:focus-within .morph-card__icon,
+  .morph-card.is-expanded .morph-card__icon {
+    width: 90px;
+    height: 90px;
+  }
+
+  .morph-card__features {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .morph-card__title {
+    font-size: clamp(1.5rem, 5vw, 1.75rem);
+  }
+
+  .morph-card:hover .morph-card__title,
+  .morph-card:focus-within .morph-card__title,
+  .morph-card.is-expanded .morph-card__title {
+    font-size: clamp(1.75rem, 6vw, 2.25rem);
+  }
+}
+
+/* ===== INTEGRATION WITH EXISTING CARD CLASSES ===== */
+
+/* Apply morphing behavior to existing card classes */
+.signal-card.morph,
+.capability-card.morph,
+.platform-card.morph {
+  /* Inherit morph-card base styles */
+  width: min(400px, 88vw);
+  height: min(400px, 88vw);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  transition:
+    width 1.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    height 1.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    border-radius 1.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.signal-card.morph:hover,
+.capability-card.morph:hover,
+.platform-card.morph:hover {
+  width: min(90vw, 1200px);
+  height: auto;
+  aspect-ratio: unset;
+  border-radius: 40px;
+  transform: translateY(-8px) scale(1.02);
+}
+
+/* ===== VISUALIZER PARAMETER SWEEP INTEGRATION ===== */
+
+/* Cards pulse with visual energy */
+@keyframes morph-pulse {
+  0%, 100% {
+    box-shadow:
+      0 18px 40px rgba(0, 0, 0, 0.25),
+      0 0 20px hsla(var(--visual-hue, 180deg), 80%, 60%, calc(var(--visual-intensity, 0.5) * 0.3));
+  }
+  50% {
+    box-shadow:
+      0 22px 50px rgba(0, 0, 0, 0.3),
+      0 0 40px hsla(var(--visual-hue, 180deg), 80%, 60%, calc(var(--visual-intensity, 0.5) * 0.5));
+  }
+}
+
+/* Apply pulse animation when visualizer energy is high */
+body[data-visual-system="enhanced"] .morph-card {
+  animation: morph-pulse calc(2s / max(var(--visual-speed, 0.6), 0.3)) ease-in-out infinite;
+}
+
+/* Chaos modifier - adds subtle rotation jitter */
+body[data-visual-system="enhanced"] .morph-card:hover {
+  transform:
+    translateY(-8px)
+    scale(1.02)
+    rotate(calc(var(--visual-chaos, 0.2) * 2deg - 1deg));
+}
+
+/* RGB chromatic aberration on high energy */
+body[data-visual-system="enhanced"] .morph-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: inherit;
+  opacity: calc(var(--visual-rgb-offset, 0) * 50);
+  mix-blend-mode: screen;
+  transform: translate(
+    calc(var(--visual-rgb-offset, 0) * 100px),
+    calc(var(--visual-rgb-offset, 0) * -50px)
+  );
+  pointer-events: none;
+  z-index: 0;
+  transition: all 0.3s ease-out;
+}
+
+/* Moiré pattern overlay */
+body[data-visual-system="enhanced"] .morph-card::after {
+  content: '';
+  position: absolute;
+  inset: -20% -20% auto auto;
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(
+    circle,
+    hsla(var(--visual-hue, 180deg), 85%, 60%, calc(var(--visual-moire, 0.1) * 0.5)),
+    transparent 60%
+  );
+  transform: rotate(calc(var(--visual-chaos, 0.2) * 90deg));
+  opacity: calc(0.3 + var(--visual-intensity, 0.5) * 0.4);
+  pointer-events: none;
+  z-index: 1;
+  transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ===== GRID CONTAINER FOR MORPH CARDS ===== */
+
+.morph-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(400px, 90vw), 1fr));
+  gap: 3rem;
+  justify-items: center;
+  align-items: start;
+  padding: 2rem;
+}
+
+@media (max-width: 767px) {
+  .morph-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 1rem;
+  }
+}
+
+/* ===== ACCESSIBILITY ===== */
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .morph-card,
+  .morph-card *,
+  body[data-visual-system="enhanced"] .morph-card {
+    transition-duration: 0.01ms !important;
+    animation: none !important;
+  }
+}
+
+/* Focus states for keyboard navigation */
+.morph-card:focus-visible {
+  outline: 3px solid hsla(var(--visual-hue, 180deg), 80%, 60%, 0.8);
+  outline-offset: 4px;
+}
+
+/* ===== STICKY POSITIONING (MINOOTS-STYLE) ===== */
+
+.morph-card.sticky {
+  position: sticky;
+  top: calc(var(--space-20) + 24px);
+  margin-bottom: 4rem;
+}
+
+@media (max-width: 767px) {
+  .morph-card.sticky {
+    position: relative;
+    top: auto;
+  }
+}

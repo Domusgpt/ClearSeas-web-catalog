@@ -1,0 +1,1 @@
+Improve visualizer performance and scroll choreography|2025-10-23 14:24:37 -0400|ClearSeas-Enhanced

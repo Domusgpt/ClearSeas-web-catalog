@@ -1,0 +1,437 @@
+/*
+ * Mobile Layout Fixes
+ * Addresses critical issues found in mobile screenshot analysis
+ * © 2025 Clear Seas Solutions LLC
+ */
+
+/* ========================================
+ * CRITICAL FIX 1: Text Ghosting/Duplication
+ * ======================================== */
+
+/* Ensure clean text rendering on mobile - no shadows, no blur, no duplicates */
+@media (max-width: 768px) {
+    /* Remove all text shadows that might cause ghosting */
+    .vcodex-glow-text,
+    .vcodex-glow-text-magenta,
+    .capabilities h2,
+    .capabilities p,
+    .section h2,
+    .section p,
+    body * {
+        text-shadow: none !important;
+    }
+
+    /* Disable text animations that might cause ghosting */
+    .text-pulse,
+    .text-pulse-magenta,
+    [data-animate="reveal"] {
+        animation: none !important;
+    }
+
+    /* Ensure crisp text rendering */
+    body,
+    h1, h2, h3, h4, h5, h6, p, span, a, li {
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        transform: translateZ(0);
+        -webkit-transform: translateZ(0);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Prevent transform-based blur */
+    .capabilities,
+    .capabilities *,
+    .section,
+    .section * {
+        will-change: auto !important;
+    }
+}
+
+/* ========================================
+ * CRITICAL FIX 2: Excessive Vertical Space
+ * ======================================== */
+
+@media (max-width: 768px) {
+    /* Remove min-height from body */
+    body {
+        min-height: auto;
+    }
+
+    /* Standardize section padding on mobile */
+    .section,
+    section,
+    .hero,
+    .capabilities,
+    .research,
+    .engagement,
+    .legacy,
+    .contact {
+        padding: 4rem 0 !important;
+        min-height: auto !important;
+        height: auto !important;
+    }
+
+    /* Remove excessive section margins */
+    .section + .section {
+        margin-top: 0 !important;
+    }
+
+    /* Fix hero section spacing */
+    .hero {
+        padding: 3rem 0 !important;
+    }
+
+    /* Ensure sections don't create empty space */
+    section::before,
+    section::after,
+    .section::before,
+    .section::after {
+        display: none; /* Remove decorative pseudo-elements that might cause spacing */
+    }
+}
+
+/* ========================================
+ * CRITICAL FIX 3: Card Overlap Issues
+ * ======================================== */
+
+@media (max-width: 768px) {
+    /* Ensure hero tags don't overlap with cards */
+    .hero-tags {
+        margin-bottom: 2rem;
+        position: relative;
+        z-index: 2;
+    }
+
+    /* Fix hero panels/cards positioning */
+    .hero-panels {
+        position: relative;
+        margin-top: 2rem;
+        z-index: 1;
+    }
+
+    /* Ensure all cards are in normal flow, not absolute */
+    .signal-card,
+    .card,
+    .capability-card,
+    .platform-card {
+        position: relative !important;
+        margin-top: 1.5rem;
+        transform: none !important; /* Disable 3D transforms on mobile */
+    }
+
+    /* Add spacing between hero elements */
+    .hero-text {
+        margin-bottom: 2rem;
+    }
+
+    .hero-cta {
+        margin-bottom: 2rem;
+    }
+}
+
+/* ========================================
+ * CRITICAL FIX 4: Text Blur Rendering
+ * ======================================== */
+
+@media (max-width: 768px) {
+    /* Disable filter effects on mobile */
+    .signal-card,
+    .card,
+    .capability-card,
+    .platform-card {
+        filter: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+
+    /* Simplify backgrounds on mobile */
+    .signal-card,
+    .capability-card,
+    .platform-card {
+        background: rgba(14, 18, 26, 0.95) !important;
+        backdrop-filter: none !important;
+    }
+
+    /* Ensure text is never blurred */
+    * {
+        filter: none !important;
+    }
+
+    /* Override any blur from animations */
+    .signal-card *,
+    .capability-card *,
+    .platform-card * {
+        filter: none !important;
+    }
+}
+
+/* ========================================
+ * MODERATE FIX 5: Truncated Text in Cards
+ * ======================================== */
+
+@media (max-width: 768px) {
+    /* Allow cards to expand to fit content */
+    .engagement-card,
+    .step,
+    .platform-card {
+        min-height: auto !important;
+        height: auto !important;
+    }
+
+    /* Show all card content */
+    .card-content,
+    .step p,
+    .platform-card p {
+        overflow: visible !important;
+        text-overflow: clip !important;
+        -webkit-line-clamp: unset !important;
+    }
+
+    /* Ensure engagement steps have adequate spacing */
+    .engagement-steps {
+        gap: 2rem;
+    }
+}
+
+/* ========================================
+ * MODERATE FIX 6: Consistent Spacing
+ * ======================================== */
+
+@media (max-width: 768px) {
+    /* Standardize all section spacing */
+    section,
+    .section {
+        padding: 4rem 1.5rem;
+    }
+
+    /* Consistent grid gaps */
+    .capabilities-grid,
+    .platform-grid,
+    .engagement-steps,
+    .hero-panels {
+        gap: 1.5rem;
+    }
+
+    /* Container padding */
+    .container {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+}
+
+/* ========================================
+ * FIX 7: Viewport Height Issues
+ * ======================================== */
+
+@media (max-width: 768px) {
+    /* Use dynamic viewport height where appropriate */
+    .full-height,
+    .hero-full-height {
+        min-height: auto !important; /* Remove vh on mobile */
+    }
+
+    /* Replace fixed canvas heights */
+    #polytopal-field,
+    #quantum-background {
+        height: 100vh; /* Keep backgrounds full */
+    }
+
+    /* Sections should not use viewport height */
+    section {
+        min-height: fit-content;
+    }
+}
+
+/* ========================================
+ * FIX 8: Touch Target Sizes
+ * ======================================== */
+
+@media (max-width: 768px) {
+    /* Ensure minimum 44x44px touch targets */
+    .btn,
+    .nav-cta,
+    a.btn,
+    button {
+        min-width: 44px;
+        min-height: 44px;
+        padding: 0.85rem 1.5rem;
+    }
+
+    /* Tag pills need adequate touch area */
+    .hero-tags li {
+        min-height: 44px;
+        padding: 0.75rem 1rem;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    /* Spacing between touch targets */
+    .hero-tags {
+        gap: 0.75rem;
+    }
+
+    .hero-cta {
+        gap: 1rem;
+    }
+
+    /* Navigation links */
+    .primary-navigation a {
+        min-height: 44px;
+        padding: 0.75rem 1rem;
+        display: inline-flex;
+        align-items: center;
+    }
+}
+
+/* ========================================
+ * FIX 9: Disable Complex Animations on Mobile
+ * ======================================== */
+
+@media (max-width: 768px) {
+    /* Simplify or disable scroll animations */
+    .signal-card,
+    .card,
+    .capability-card {
+        transition: none !important;
+    }
+
+    /* Remove 3D transforms that cause rendering issues */
+    body {
+        perspective: none !important;
+    }
+
+    section {
+        transform-style: flat !important;
+    }
+
+    /* Disable morphing animations */
+    [data-morph],
+    [data-scroll-lock] {
+        transform: none !important;
+    }
+
+    /* Remove animation delays */
+    [data-animate="reveal"] {
+        --reveal-delay: 0s !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    [data-animate="reveal"].is-visible {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
+
+/* ========================================
+ * MOBILE PERFORMANCE OPTIMIZATIONS
+ * ======================================== */
+
+@media (max-width: 768px) {
+    /* Reduce backdrop blur on mobile */
+    .site-header {
+        backdrop-filter: blur(8px) !important;
+        -webkit-backdrop-filter: blur(8px) !important;
+    }
+
+    /* Simplify gradients */
+    .hero::before,
+    .capabilities::before {
+        opacity: 0.3 !important;
+        filter: blur(40px) !important; /* Reduce blur amount */
+    }
+
+    /* Hide decorative layers on mobile */
+    .vcodex-holographic-bg,
+    .vcodex-holo-layer,
+    .texture-layer {
+        opacity: 0.3 !important; /* Reduce visual complexity */
+    }
+
+    /* Simplify video backgrounds on mobile */
+    .video-background video {
+        filter: blur(3px) brightness(0.6) !important; /* Simplify effects */
+    }
+}
+
+/* ========================================
+ * ADDITIONAL MOBILE IMPROVEMENTS
+ * ======================================== */
+
+@media (max-width: 768px) {
+    /* Improve typography readability */
+    body {
+        font-size: 16px; /* Minimum for mobile readability */
+    }
+
+    h1 {
+        font-size: 2rem !important;
+        line-height: 1.2;
+    }
+
+    h2 {
+        font-size: 1.75rem !important;
+        line-height: 1.2;
+    }
+
+    h3 {
+        font-size: 1.25rem !important;
+    }
+
+    p {
+        line-height: 1.6;
+    }
+
+    /* Ensure content doesn't overflow */
+    * {
+        max-width: 100%;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+    }
+
+    /* Fix grid layouts */
+    .hero-grid,
+    .research-grid,
+    .legacy-grid,
+    .contact-grid {
+        grid-template-columns: 1fr !important;
+        gap: 2rem;
+    }
+
+    /* Single column for all card grids */
+    .capabilities-grid,
+    .platform-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* ========================================
+ * EMERGENCY OVERRIDE FOR RENDERING BUGS
+ * ======================================== */
+
+@media (max-width: 768px) {
+    /* Nuclear option: disable ALL transforms on mobile if issues persist */
+    .mobile-safe * {
+        transform: none !important;
+        filter: none !important;
+        backdrop-filter: none !important;
+        text-shadow: none !important;
+    }
+}
+
+/* ========================================
+ * REDUCED MOTION SUPPORT
+ * ======================================== */
+
+@media (max-width: 768px) and (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        transform: none !important;
+        filter: none !important;
+    }
+}

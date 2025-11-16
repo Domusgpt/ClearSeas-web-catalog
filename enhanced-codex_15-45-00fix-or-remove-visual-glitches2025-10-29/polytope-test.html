@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polytope Shader System Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0a0e1a 0%, #1a1a2e 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+            background: linear-gradient(90deg, #00d4ff, #ff006e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .info {
+            text-align: center;
+            margin-bottom: 40px;
+            opacity: 0.8;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            position: relative;
+            background: linear-gradient(145deg, #1e1e2e, #16182e);
+            border-radius: 20px;
+            padding: 30px;
+            min-height: 300px;
+            box-shadow:
+                20px 20px 60px rgba(0, 0, 0, 0.8),
+                -10px -10px 30px rgba(255, 255, 255, 0.02);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow:
+                25px 25px 80px rgba(0, 0, 0, 0.9),
+                -15px -15px 40px rgba(255, 255, 255, 0.03),
+                0 0 40px rgba(0, 212, 255, 0.3);
+        }
+
+        .card h2 {
+            position: relative;
+            z-index: 10;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .card p {
+            position: relative;
+            z-index: 10;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .card .label {
+            position: relative;
+            z-index: 10;
+            display: inline-block;
+            margin-top: 15px;
+            padding: 5px 12px;
+            background: rgba(0, 212, 255, 0.2);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .signal-card .label { background: rgba(0, 212, 255, 0.2); }
+        .capability-card .label { background: rgba(255, 0, 110, 0.2); }
+        .platform-card .label { background: rgba(0, 255, 170, 0.2); }
+        .research-lab .label { background: rgba(192, 132, 252, 0.2); }
+
+        .controls {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .controls h3 {
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            margin: 5px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #00aaff, #00ffaa);
+            border: none;
+            border-radius: 8px;
+            color: #000;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 212, 255, 0.4);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Polytope Shader System Test</h1>
+        <p class="info">Hover over cards to see 4D polytope projections rendered in real-time using WebGL shaders</p>
+
+        <div class="controls">
+            <h3>System Status</h3>
+            <p id="status">Initializing...</p>
+        </div>
+
+        <div class="grid">
+            <div class="card signal-card">
+                <h2>Tesseract (8-cell)</h2>
+                <p>The 4D hypercube with 16 vertices and 32 edges. This is the 4-dimensional analogue of the cube, featuring perfect symmetry across all dimensions.</p>
+                <span class="label">4D Hypercube</span>
+            </div>
+
+            <div class="card capability-card">
+                <h2>24-Cell</h2>
+                <p>A unique 4D polytope with no 3D analogue. Contains 24 octahedral cells and exhibits exceptional symmetry properties in 4-dimensional space.</p>
+                <span class="label">Unique to 4D</span>
+            </div>
+
+            <div class="card platform-card">
+                <h2>5-Cell (Simplex)</h2>
+                <p>The simplest regular polytope in 4D space, with 5 tetrahedral cells. This is the 4D analogue of the tetrahedron.</p>
+                <span class="label">4D Simplex</span>
+            </div>
+
+            <div class="card research-lab">
+                <h2>120-Cell</h2>
+                <p>The most complex regular 4D polytope, composed of 120 dodecahedral cells. Features extraordinary symmetry with 14,400 symmetries.</p>
+                <span class="label">Most Complex</span>
+            </div>
+
+            <div class="card signal-card">
+                <h2>Interactive Rotation</h2>
+                <p>Move your mouse over cards to control the 3D rotation of the projected polytopes. The visualizations rotate automatically in 4D space.</p>
+                <span class="label">Mouse-Reactive</span>
+            </div>
+
+            <div class="card capability-card">
+                <h2>Holographic Rendering</h2>
+                <p>Shaders use depth-based color gradients and temporal shimmer effects to create holographic aesthetics with translucent overlays.</p>
+                <span class="label">GPU-Accelerated</span>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2025 Paul Phillips - Clear Seas Solutions LLC</p>
+            <p style="margin-top: 10px; font-size: 0.9rem;">A Paul Phillips Manifestation</p>
+        </footer>
+    </div>
+
+    <script src="scripts/polytope-shaders.js"></script>
+    <script>
+        // Monitor system initialization
+        window.addEventListener('load', () => {
+            const statusEl = document.getElementById('status');
+
+            setTimeout(() => {
+                if (window.polytopeEnhancer) {
+                    statusEl.textContent = '✅ Polytope Shader System Active - ' +
+                        window.polytopeEnhancer.visualizers.size + ' visualizers initialized';
+                    statusEl.style.color = '#00ffaa';
+                } else {
+                    statusEl.textContent = '⚠️ System initialization pending or disabled';
+                    statusEl.style.color = '#ffaa00';
+                }
+            }, 500);
+        });
+    </script>
+</body>
+</html>

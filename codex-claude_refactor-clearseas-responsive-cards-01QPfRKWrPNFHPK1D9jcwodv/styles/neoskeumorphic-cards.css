@@ -1,0 +1,890 @@
+/**
+ * AVANT-GARDE CARD SYSTEM
+ * Asymmetric, organic, experimental design
+ * 3D rotations, particle effects, glitch aesthetics
+ */
+
+/* ===== GRID & CONFLICT OVERRIDES ===== */
+
+.capabilities-grid.morph-cards-grid,
+.morph-cards-grid {
+  display: grid !important;
+  grid-template-columns: repeat(12, 1fr) !important;
+  gap: 2rem !important;
+  margin: 4rem 0;
+  position: relative;
+}
+
+/* Reset capability-card conflicts from clear-seas-home.css */
+.capability-card.neo-morph-card {
+  padding: 0 !important;
+  border-radius: 0 !important;
+  border: none !important;
+  background: none !important;
+  box-shadow: none !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+.capability-card.neo-morph-card:hover,
+.capability-card.neo-morph-card:focus-within {
+  transform: none !important;
+  border-color: transparent !important;
+}
+
+/* Asymmetric card placements */
+.morph-cards-grid .neo-morph-card:nth-child(1) {
+  grid-column: 1 / 6;
+  transform: translateY(0) rotate(-1.5deg);
+}
+
+.morph-cards-grid .neo-morph-card:nth-child(2) {
+  grid-column: 7 / 13;
+  transform: translateY(3rem) rotate(1deg);
+}
+
+.morph-cards-grid .neo-morph-card:nth-child(3) {
+  grid-column: 3 / 9;
+  transform: translateY(-2rem) rotate(0.5deg);
+}
+
+/* ===== BASE CARD (NO BLUR FIX) ===== */
+
+.neo-morph-card {
+  position: relative;
+  width: 100%;
+  min-height: 420px;
+
+  /* Box model */
+  box-sizing: border-box;
+
+  /* Clear, sharp rendering */
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(0) rotate(0deg); /* Force GPU, prevent blur */
+  will-change: transform;
+
+  /* Avant-garde styling */
+  padding: 3rem;
+  border-radius: 28px;
+  clip-path: polygon(
+    0% 8%,
+    8% 0%,
+    92% 0%,
+    100% 8%,
+    100% 92%,
+    92% 100%,
+    8% 100%,
+    0% 92%
+  );
+
+  /* Neoskeumorphic depth */
+  background: linear-gradient(
+    135deg,
+    rgba(24, 28, 36, 0.95) 0%,
+    rgba(18, 22, 30, 0.92) 100%
+  );
+
+  box-shadow:
+    -12px -12px 24px rgba(255, 255, 255, 0.04),
+    12px 12px 24px rgba(0, 0, 0, 0.5),
+    inset -2px -2px 6px rgba(255, 255, 255, 0.02),
+    inset 2px 2px 6px rgba(0, 0, 0, 0.35),
+    0 0 calc(20px + var(--visual-energy, 0.5) * 30px)
+      hsla(var(--visual-hue, 180deg), 85%, 65%, calc(0.1 + var(--visual-intensity, 0.5) * 0.15));
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  /* 3D setup */
+  transform-style: preserve-3d;
+  perspective: 1200px;
+
+  /* Snappy transitions - 3X FASTER */
+  transition:
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    clip-path 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.3s ease-out,
+    border-radius 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    filter 0.3s ease-out;
+
+  cursor: pointer;
+  overflow: visible;
+
+  /* Choreography state - controlled by JS */
+  --card-glow-intensity: 0;
+  --card-pulse-scale: 1;
+}
+
+/* Glitch layers */
+.neo-morph-card::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(
+    135deg,
+    hsla(var(--visual-hue, 180deg), 80%, 70%, 0.08) 0%,
+    transparent 50%,
+    hsla(calc(var(--visual-hue, 180deg) + 180deg), 70%, 60%, 0.05) 100%
+  );
+  border-radius: inherit;
+  clip-path: inherit;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.neo-morph-card::after {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  background: radial-gradient(
+    ellipse at 20% 20%,
+    rgba(255, 255, 255, 0.06),
+    transparent 60%
+  );
+  border-radius: inherit;
+  opacity: 0.7;
+  mix-blend-mode: soft-light;
+  pointer-events: none;
+  z-index: 1;
+  transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* ===== HOVER STATE (3D ROTATION) - NO SCALE ===== */
+
+.neo-morph-card:hover {
+  /* NO SCALE - prevents blur */
+  transform:
+    translateY(-12px)
+    translateZ(20px)
+    rotateX(3deg)
+    rotateY(calc(var(--mouse-x, 0) * 8deg));
+
+  clip-path: polygon(
+    0% 5%,
+    5% 0%,
+    95% 0%,
+    100% 5%,
+    100% 95%,
+    95% 100%,
+    5% 100%,
+    0% 95%
+  );
+
+  /* DRAMATIC GLOW - 3X more intense */
+  box-shadow:
+    -16px -16px 32px rgba(255, 255, 255, 0.05),
+    16px 16px 32px rgba(0, 0, 0, 0.6),
+    inset -3px -3px 8px rgba(255, 255, 255, 0.03),
+    inset 3px 3px 8px rgba(0, 0, 0, 0.4),
+    0 0 calc(60px + var(--visual-energy, 0.5) * 80px)
+      hsla(var(--visual-hue, 180deg), 95%, 75%, calc(0.3 + var(--visual-intensity, 0.5) * 0.4)),
+    0 0 calc(120px + var(--visual-energy, 0.5) * 120px)
+      hsla(var(--visual-hue, 180deg), 90%, 70%, calc(0.15 + var(--visual-intensity, 0.5) * 0.25)),
+    0 30px 60px rgba(0, 0, 0, 0.4);
+
+  border-color: hsla(var(--visual-hue, 180deg), 85%, 70%, 0.5);
+
+  /* Dramatic filter glow */
+  filter:
+    brightness(1.1)
+    drop-shadow(0 0 30px hsla(var(--visual-hue, 180deg), 80%, 60%, 0.4));
+}
+
+.neo-morph-card:hover::before {
+  opacity: 1;
+  inset: -4px;
+}
+
+.neo-morph-card:hover::after {
+  opacity: 1;
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* ===== LOCKED STATE (NO BLUR, SHARP) ===== */
+
+.neo-morph-card.is-locked {
+  /* Fixed positioning for overlay */
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+
+  /* Centering - ONLY translate, NO rotation, NO scale */
+  transform: translate(-50%, -50%) !important;
+
+  /* Box model */
+  box-sizing: border-box !important;
+
+  /* Size - using viewport units */
+  width: 88vw !important;
+  max-width: 1300px !important;
+  height: auto !important;
+  max-height: 88vh !important;
+  min-height: auto !important;
+
+  /* Morph to rounded rectangle */
+  border-radius: 40px;
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%
+  );
+
+  padding: 4rem;
+  z-index: 10000 !important;
+
+  /* Enhanced depth */
+  background: linear-gradient(
+    135deg,
+    rgba(32, 36, 44, 0.98) 0%,
+    rgba(22, 26, 34, 0.95) 100%
+  );
+
+  box-shadow:
+    -20px -20px 40px rgba(255, 255, 255, 0.06),
+    20px 20px 40px rgba(0, 0, 0, 0.8),
+    inset -4px -4px 12px rgba(255, 255, 255, 0.04),
+    inset 4px 4px 12px rgba(0, 0, 0, 0.45),
+    0 0 calc(80px + var(--visual-energy, 0.5) * 100px)
+      hsla(var(--visual-hue, 180deg), 95%, 75%, calc(0.35 + var(--visual-intensity, 0.5) * 0.35)),
+    0 60px 150px rgba(0, 0, 0, 0.9);
+
+  border-color: hsla(var(--visual-hue, 180deg), 85%, 70%, 0.5);
+
+  /* Force sharp rendering */
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.neo-morph-card.is-locked::before {
+  opacity: 1;
+  inset: -3px;
+}
+
+.neo-morph-card.is-locked::after {
+  opacity: 0.9;
+  transform: scale(1.15);
+}
+
+/* ===== CONTENT LAYOUT ===== */
+
+.neo-morph-card .morph-card__content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Asymmetric grid when locked */
+.neo-morph-card.is-locked .morph-card__content {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+/* ===== ICON (3D DEPTH) ===== */
+
+.neo-morph-card .morph-card__icon {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: linear-gradient(
+    145deg,
+    rgba(32, 36, 44, 0.95),
+    rgba(24, 28, 36, 0.92)
+  );
+  border-radius: 24px;
+
+  box-shadow:
+    -6px -6px 12px rgba(255, 255, 255, 0.04),
+    6px 6px 12px rgba(0, 0, 0, 0.5),
+    inset -2px -2px 5px rgba(255, 255, 255, 0.02),
+    inset 2px 2px 5px rgba(0, 0, 0, 0.3);
+
+  transform: translateZ(10px);
+  transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.neo-morph-card .morph-card__icon svg {
+  width: 58%;
+  height: 58%;
+  color: hsla(var(--visual-hue, 180deg), 80%, 70%, 0.9);
+  filter:
+    drop-shadow(0 0 calc(8px + var(--visual-energy, 0.5) * 15px) currentColor)
+    drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+  transition: all 0.8s ease;
+}
+
+.neo-morph-card:hover .morph-card__icon {
+  transform: translateZ(30px) rotateY(10deg);
+}
+
+.neo-morph-card.is-locked .morph-card__icon {
+  width: 140px;
+  height: 140px;
+  border-radius: 32px;
+  transform: translateZ(0px);
+
+  box-shadow:
+    -8px -8px 16px rgba(255, 255, 255, 0.05),
+    8px 8px 16px rgba(0, 0, 0, 0.6),
+    inset -3px -3px 7px rgba(255, 255, 255, 0.03),
+    inset 3px 3px 7px rgba(0, 0, 0, 0.35);
+}
+
+.neo-morph-card.is-locked .morph-card__icon svg {
+  width: 68%;
+  height: 68%;
+}
+
+/* ===== TYPOGRAPHY (SHARP) ===== */
+
+.neo-morph-card .morph-card__title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.65rem, 3.5vw, 2.25rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.25rem;
+  color: rgba(255, 255, 255, 0.95);
+
+  /* Force sharp text */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.neo-morph-card.is-locked .morph-card__title {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  background: linear-gradient(
+    125deg,
+    hsla(var(--visual-hue, 180deg), 90%, 80%, 1) 0%,
+    hsla(calc(var(--visual-hue, 180deg) + 70deg), 85%, 75%, 1) 50%,
+    hsla(calc(var(--visual-hue, 180deg) + 140deg), 80%, 70%, 1) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 40px hsla(var(--visual-hue, 180deg), 80%, 70%, 0.3);
+}
+
+.neo-morph-card .morph-card__description {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.78);
+  margin-bottom: 1.25rem;
+
+  -webkit-font-smoothing: antialiased;
+
+  transition: all 0.8s ease;
+}
+
+.neo-morph-card.is-locked .morph-card__description {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 1.8;
+}
+
+/* ===== DETAILS ===== */
+
+.neo-morph-card .morph-card__details {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transform: translateY(20px);
+  transition:
+    opacity 0.7s cubic-bezier(0.19, 1, 0.22, 1) 0.25s,
+    max-height 0.8s cubic-bezier(0.19, 1, 0.22, 1),
+    transform 0.7s cubic-bezier(0.19, 1, 0.22, 1) 0.25s;
+}
+
+.neo-morph-card.is-locked .morph-card__details {
+  opacity: 1;
+  max-height: 6000px;
+  transform: translateY(0);
+}
+
+/* ===== FEATURE GRID (ASYMMETRIC) ===== */
+
+.neo-morph-card .morph-card__features {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+
+.neo-morph-card.is-locked .morph-card__features {
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+}
+
+.neo-morph-card .morph-card__feature {
+  padding: 2.25rem;
+  border-radius: 22px;
+
+  background: linear-gradient(
+    140deg,
+    rgba(28, 32, 40, 0.95),
+    rgba(22, 26, 34, 0.92)
+  );
+
+  box-shadow:
+    -4px -4px 8px rgba(255, 255, 255, 0.03),
+    4px 4px 8px rgba(0, 0, 0, 0.4),
+    inset -1px -1px 3px rgba(255, 255, 255, 0.015),
+    inset 1px 1px 3px rgba(0, 0, 0, 0.25);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  /* Staggered entrance */
+  opacity: 0;
+  transform: translateY(30px) rotateX(-10deg);
+  transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* Asymmetric stagger */
+.neo-morph-card.is-locked .morph-card__feature:nth-child(1) {
+  transition-delay: 0.4s;
+  transform: translateY(0) rotateX(0deg) rotate(-0.5deg);
+}
+
+.neo-morph-card.is-locked .morph-card__feature:nth-child(2) {
+  transition-delay: 0.55s;
+  transform: translateY(0) rotateX(0deg) rotate(0.5deg);
+}
+
+.neo-morph-card.is-locked .morph-card__feature:nth-child(3) {
+  transition-delay: 0.7s;
+  transform: translateY(0) rotateX(0deg) rotate(-0.3deg);
+}
+
+.neo-morph-card.is-locked .morph-card__feature {
+  opacity: 1;
+}
+
+.neo-morph-card .morph-card__feature:hover {
+  background: linear-gradient(
+    140deg,
+    rgba(34, 38, 46, 0.98),
+    rgba(28, 32, 40, 0.95)
+  );
+
+  border-color: hsla(var(--visual-hue, 180deg), 65%, 60%, 0.25);
+
+  transform: translateY(-6px) rotateX(0deg) rotate(0deg) !important;
+
+  box-shadow:
+    -6px -6px 12px rgba(255, 255, 255, 0.04),
+    6px 6px 12px rgba(0, 0, 0, 0.5),
+    inset -2px -2px 4px rgba(255, 255, 255, 0.02),
+    inset 2px 2px 4px rgba(0, 0, 0, 0.3),
+    0 0 20px hsla(var(--visual-hue, 180deg), 75%, 65%, 0.15);
+}
+
+.neo-morph-card .morph-card__feature h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: rgba(255, 255, 255, 0.95);
+
+  -webkit-font-smoothing: antialiased;
+}
+
+.neo-morph-card .morph-card__feature p {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.72);
+
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== CLOSE BUTTON ===== */
+
+.neo-morph-card .card-close-btn {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  width: 52px;
+  height: 52px;
+
+  border: none;
+  border-radius: 16px;
+
+  background: linear-gradient(
+    145deg,
+    rgba(40, 44, 52, 0.95),
+    rgba(32, 36, 44, 0.92)
+  );
+
+  box-shadow:
+    -4px -4px 8px rgba(255, 255, 255, 0.04),
+    4px 4px 8px rgba(0, 0, 0, 0.5);
+
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.75rem;
+  line-height: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  z-index: 100;
+
+  opacity: 0;
+  transform: scale(0.8) rotate(-90deg);
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.neo-morph-card.is-locked .card-close-btn {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+  transition-delay: 0.6s;
+}
+
+.neo-morph-card .card-close-btn:hover {
+  background: linear-gradient(
+    145deg,
+    rgba(230, 55, 75, 0.3),
+    rgba(190, 45, 65, 0.25)
+  );
+  color: rgba(255, 100, 120, 1);
+
+  box-shadow:
+    -4px -4px 8px rgba(255, 255, 255, 0.05),
+    4px 4px 8px rgba(0, 0, 0, 0.6),
+    0 0 20px rgba(255, 70, 90, 0.3);
+
+  transform: scale(1.1) rotate(90deg);
+}
+
+/* ===== BACKDROP ===== */
+
+.card-lock-backdrop {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0.85)
+  );
+  backdrop-filter: blur(15px) saturate(1.4);
+  -webkit-backdrop-filter: blur(15px) saturate(1.4);
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.card-lock-backdrop.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ===== SPLIT MODE ===== */
+
+.card-split-container {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(450px, 100%), 1fr));
+  gap: 2.5rem;
+  padding: 3.5rem;
+  z-index: 10001;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.card-split-container.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.split-card-segment {
+  background: linear-gradient(
+    135deg,
+    rgba(32, 36, 44, 0.98),
+    rgba(24, 28, 36, 0.95)
+  );
+  border-radius: 28px;
+  padding: 3rem;
+
+  box-shadow:
+    -12px -12px 24px rgba(255, 255, 255, 0.05),
+    12px 12px 24px rgba(0, 0, 0, 0.7),
+    inset -3px -3px 7px rgba(255, 255, 255, 0.03),
+    inset 3px 3px 7px rgba(0, 0, 0, 0.4);
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  overflow-y: auto;
+
+  /* Staggered 3D entrance */
+  transform: scale(0.85) translateY(40px) rotateX(-15deg);
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.card-split-container.is-visible .split-card-segment {
+  transform: scale(1) translateY(0) rotateX(0deg);
+  opacity: 1;
+}
+
+.card-split-container.is-visible .split-card-segment:nth-child(1) {
+  transition-delay: 0.2s;
+}
+
+.card-split-container.is-visible .split-card-segment:nth-child(2) {
+  transition-delay: 0.35s;
+}
+
+.card-split-container.is-visible .split-card-segment:nth-child(3) {
+  transition-delay: 0.5s;
+}
+
+/* ===== TAKEOVER MODE ===== */
+
+.neo-morph-card.is-takeover {
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: none !important;
+  min-height: 100vh !important;
+  border-radius: 0 !important;
+  clip-path: none !important;
+  top: 0 !important;
+  left: 0 !important;
+  transform: none !important;
+  padding: 6rem 8rem;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 1200px) {
+  .morph-cards-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .morph-cards-grid .neo-morph-card:nth-child(1),
+  .morph-cards-grid .neo-morph-card:nth-child(2),
+  .morph-cards-grid .neo-morph-card:nth-child(3) {
+    grid-column: 1 / 7;
+    transform: translateY(0) rotate(0deg);
+  }
+
+  .neo-morph-card.is-locked .morph-card__content {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .morph-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .morph-cards-grid .neo-morph-card {
+    transform: none !important;
+  }
+
+  .neo-morph-card {
+    min-height: 360px;
+    padding: 2.5rem;
+    border-radius: 24px;
+    clip-path: none;
+  }
+
+  .neo-morph-card.is-locked {
+    width: 96vw !important;
+    min-height: 94vh !important;
+    padding: 2.5rem;
+    border-radius: 28px;
+  }
+
+  .neo-morph-card .morph-card__icon {
+    width: 85px;
+    height: 85px;
+  }
+
+  .neo-morph-card.is-locked .morph-card__icon {
+    width: 110px;
+    height: 110px;
+  }
+
+  .card-split-container {
+    grid-template-columns: 1fr;
+    padding: 2rem;
+  }
+
+  .neo-morph-card.is-takeover {
+    padding: 3rem;
+  }
+}
+
+/* ===== ACCESSIBILITY ===== */
+
+@media (prefers-reduced-motion: reduce) {
+  .neo-morph-card,
+  .neo-morph-card *,
+  .card-lock-backdrop,
+  .split-card-segment {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+.neo-morph-card:focus-visible {
+  outline: 3px solid hsla(var(--visual-hue, 180deg), 85%, 70%, 0.8);
+  outline-offset: 5px;
+}
+
+/* ===== BODY STATE ===== */
+
+body.card-locked {
+  overflow: hidden;
+}
+
+/* ===== PARTICLE EFFECT ON HOVER ===== */
+
+@keyframes particle-float {
+  0%, 100% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-100px) translateX(var(--particle-x, 0px)) scale(0.5);
+    opacity: 0;
+  }
+}
+
+.neo-morph-card:hover {
+  animation: none;
+}
+
+/* ===== CHOREOGRAPHY ANIMATIONS ===== */
+
+/* Pulsing glow animation during choreography */
+@keyframes choreography-pulse {
+  0%, 100% {
+    box-shadow:
+      -20px -20px 40px rgba(255, 255, 255, 0.06),
+      20px 20px 40px rgba(0, 0, 0, 0.8),
+      inset -4px -4px 12px rgba(255, 255, 255, 0.04),
+      inset 4px 4px 12px rgba(0, 0, 0, 0.45),
+      0 0 calc(80px + var(--visual-energy, 0.5) * 100px)
+        hsla(var(--visual-hue, 180deg), 95%, 75%, calc(0.35 + var(--visual-intensity, 0.5) * 0.35)),
+      0 60px 150px rgba(0, 0, 0, 0.9);
+  }
+  50% {
+    box-shadow:
+      -20px -20px 40px rgba(255, 255, 255, 0.08),
+      20px 20px 40px rgba(0, 0, 0, 0.8),
+      inset -4px -4px 12px rgba(255, 255, 255, 0.06),
+      inset 4px 4px 12px rgba(0, 0, 0, 0.45),
+      0 0 calc(140px + var(--visual-energy, 0.5) * 180px)
+        hsla(var(--visual-hue, 180deg), 98%, 80%, calc(0.6 + var(--visual-intensity, 0.5) * 0.4)),
+      0 0 calc(200px + var(--visual-energy, 0.5) * 200px)
+        hsla(calc(var(--visual-hue, 180deg) + 30deg), 95%, 75%, 0.3),
+      0 60px 150px rgba(0, 0, 0, 0.9);
+  }
+}
+
+/* Card actively in choreography */
+.neo-morph-card[data-choreography-active="true"] {
+  animation: choreography-pulse var(--choreography-duration, 1.2s) ease-in-out infinite;
+}
+
+/* Per-card-type choreography styles */
+.neo-morph-card[data-card-type="spatial-ai"][data-choreography-active="true"] {
+  --choreography-duration: 0.9s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.neo-morph-card[data-card-type="research"][data-choreography-active="true"] {
+  --choreography-duration: 0.6s;
+  animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.neo-morph-card[data-card-type="embodied-ai"][data-choreography-active="true"] {
+  --choreography-duration: 1.1s;
+  animation-timing-function: ease-in-out;
+}
+
+.neo-morph-card[data-card-type="perception"][data-choreography-active="true"] {
+  --choreography-duration: 0.8s;
+  animation-timing-function: linear;
+}
+
+.neo-morph-card[data-card-type="platform"][data-choreography-active="true"] {
+  --choreography-duration: 1.0s;
+  animation-timing-function: steps(4, end);
+}
+
+.neo-morph-card[data-card-type="engagement"][data-choreography-active="true"] {
+  --choreography-duration: 1.3s;
+  animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Dramatic entrance animation */
+@keyframes card-entrance {
+  from {
+    opacity: 0;
+    transform: translateY(60px) rotateX(-25deg) scale(0.9);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotateX(0deg) scale(1);
+    filter: blur(0px);
+  }
+}
+
+.neo-morph-card {
+  animation: card-entrance 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+}
+
+.morph-cards-grid .neo-morph-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.morph-cards-grid .neo-morph-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.morph-cards-grid .neo-morph-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.morph-cards-grid .neo-morph-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.morph-cards-grid .neo-morph-card:nth-child(5) {
+  animation-delay: 0.5s;
+}
+
+.morph-cards-grid .neo-morph-card:nth-child(6) {
+  animation-delay: 0.6s;
+}

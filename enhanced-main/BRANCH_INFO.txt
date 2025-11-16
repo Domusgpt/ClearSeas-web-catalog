@@ -1,0 +1,1 @@
+🔧 CRITICAL FIX: Use CDN for GSAP/SplitType (not npm)|2025-11-02 09:51:57 -0500|ClearSeas-Enhanced

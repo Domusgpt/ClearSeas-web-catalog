@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClearSeas - Autonomous Navigation Fields</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --anthropic-dark: #141413;
+            --anthropic-light: #faf9f5;
+            --anthropic-mid-gray: #b0aea5;
+            --anthropic-light-gray: #e8e6dc;
+            --anthropic-orange: #d97757;
+            --anthropic-blue: #6a9bcc;
+            --anthropic-green: #788c5d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--anthropic-light) 0%, #f5f3ee 100%);
+            min-height: 100vh;
+            color: var(--anthropic-dark);
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .sidebar {
+            width: 320px;
+            flex-shrink: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(20, 20, 19, 0.1);
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .sidebar h1 {
+            font-family: 'Lora', serif;
+            font-size: 24px;
+            font-weight: 500;
+            color: var(--anthropic-dark);
+            margin-bottom: 8px;
+        }
+
+        .sidebar .subtitle {
+            color: var(--anthropic-mid-gray);
+            font-size: 14px;
+            margin-bottom: 32px;
+            line-height: 1.4;
+        }
+
+        .control-section {
+            margin-bottom: 32px;
+        }
+
+        .control-section h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--anthropic-dark);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .control-group {
+            margin-bottom: 16px;
+        }
+
+        .control-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--anthropic-dark);
+            margin-bottom: 8px;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: var(--anthropic-light-gray);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--anthropic-orange);
+            cursor: pointer;
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--anthropic-orange);
+            cursor: pointer;
+            border: none;
+        }
+
+        .value-display {
+            display: inline-block;
+            margin-left: 8px;
+            font-size: 12px;
+            color: var(--anthropic-mid-gray);
+            font-family: monospace;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--anthropic-dark);
+            color: var(--anthropic-light);
+            border: none;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-bottom: 8px;
+        }
+
+        button:hover {
+            background: #2a2a28;
+            transform: translateY(-1px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        button.secondary {
+            background: var(--anthropic-light-gray);
+            color: var(--anthropic-dark);
+        }
+
+        button.secondary:hover {
+            background: #d9d7cd;
+        }
+
+        .seed-controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .seed-controls button {
+            margin-bottom: 0;
+            padding: 8px;
+            font-size: 12px;
+        }
+
+        .seed-display {
+            background: var(--anthropic-light-gray);
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            font-family: monospace;
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid var(--anthropic-light-gray);
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #canvas-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(20, 20, 19, 0.15);
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h1>Autonomous Navigation</h1>
+            <p class="subtitle">Real-time visualization of GPS-denied navigation through geometric cognition</p>
+
+            <!-- Seed Section -->
+            <div class="control-section">
+                <h3>🎲 Seed</h3>
+                <div class="seed-display" id="seed-display">12345</div>
+                <div class="seed-controls">
+                    <button onclick="prevSeed()">← Prev</button>
+                    <button onclick="randomSeed()">Random</button>
+                    <button onclick="nextSeed()">Next →</button>
+                </div>
+                <input type="number" id="seed-input" placeholder="Enter seed..." onchange="jumpToSeed()">
+            </div>
+
+            <!-- Parameters Section -->
+            <div class="control-section">
+                <h3>⚙️ Parameters</h3>
+                
+                <div class="control-group">
+                    <label>Agent Count<span class="value-display" id="agentCount-value">150</span></label>
+                    <input type="range" id="agentCount" min="50" max="300" step="10" value="150" 
+                           oninput="updateParam('agentCount', this.value)">
+                </div>
+
+                <div class="control-group">
+                    <label>Field Complexity<span class="value-display" id="fieldComplexity-value">0.015</span></label>
+                    <input type="range" id="fieldComplexity" min="0.005" max="0.03" step="0.001" value="0.015" 
+                           oninput="updateParam('fieldComplexity', this.value)">
+                </div>
+
+                <div class="control-group">
+                    <label>Navigation Speed<span class="value-display" id="navSpeed-value">2.5</span></label>
+                    <input type="range" id="navSpeed" min="0.5" max="5" step="0.1" value="2.5" 
+                           oninput="updateParam('navSpeed', this.value)">
+                </div>
+
+                <div class="control-group">
+                    <label>Exploration Rate<span class="value-display" id="explorationRate-value">0.7</span></label>
+                    <input type="range" id="explorationRate" min="0.1" max="1" step="0.05" value="0.7" 
+                           oninput="updateParam('explorationRate', this.value)">
+                </div>
+
+                <div class="control-group">
+                    <label>Trail Length<span class="value-display" id="trailLength-value">50</span></label>
+                    <input type="range" id="trailLength" min="10" max="100" step="5" value="50" 
+                           oninput="updateParam('trailLength', this.value)">
+                </div>
+            </div>
+
+            <!-- Actions Section -->
+            <div class="control-section">
+                <h3>🎨 Actions</h3>
+                <button onclick="regenerate()">Regenerate</button>
+                <button onclick="resetParams()" class="secondary">Reset Parameters</button>
+                <button onclick="downloadImage()" class="secondary">Download PNG</button>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div id="canvas-container"></div>
+        </div>
+    </div>
+
+    <script>
+        // Parameters
+        let params = {
+            seed: 12345,
+            agentCount: 150,
+            fieldComplexity: 0.015,
+            navSpeed: 2.5,
+            explorationRate: 0.7,
+            trailLength: 50
+        };
+
+        const defaultParams = {...params};
+
+        // Agents array
+        let agents = [];
+
+        // ClearSeas color palette
+        const NAVY = [10, 37, 64];      // #0A2540
+        const AQUA = [0, 169, 206];      // #00A9CE
+        const SILVER = [192, 200, 208];  // #C0C8D0
+
+        class Agent {
+            constructor(x, y) {
+                this.pos = createVector(x, y);
+                this.vel = p5.Vector.random2D().mult(params.navSpeed);
+                this.acc = createVector(0, 0);
+                this.trail = [];
+                this.confidence = random(0.5, 1);
+            }
+
+            applyForce(force) {
+                this.acc.add(force);
+            }
+
+            update() {
+                // Apply field forces
+                let angle = noise(
+                    this.pos.x * params.fieldComplexity,
+                    this.pos.y * params.fieldComplexity,
+                    frameCount * 0.001
+                ) * TWO_PI * 4;
+
+                let force = p5.Vector.fromAngle(angle);
+                force.mult(params.explorationRate * 0.1);
+                this.applyForce(force);
+
+                // Update physics
+                this.vel.add(this.acc);
+                this.vel.limit(params.navSpeed);
+                this.pos.add(this.vel);
+                this.acc.mult(0);
+
+                // Update confidence based on velocity
+                this.confidence = map(this.vel.mag(), 0, params.navSpeed, 0.3, 1);
+
+                // Wrap edges
+                if (this.pos.x < 0) this.pos.x = width;
+                if (this.pos.x > width) this.pos.x = 0;
+                if (this.pos.y < 0) this.pos.y = height;
+                if (this.pos.y > height) this.pos.y = 0;
+
+                // Add to trail
+                this.trail.push(this.pos.copy());
+                if (this.trail.length > params.trailLength) {
+                    this.trail.shift();
+                }
+            }
+
+            display() {
+                // Draw trail
+                noFill();
+                for (let i = 0; i < this.trail.length - 1; i++) {
+                    let alpha = map(i, 0, this.trail.length, 0, 50 * this.confidence);
+                    
+                    // Color interpolation based on speed
+                    let t = map(this.vel.mag(), 0, params.navSpeed, 0, 1);
+                    let r = lerp(NAVY[0], AQUA[0], t);
+                    let g = lerp(NAVY[1], AQUA[1], t);
+                    let b = lerp(NAVY[2], AQUA[2], t);
+                    
+                    stroke(r, g, b, alpha);
+                    strokeWeight(1);
+                    line(this.trail[i].x, this.trail[i].y, 
+                         this.trail[i + 1].x, this.trail[i + 1].y);
+                }
+
+                // Draw agent
+                let size = map(this.confidence, 0, 1, 2, 6);
+                
+                // Glow effect
+                for (let i = 0; i < 3; i++) {
+                    let glowSize = size + i * 2;
+                    let glowAlpha = (3 - i) * 30 * this.confidence;
+                    fill(AQUA[0], AQUA[1], AQUA[2], glowAlpha);
+                    noStroke();
+                    ellipse(this.pos.x, this.pos.y, glowSize);
+                }
+
+                // Core
+                fill(AQUA[0], AQUA[1], AQUA[2], 255 * this.confidence);
+                ellipse(this.pos.x, this.pos.y, size);
+            }
+        }
+
+        function setup() {
+            let canvas = createCanvas(1200, 800);
+            canvas.parent('canvas-container');
+            initAgents();
+        }
+
+        function initAgents() {
+            randomSeed(params.seed);
+            noiseSeed(params.seed);
+            
+            agents = [];
+            for (let i = 0; i < params.agentCount; i++) {
+                let x = random(width);
+                let y = random(height);
+                agents.push(new Agent(x, y));
+            }
+        }
+
+        function draw() {
+            // Navy background with slight transparency for trails
+            fill(NAVY[0], NAVY[1], NAVY[2], 10);
+            noStroke();
+            rect(0, 0, width, height);
+
+            // Update and display agents
+            for (let agent of agents) {
+                agent.update();
+                agent.display();
+            }
+
+            // Subtle grid overlay
+            stroke(SILVER[0], SILVER[1], SILVER[2], 15);
+            strokeWeight(0.5);
+            let gridSpacing = 100;
+            for (let x = 0; x < width; x += gridSpacing) {
+                line(x, 0, x, height);
+            }
+            for (let y = 0; y < height; y += gridSpacing) {
+                line(0, y, width, y);
+            }
+        }
+
+        // UI Functions
+        function updateParam(name, value) {
+            params[name] = parseFloat(value);
+            document.getElementById(name + '-value').textContent = value;
+            
+            if (name === 'agentCount') {
+                initAgents();
+            }
+        }
+
+        function prevSeed() {
+            params.seed--;
+            updateSeedDisplay();
+            initAgents();
+        }
+
+        function nextSeed() {
+            params.seed++;
+            updateSeedDisplay();
+            initAgents();
+        }
+
+        function randomSeed() {
+            params.seed = Math.floor(Math.random() * 1000000);
+            updateSeedDisplay();
+            initAgents();
+        }
+
+        function jumpToSeed() {
+            let input = document.getElementById('seed-input');
+            let newSeed = parseInt(input.value);
+            if (!isNaN(newSeed)) {
+                params.seed = newSeed;
+                updateSeedDisplay();
+                initAgents();
+            }
+            input.value = '';
+        }
+
+        function updateSeedDisplay() {
+            document.getElementById('seed-display').textContent = params.seed;
+        }
+
+        function regenerate() {
+            initAgents();
+        }
+
+        function resetParams() {
+            params = {...defaultParams};
+            
+            // Update UI
+            for (let key in params) {
+                if (key !== 'seed') {
+                    let elem = document.getElementById(key);
+                    if (elem) {
+                        elem.value = params[key];
+                        document.getElementById(key + '-value').textContent = params[key];
+                    }
+                }
+            }
+            
+            initAgents();
+        }
+
+        function downloadImage() {
+            saveCanvas('clearseas-navigation-fields', 'png');
+        }
+    </script>
+</body>
+</html>

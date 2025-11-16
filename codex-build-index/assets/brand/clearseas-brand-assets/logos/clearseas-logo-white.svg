@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer Diamond -->
+  <path d="M 100 25 L 165 100 L 100 175 L 35 100 Z" 
+        fill="none" 
+        stroke="#FFFFFF" 
+        stroke-width="4" 
+        stroke-linejoin="miter"/>
+  
+  <!-- Top Triangle -->
+  <path d="M 100 55 L 130 100 L 100 100 Z" 
+        fill="#FFFFFF" 
+        opacity="0.9"
+        stroke="#FFFFFF" 
+        stroke-width="2.5"/>
+  
+  <!-- Bottom Triangle -->
+  <path d="M 100 145 L 70 100 L 100 100 Z" 
+        fill="#FFFFFF" 
+        opacity="0.9"
+        stroke="#FFFFFF" 
+        stroke-width="2.5"/>
+  
+  <!-- Left Facet -->
+  <path d="M 70 100 L 100 85 L 100 115 Z" 
+        fill="#FFFFFF" 
+        opacity="0.5"
+        stroke="#FFFFFF" 
+        stroke-width="2"/>
+  
+  <!-- Right Facet -->
+  <path d="M 130 100 L 100 85 L 100 115 Z" 
+        fill="#FFFFFF" 
+        opacity="0.5"
+        stroke="#FFFFFF" 
+        stroke-width="2"/>
+  
+  <!-- Central Diamond -->
+  <path d="M 100 85 L 115 100 L 100 115 L 85 100 Z" 
+        fill="none" 
+        stroke="#FFFFFF" 
+        stroke-width="2.5"/>
+  
+  <!-- Cardinal Points -->
+  <circle cx="100" cy="25" r="3" fill="#FFFFFF"/>
+  <circle cx="165" cy="100" r="3" fill="#FFFFFF"/>
+  <circle cx="100" cy="175" r="3" fill="#FFFFFF"/>
+  <circle cx="35" cy="100" r="3" fill="#FFFFFF"/>
+</svg>

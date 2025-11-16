@@ -1,0 +1,1 @@
+Fix: Smoothly animate hero section elements|2025-10-19 20:22:41 +0000|ClearSeas-Enhanced

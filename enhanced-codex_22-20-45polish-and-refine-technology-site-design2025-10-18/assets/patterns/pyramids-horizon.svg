@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0a1320" />
+      <stop offset="45%" stop-color="#14324d" />
+      <stop offset="55%" stop-color="#14324d" />
+      <stop offset="100%" stop-color="#0a1320" />
+    </linearGradient>
+    <linearGradient id="pyramid" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f5c36d" />
+      <stop offset="100%" stop-color="#d7823a" />
+    </linearGradient>
+    <radialGradient id="eye-glow" cx="0.5" cy="0.25" r="0.35">
+      <stop offset="0%" stop-color="#9fe8ff" stop-opacity="0.7" />
+      <stop offset="70%" stop-color="rgba(159,232,255,0.15)" />
+      <stop offset="100%" stop-color="rgba(159,232,255,0)" />
+    </radialGradient>
+  </defs>
+
+  <rect width="512" height="512" fill="url(#sky)" />
+  <rect width="512" height="512" fill="url(#eye-glow)" opacity="0.8" />
+
+  <g fill="#ffffff" opacity="0.1">
+    <circle cx="96" cy="84" r="52" />
+    <circle cx="416" cy="84" r="46" />
+    <circle cx="256" cy="420" r="58" />
+  </g>
+
+  <g opacity="0.88">
+    <g transform="translate(64 184)">
+      <polygon points="192,0 352,224 32,224" fill="url(#pyramid)" opacity="0.92" />
+      <polygon points="192,0 256,224 128,224" fill="#f9d895" opacity="0.7" />
+      <polygon points="192,0 226,112 158,112" fill="#fff2cc" opacity="0.55" />
+    </g>
+    <g transform="translate(-48 192) scale(0.6)">
+      <polygon points="192,0 352,224 32,224" fill="url(#pyramid)" opacity="0.9" />
+      <polygon points="192,0 256,224 128,224" fill="#f9d895" opacity="0.65" />
+    </g>
+    <g transform="translate(280 220) scale(0.55)">
+      <polygon points="192,0 352,224 32,224" fill="url(#pyramid)" opacity="0.9" />
+      <polygon points="192,0 256,224 128,224" fill="#f9d895" opacity="0.65" />
+    </g>
+  </g>
+
+  <g opacity="0.35" fill="#0a1320">
+    <path d="M-40 344h592v42H-40z" opacity="0.65" />
+    <path d="M-40 388h592v32H-40z" opacity="0.45" />
+  </g>
+
+  <g fill="#0f2036" opacity="0.6">
+    <path d="M32 196c28-14 60-14 92 0s64 14 92 0 60-14 92 0 64 14 92 0 60-14 92 0v12c-32 14-60 14-92 0s-64-14-92 0-60 14-92 0-64-14-92 0-60 14-92 0z" />
+    <path d="M-16 112c28-14 60-14 92 0s64 14 92 0 60-14 92 0 64 14 92 0 60-14 92 0v12c-32 14-60 14-92 0s-64-14-92 0-60 14-92 0-64-14-92 0-60 14-92 0z" />
+  </g>
+</svg>

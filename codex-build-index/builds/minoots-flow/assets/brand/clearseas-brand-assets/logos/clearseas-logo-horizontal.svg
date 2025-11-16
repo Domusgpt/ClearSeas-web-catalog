@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="600" height="200" viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="navyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#0D3B66;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0A2540;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="aquaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00C8E0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00A9CE;stop-opacity:1" />
+    </linearGradient>
+    <style>
+      .company-name { 
+        font-family: 'Arial', sans-serif; 
+        font-weight: 600; 
+        font-size: 48px; 
+        fill: #0A2540; 
+        letter-spacing: 2px;
+      }
+      .tagline { 
+        font-family: 'Arial', sans-serif; 
+        font-weight: 400; 
+        font-size: 14px; 
+        fill: #00A9CE; 
+        letter-spacing: 3px;
+      }
+    </style>
+  </defs>
+  
+  <!-- Symbol (scaled down) -->
+  <g transform="translate(0, 0) scale(0.85)">
+    <!-- Background Circle -->
+    <circle cx="100" cy="100" r="95" fill="url(#navyGrad)" stroke="#0A2540" stroke-width="2"/>
+    
+    <!-- Outer Diamond -->
+    <path d="M 100 25 L 165 100 L 100 175 L 35 100 Z" 
+          fill="none" stroke="#F8FAFB" stroke-width="4" stroke-linejoin="miter"/>
+    
+    <!-- Top Triangle -->
+    <path d="M 100 55 L 130 100 L 100 100 Z" 
+          fill="url(#aquaGrad)" stroke="#F8FAFB" stroke-width="2.5"/>
+    
+    <!-- Bottom Triangle -->
+    <path d="M 100 145 L 70 100 L 100 100 Z" 
+          fill="url(#aquaGrad)" stroke="#F8FAFB" stroke-width="2.5"/>
+    
+    <!-- Left Facet -->
+    <path d="M 70 100 L 100 85 L 100 115 Z" 
+          fill="#0D3B66" stroke="#F8FAFB" stroke-width="2"/>
+    
+    <!-- Right Facet -->
+    <path d="M 130 100 L 100 85 L 100 115 Z" 
+          fill="#0D3B66" stroke="#F8FAFB" stroke-width="2"/>
+    
+    <!-- Central Diamond -->
+    <path d="M 100 85 L 115 100 L 100 115 L 85 100 Z" 
+          fill="none" stroke="#F8FAFB" stroke-width="2.5"/>
+    
+    <!-- Cardinal Points -->
+    <circle cx="100" cy="25" r="3" fill="#00C8E0"/>
+    <circle cx="165" cy="100" r="3" fill="#00C8E0"/>
+    <circle cx="100" cy="175" r="3" fill="#00C8E0"/>
+    <circle cx="35" cy="100" r="3" fill="#00C8E0"/>
+  </g>
+  
+  <!-- Wordmark -->
+  <text x="220" y="95" class="company-name">CLEAR SEAS</text>
+  <text x="220" y="125" class="company-name">SOLUTIONS</text>
+  <text x="220" y="150" class="tagline">NAVIGATIONAL GEOMETRY</text>
+</svg>

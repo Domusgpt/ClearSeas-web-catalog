@@ -1,0 +1,373 @@
+/**
+ * Orchestration Master Styles
+ * Webflow-style smooth interactions and animations
+ * © 2025 Clear Seas Solutions
+ */
+
+/* ===== SMOOTH FOUNDATION ===== */
+
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* ===== OPTIMIZED PERFORMANCE ===== */
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Page entrance */
+body {
+  opacity: 0;
+  animation: pageReveal 0.6s cubic-bezier(0.23, 1, 0.32, 1) 0.1s forwards;
+}
+
+@keyframes pageReveal {
+  to {
+    opacity: 1;
+  }
+}
+
+/* ===== CURSOR STYLES ===== */
+
+.cursor-dot,
+.cursor-follower {
+  opacity: 0;
+  animation: cursorFadeIn 0.4s ease-out 0.6s forwards;
+}
+
+@keyframes cursorFadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Hide on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .cursor-dot,
+  .cursor-follower {
+    display: none !important;
+  }
+
+  body {
+    cursor: auto !important;
+  }
+}
+
+/* ===== VIB3+ VISUALIZATION CONTAINER ===== */
+
+.vib3-viz-container {
+  will-change: opacity, transform;
+  backface-visibility: hidden;
+}
+
+/* ===== CARD OPTIMIZATIONS ===== */
+
+.signal-card,
+.capability-card,
+.platform-card,
+.research-lab,
+.step {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  will-change: transform;
+  /* Ensure cards are visible by default */
+  opacity: 1;
+}
+
+/* ===== HOLOGRAPHIC LAYERS ===== */
+
+.vcodex-holo-layer {
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* ===== CANVAS OPTIMIZATION ===== */
+
+#polytopal-field {
+  opacity: 0.9;
+  will-change: auto;
+  transform: translateZ(0);
+}
+
+/* ===== VIDEO BACKGROUNDS ===== */
+
+.video-background {
+  opacity: 0.7;
+  transition: opacity 0.4s ease;
+}
+
+.video-background video {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: auto;
+}
+
+/* ===== SMOOTH TRANSITIONS ===== */
+
+.btn {
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  transform: translateZ(0);
+}
+
+a {
+  transition: all 0.25s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* ===== HEADER SCROLL STATE ===== */
+
+.site-header {
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.site-header.is-scrolled {
+  background-color: rgba(10, 14, 22, 0.95);
+  backdrop-filter: blur(15px) saturate(180%);
+  -webkit-backdrop-filter: blur(15px) saturate(180%);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== NAVIGATION ENHANCEMENTS ===== */
+
+.primary-navigation a {
+  position: relative;
+  transition: color 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.primary-navigation a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--theme-primary), var(--theme-secondary));
+  transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.primary-navigation a:hover::after {
+  width: 100%;
+}
+
+/* ===== FOCUS STATES ===== */
+
+a:focus-visible,
+button:focus-visible,
+.btn:focus-visible {
+  outline: 2px solid var(--theme-primary);
+  outline-offset: 4px;
+  transition: outline-offset 0.2s ease;
+}
+
+/* ===== BUTTON RIPPLE EFFECT ===== */
+
+.btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.btn:hover::after {
+  width: 300%;
+  height: 300%;
+}
+
+/* ===== MOBILE OPTIMIZATIONS ===== */
+
+@media (max-width: 768px) {
+  /* Reduce effects on mobile */
+  .vcodex-holo-layer {
+    opacity: 0.2;
+  }
+
+  .video-background {
+    display: none !important;
+  }
+
+  #polytopal-field {
+    opacity: 0.5;
+  }
+
+  /* Faster transitions */
+  * {
+    transition-duration: 0.2s !important;
+  }
+
+  /* No 3D transforms on mobile */
+  .signal-card,
+  .capability-card,
+  .platform-card {
+    transform-style: flat !important;
+  }
+}
+
+/* ===== REDUCED MOTION ===== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .cursor-dot,
+  .cursor-follower,
+  .vib3-viz-container,
+  .video-background {
+    display: none !important;
+  }
+
+  .vcodex-holo-layer {
+    opacity: 0.15;
+    transform: none !important;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* ===== HIGH REFRESH RATE OPTIMIZATION ===== */
+
+@media (min-resolution: 120dpi) {
+  .signal-card,
+  .capability-card,
+  .platform-card,
+  .btn,
+  a {
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
+
+/* ===== SECTION REVEAL OPTIMIZATIONS ===== */
+
+/* ALL CONTENT VISIBLE BY DEFAULT - animations are just enhancements */
+[data-animate="reveal"] {
+  opacity: 1;
+  transform: none;
+}
+
+/* Hero section always visible */
+#hero, #hero * {
+  opacity: 1 !important;
+}
+
+/* Cards always visible */
+.signal-card,
+.capability-card,
+.platform-card,
+.research-lab,
+.step {
+  opacity: 1 !important;
+}
+
+/* Sections always visible */
+section {
+  opacity: 1;
+}
+
+/* Headings always visible */
+.section-heading,
+.section-heading * {
+  opacity: 1;
+}
+
+/* ===== PRINT OPTIMIZATION ===== */
+
+@media print {
+  .video-background,
+  #polytopal-field,
+  .vcodex-holo-layer,
+  .cursor-dot,
+  .cursor-follower,
+  .vib3-viz-container {
+    display: none !important;
+  }
+}
+
+/* ===== ORCHESTRATION UTILITIES ===== */
+
+/* Smooth scale on hover */
+.orchestrate-scale:hover {
+  transform: scale(1.05);
+}
+
+/* Smooth fade */
+.orchestrate-fade {
+  opacity: 0;
+  transition: opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.orchestrate-fade.active {
+  opacity: 1;
+}
+
+/* Smooth slide */
+.orchestrate-slide {
+  transform: translateY(30px);
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.orchestrate-slide.active {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* ===== PERFORMANCE MONITOR (DEV ONLY) ===== */
+
+.perf-warning {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(255, 0, 0, 0.9);
+  color: white;
+  padding: 10px 15px;
+  border-radius: 4px;
+  font-size: 12px;
+  z-index: 10000;
+  display: none;
+}
+
+.perf-warning.show {
+  display: block;
+}
+
+/*
+ * © 2025 Clear Seas Solutions
+ * Orchestrated for smooth 60fps performance
+ */

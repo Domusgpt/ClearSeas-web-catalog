@@ -1,0 +1,420 @@
+/**
+ * Cinematic System
+ * Letterbox reveals, parallax depth, film-quality transitions
+ *
+ * @author Clear Seas Solutions
+ * @version 2.0
+ */
+
+/* ========================================
+ * CINEMATIC SECTION BASE
+ * ======================================== */
+
+[data-cinematic] {
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    [data-cinematic] {
+        min-height: auto;
+        padding: 4rem 0;
+    }
+}
+
+/* ========================================
+ * LETTERBOX BARS
+ * ======================================== */
+
+.letterbox-bar {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 15%;
+    background: #000;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.letterbox-bar-top {
+    top: 0;
+}
+
+.letterbox-bar-bottom {
+    bottom: 0;
+}
+
+/* ========================================
+ * PARALLAX DEPTH LAYERS
+ * ======================================== */
+
+[data-depth] {
+    will-change: transform;
+}
+
+[data-depth="0.1"] {
+    /* Slowest - furthest back */
+    z-index: 1;
+}
+
+[data-depth="0.3"] {
+    z-index: 2;
+}
+
+[data-depth="0.5"] {
+    /* Middle layer */
+    z-index: 3;
+}
+
+[data-depth="0.7"] {
+    z-index: 4;
+}
+
+[data-depth="0.9"] {
+    /* Fastest - closest */
+    z-index: 5;
+}
+
+/* ========================================
+ * CINEMATIC CONTAINER
+ * ======================================== */
+
+.cinematic-container {
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    z-index: 2;
+}
+
+@media (max-width: 768px) {
+    .cinematic-container {
+        padding: 0 1.5rem;
+    }
+}
+
+/* ========================================
+ * FADE IN ANIMATIONS
+ * ======================================== */
+
+[data-fade-in] {
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+[data-fade-in].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* Staggered fade delays */
+[data-fade-delay="0.1"] {
+    transition-delay: 0.1s;
+}
+
+[data-fade-delay="0.2"] {
+    transition-delay: 0.2s;
+}
+
+[data-fade-delay="0.3"] {
+    transition-delay: 0.3s;
+}
+
+[data-fade-delay="0.4"] {
+    transition-delay: 0.4s;
+}
+
+/* ========================================
+ * CINEMATIC HERO
+ * ======================================== */
+
+.cinematic-hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.cinematic-hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 900px;
+}
+
+.cinematic-hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+@media (max-width: 768px) {
+    .cinematic-hero {
+        height: auto;
+        min-height: 80vh;
+        padding: 4rem 0;
+    }
+}
+
+/* ========================================
+ * HORIZONTAL SCROLL SECTION
+ * ======================================== */
+
+.horizontal-scroll-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.horizontal-scroll-container {
+    display: flex;
+    will-change: transform;
+}
+
+.horizontal-scroll-item {
+    flex-shrink: 0;
+    padding: 0 2rem;
+}
+
+@media (max-width: 768px) {
+    .horizontal-scroll-container {
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .horizontal-scroll-item {
+        scroll-snap-align: center;
+    }
+}
+
+/* ========================================
+ * SCROLL PROGRESS INDICATOR
+ * ======================================== */
+
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.scroll-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #00d4ff, #ff006e);
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: transform 0.1s ease-out;
+}
+
+/* ========================================
+ * SECTION DIVIDERS
+ * ======================================== */
+
+.cinematic-divider {
+    position: relative;
+    height: 1px;
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent);
+    margin: 4rem 0;
+}
+
+.cinematic-divider::before,
+.cinematic-divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(0, 212, 255, 0.6);
+    transform: translateY(-50%);
+}
+
+.cinematic-divider::before {
+    left: 10%;
+}
+
+.cinematic-divider::after {
+    right: 10%;
+}
+
+/* ========================================
+ * VIGNETTE OVERLAY
+ * ======================================== */
+
+.cinematic-vignette {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 50;
+    background: radial-gradient(circle at center,
+        transparent 0%,
+        transparent 60%,
+        rgba(0, 0, 0, 0.4) 100%);
+}
+
+/* ========================================
+ * SPOTLIGHT EFFECT
+ * ======================================== */
+
+.cinematic-spotlight {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle,
+        rgba(0, 212, 255, 0.2) 0%,
+        transparent 70%);
+    filter: blur(60px);
+    pointer-events: none;
+    mix-blend-mode: screen;
+    animation: spotlight-pulse 4s ease-in-out infinite;
+}
+
+@keyframes spotlight-pulse {
+    0%, 100% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.1);
+    }
+}
+
+/* ========================================
+ * FILM GRAIN OVERLAY (optional)
+ * ======================================== */
+
+.cinematic-grain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 60;
+    opacity: 0.03;
+    background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noiseFilter)"/></svg>');
+    animation: grain 8s steps(10) infinite;
+}
+
+@keyframes grain {
+    0%, 100% { transform: translate(0, 0); }
+    10% { transform: translate(-5%, -10%); }
+    20% { transform: translate(-15%, 5%); }
+    30% { transform: translate(7%, -25%); }
+    40% { transform: translate(-5%, 25%); }
+    50% { transform: translate(-15%, 10%); }
+    60% { transform: translate(15%, 0%); }
+    70% { transform: translate(0%, 15%); }
+    80% { transform: translate(3%, 35%); }
+    90% { transform: translate(-10%, 10%); }
+}
+
+/* Disable on mobile for performance */
+@media (max-width: 768px) {
+    .cinematic-grain {
+        display: none;
+    }
+}
+
+/* ========================================
+ * SCROLL DOWN INDICATOR
+ * ======================================== */
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    animation: scroll-bounce 2s ease-in-out infinite;
+}
+
+.scroll-indicator-arrow {
+    width: 24px;
+    height: 24px;
+    border-bottom: 2px solid currentColor;
+    border-right: 2px solid currentColor;
+    transform: rotate(45deg);
+}
+
+@keyframes scroll-bounce {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    50% {
+        transform: translateX(-50%) translateY(10px);
+    }
+}
+
+/* ========================================
+ * SECTION TRANSITIONS
+ * ======================================== */
+
+.section-transition {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.8) 50%,
+        rgba(0, 0, 0, 0) 100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.6s ease;
+}
+
+.section-transition.active {
+    opacity: 1;
+}
+
+/* ========================================
+ * REDUCED MOTION
+ * ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    [data-fade-in],
+    .scroll-indicator,
+    .cinematic-spotlight {
+        animation: none !important;
+    }
+
+    [data-fade-in] {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    .cinematic-grain {
+        display: none;
+    }
+}

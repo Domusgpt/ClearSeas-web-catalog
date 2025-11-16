@@ -1,0 +1,354 @@
+/**
+ * Smooth Enhancement Styles
+ * Additional styles for ultra-smooth interactions
+ * © 2025 Clear Seas Solutions
+ */
+
+/* ===== SMOOTH SCROLLING BASE ===== */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* ===== CUSTOM CURSOR STYLES ===== */
+.custom-cursor,
+.custom-cursor-follower {
+  opacity: 0;
+  animation: cursorFadeIn 0.4s ease-out 0.5s forwards;
+}
+
+@keyframes cursorFadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Hide cursor on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .custom-cursor,
+  .custom-cursor-follower {
+    display: none !important;
+  }
+}
+
+/* ===== ENHANCED TRANSITIONS ===== */
+
+/* Smooth all interactions */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Better transform performance */
+.signal-card,
+.capability-card,
+.platform-card,
+.research-lab,
+.step,
+.btn {
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+/* Smooth opacity transitions */
+.hero-text > *,
+.hero-panels > *,
+.section-heading > * {
+  transition: opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* ===== BUTTER-SMOOTH HOVER STATES ===== */
+
+/* Links */
+a {
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+a:hover {
+  transform: translateY(-1px);
+}
+
+/* Buttons with ripple effect */
+.btn {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.btn:hover::after {
+  width: 300%;
+  height: 300%;
+}
+
+/* ===== ENHANCED CARD INTERACTIONS ===== */
+
+/* Cards base state */
+.vcodex-neoskeu-card {
+  transition:
+    transform 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+    box-shadow 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+    border-color 0.4s ease;
+  transform-style: preserve-3d;
+  perspective: 1200px;
+}
+
+/* Enhanced hover states */
+.signal-card:hover,
+.capability-card:hover,
+.platform-card:hover,
+.research-lab:hover {
+  transform: translateY(-8px) scale(1.02);
+  transition-duration: 0.4s;
+}
+
+/* Card children smooth reveal */
+.signal-card > *,
+.capability-card > *,
+.platform-card > * {
+  transition:
+    transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+    opacity 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* ===== NAVIGATION ENHANCEMENTS ===== */
+
+.primary-navigation a {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.primary-navigation a::before {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--theme-primary), var(--theme-secondary));
+  transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.primary-navigation a:hover::before {
+  width: 100%;
+}
+
+/* ===== SMOOTH SECTION TRANSITIONS ===== */
+
+section {
+  transition: opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Section backgrounds smooth parallax */
+section .pointer-events-none {
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* ===== HERO SECTION SMOOTH ENHANCEMENTS ===== */
+
+.hero-text h1 {
+  transition:
+    transform 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+    opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.hero-lede {
+  transition:
+    transform 0.8s cubic-bezier(0.23, 1, 0.32, 1) 0.1s,
+    opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1) 0.1s;
+}
+
+.hero-cta {
+  transition:
+    transform 0.8s cubic-bezier(0.23, 1, 0.32, 1) 0.2s,
+    opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1) 0.2s;
+}
+
+/* ===== VIDEO BACKGROUND SMOOTH TRANSITIONS ===== */
+
+.video-background {
+  transition: opacity 1s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.video-background video {
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* ===== ENHANCED FOCUS STATES ===== */
+
+a:focus-visible,
+button:focus-visible,
+.btn:focus-visible {
+  outline: 2px solid var(--theme-primary);
+  outline-offset: 4px;
+  transition: outline-offset 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* ===== SMOOTH STATUS BADGES ===== */
+
+.status {
+  transition:
+    transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+    box-shadow 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.platform-card:hover .status {
+  transform: scale(1.05);
+}
+
+/* ===== SMOOTH GRADIENT BARS ===== */
+
+.h-1[style*="linear-gradient"] {
+  transition:
+    transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+    opacity 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  transform-origin: left center;
+}
+
+.capability-card:hover .h-1 {
+  transform: scaleX(1.2);
+}
+
+/* ===== SMOOTH LIST ITEMS ===== */
+
+ul li {
+  transition:
+    transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+    opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* ===== SMOOTH FOOTER ===== */
+
+.site-footer {
+  transition: opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* ===== HEADER SCROLL STATE ===== */
+
+.site-header {
+  transition:
+    background-color 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+    backdrop-filter 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+    box-shadow 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.site-header.is-scrolled {
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* ===== SMOOTH IMAGE LOADING ===== */
+
+img {
+  transition: opacity 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+img:not([src]) {
+  opacity: 0;
+}
+
+/* ===== PERFORMANCE OPTIMIZATIONS ===== */
+
+/* GPU acceleration for smooth animations */
+.vcodex-holo-layer,
+.polytopal-field,
+.vib3-dynamic-viz {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .custom-cursor,
+  .custom-cursor-follower {
+    display: none !important;
+  }
+}
+
+/* ===== SMOOTH PAGE ENTRANCE ===== */
+
+body {
+  opacity: 0;
+  animation: pageEnter 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+@keyframes pageEnter {
+  to {
+    opacity: 1;
+  }
+}
+
+/* ===== TOUCH DEVICE OPTIMIZATIONS ===== */
+
+@media (hover: none) and (pointer: coarse) {
+  /* Disable hover effects on touch devices */
+  .signal-card:hover,
+  .capability-card:hover,
+  .platform-card:hover {
+    transform: none;
+  }
+
+  /* Faster transitions for touch */
+  * {
+    transition-duration: 0.2s !important;
+  }
+}
+
+/* ===== HIGH REFRESH RATE OPTIMIZATION ===== */
+
+@media (min-resolution: 120dpi) {
+  .vcodex-neoskeu-card,
+  .btn,
+  a {
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
+
+/*
+ * © 2025 Clear Seas Solutions
+ * Smooth as butter 🧈
+ */
