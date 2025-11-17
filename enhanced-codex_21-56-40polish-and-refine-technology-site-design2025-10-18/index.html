@@ -437,18 +437,34 @@
 
 <script>
 
-// Enhanced Error Handling
+// Enhanced Error Handling (Non-Invasive)
 window.addEventListener('error', function(event) {
   console.error('Global error:', event.error);
-  // Graceful degradation for visualization errors
-  if (event.error && event.error.message &&
-      (event.error.message.includes('WebGL') || event.error.message.includes('canvas'))) {
-    console.warn('Visualization error detected - degrading gracefully');
-    // Hide canvas elements if they're causing issues
-    document.querySelectorAll('canvas').forEach(canvas => {
-      if (canvas.style) canvas.style.opacity = '0';
-    });
-  }
+  // Log only - don't hide visualizations
+});
+
+window.addEventListener('unhandledrejection', function(event) {
+  console.error('Unhandled promise rejection:', event.reason);
+});
+
+// WebGL Context Loss Handling
+document.addEventListener('DOMContentLoaded', function() {
+  const canvases = document.querySelectorAll('canvas');
+  canvases.forEach(canvas => {
+    if (canvas.getContext) {
+      canvas.addEventListener('webglcontextlost', function(event) {
+        console.warn('WebGL context lost - will attempt recovery');
+        event.preventDefault();
+      }, false);
+
+      canvas.addEventListener('webglcontextrestored', function() {
+        console.log('WebGL context restored');
+        // Trigger re-initialization event
+        const restoreEvent = new CustomEvent('webgl:restored', { detail: { canvas } });
+        window.dispatchEvent(restoreEvent);
+      }, false);
+    }
+  });
 });
 
 window.addEventListener('unhandledrejection', function(event) {

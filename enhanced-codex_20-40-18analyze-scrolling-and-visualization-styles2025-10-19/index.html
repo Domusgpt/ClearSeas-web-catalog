@@ -13,6 +13,111 @@
     <link rel="stylesheet" href="styles/visual-codex.css">
     <link rel="stylesheet" href="styles/clear-seas-enhanced.css">
     <link rel="stylesheet" href="styles/video-backgrounds.css">
+
+<script>
+
+/**
+ * Advanced Performance Optimization Module
+ * For builds with WebGL + GSAP + Complex Visualizers
+ */
+
+class PerformanceOptimizer {
+  constructor() {
+    this.rafId = null;
+    this.lastFrameTime = 0;
+    this.fpsHistory = [];
+    this.memoryWarningThreshold = 100 * 1024 * 1024; // 100MB
+  }
+
+  // Throttle expensive operations
+  throttle(func, limit) {
+    let inThrottle;
+    return function(...args) {
+      if (!inThrottle) {
+        func.apply(this, args);
+        inThrottle = true;
+        setTimeout(() => inThrottle = false, limit);
+      }
+    };
+  }
+
+  // Debounce for resize/scroll
+  debounce(func, delay) {
+    let timeoutId;
+    return function(...args) {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => func.apply(this, args), delay);
+    };
+  }
+
+  // Monitor FPS
+  startFPSMonitoring() {
+    const measureFPS = (timestamp) => {
+      if (this.lastFrameTime) {
+        const delta = timestamp - this.lastFrameTime;
+        const fps = 1000 / delta;
+        this.fpsHistory.push(fps);
+
+        if (this.fpsHistory.length > 60) {
+          this.fpsHistory.shift();
+        }
+
+        const avgFPS = this.fpsHistory.reduce((a, b) => a + b, 0) / this.fpsHistory.length;
+
+        // If FPS drops below 30, reduce quality
+        if (avgFPS < 30) {
+          this.reduceQuality();
+        }
+      }
+
+      this.lastFrameTime = timestamp;
+      this.rafId = requestAnimationFrame(measureFPS);
+    };
+
+    this.rafId = requestAnimationFrame(measureFPS);
+  }
+
+  reduceQuality() {
+    // Reduce particle counts, shader complexity, etc.
+    const event = new CustomEvent('performance:reduce-quality', {
+      detail: { avgFPS: this.fpsHistory.reduce((a, b) => a + b, 0) / this.fpsHistory.length }
+    });
+    window.dispatchEvent(event);
+  }
+
+  // Memory monitoring
+  checkMemory() {
+    if (performance.memory) {
+      const used = performance.memory.usedJSHeapSize;
+      if (used > this.memoryWarningThreshold) {
+        console.warn('High memory usage detected:', (used / 1024 / 1024).toFixed(2), 'MB');
+
+        // Trigger garbage collection hint
+        const event = new CustomEvent('performance:high-memory');
+        window.dispatchEvent(event);
+      }
+    }
+  }
+
+  cleanup() {
+    if (this.rafId) {
+      cancelAnimationFrame(this.rafId);
+    }
+  }
+}
+
+// Initialize on DOMContentLoaded
+if (typeof window !== 'undefined') {
+  window.addEventListener('DOMContentLoaded', () => {
+    window.perfOptimizer = new PerformanceOptimizer();
+    window.perfOptimizer.startFPSMonitoring();
+
+    // Check memory every 5 seconds
+    setInterval(() => window.perfOptimizer.checkMemory(), 5000);
+  });
+}
+
+</script>
 </head>
 <body>
 <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -461,18 +566,34 @@
 
 <script>
 
-// Enhanced Error Handling
+// Enhanced Error Handling (Non-Invasive)
 window.addEventListener('error', function(event) {
   console.error('Global error:', event.error);
-  // Graceful degradation for visualization errors
-  if (event.error && event.error.message &&
-      (event.error.message.includes('WebGL') || event.error.message.includes('canvas'))) {
-    console.warn('Visualization error detected - degrading gracefully');
-    // Hide canvas elements if they're causing issues
-    document.querySelectorAll('canvas').forEach(canvas => {
-      if (canvas.style) canvas.style.opacity = '0';
-    });
-  }
+  // Log only - don't hide visualizations
+});
+
+window.addEventListener('unhandledrejection', function(event) {
+  console.error('Unhandled promise rejection:', event.reason);
+});
+
+// WebGL Context Loss Handling
+document.addEventListener('DOMContentLoaded', function() {
+  const canvases = document.querySelectorAll('canvas');
+  canvases.forEach(canvas => {
+    if (canvas.getContext) {
+      canvas.addEventListener('webglcontextlost', function(event) {
+        console.warn('WebGL context lost - will attempt recovery');
+        event.preventDefault();
+      }, false);
+
+      canvas.addEventListener('webglcontextrestored', function() {
+        console.log('WebGL context restored');
+        // Trigger re-initialization event
+        const restoreEvent = new CustomEvent('webgl:restored', { detail: { canvas } });
+        window.dispatchEvent(restoreEvent);
+      }, false);
+    }
+  });
 });
 
 window.addEventListener('unhandledrejection', function(event) {
