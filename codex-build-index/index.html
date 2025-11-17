@@ -69,6 +69,8 @@
     </style>
 </head>
 <body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
 <main id="main-content">
         <h1>Clear Seas Builds</h1>
         <div class="builds">
@@ -85,5 +87,34 @@
         </div>
     </main>
 
+
+<script>
+
+// Error Logging (Non-Invasive)
+window.addEventListener('error', function(event) {
+  console.error('Error detected:', event.error);
+});
+
+window.addEventListener('unhandledrejection', function(event) {
+  console.warn('Unhandled promise rejection:', event.reason);
+});
+
+// WebGL Context Recovery
+document.addEventListener('DOMContentLoaded', function() {
+  const canvases = document.querySelectorAll('canvas');
+  canvases.forEach(canvas => {
+    canvas.addEventListener('webglcontextlost', function(event) {
+      console.warn('WebGL context lost - attempting recovery');
+      event.preventDefault();
+    }, false);
+
+    canvas.addEventListener('webglcontextrestored', function() {
+      console.log('WebGL context restored');
+      window.dispatchEvent(new CustomEvent('webgl:restored'));
+    }, false);
+  });
+});
+
+</script>
 </body>
 </html>
