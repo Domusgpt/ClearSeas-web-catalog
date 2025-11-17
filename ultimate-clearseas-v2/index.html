@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clear Seas Solutions — AI-Powered Intelligence Systems</title>
+    <meta name="description" content="Clear Seas Solutions pioneers spatial AI, geometric cognition, and custom intelligence systems. Founded by Paul Phillips.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles/main.css">
+
+    <!-- GSAP for scroll animations -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+</head>
+<body>
+    <!-- WebGL Background Visualizer -->
+    <canvas id="clear-seas-visualizer" aria-hidden="true"></canvas>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="#hero">
+                <span class="brand-mark">◇</span>
+                <span class="brand-name">Clear Seas Solutions</span>
+            </a>
+            <nav class="primary-navigation">
+                <a href="#products">Products</a>
+                <a href="#capabilities">Capabilities</a>
+                <a href="#research">Research</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <a class="nav-cta" href="mailto:Paul@clearseassolutions.com">Start a project</a>
+        </div>
+    </header>
+
+    <main class="site-main">
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section" data-section="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <p class="eyebrow">Spatial AI • Geometric Cognition • Custom Intelligence</p>
+                    <h1>AI solutions built for your business, not a template.</h1>
+                    <p class="hero-lede">Independent AI consultancy specializing in spatial computing, geometric cognition, and custom AI architecture. From startups to enterprises, we build intelligent systems that work.</p>
+                    <div class="hero-cta">
+                        <a class="btn btn-primary" href="mailto:Paul@clearseassolutions.com">Free consultation</a>
+                        <a class="btn btn-ghost" href="#products">Explore products</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reality Reframed Transition -->
+        <section id="reality-reframed-1" class="reality-section" data-section="reality-1">
+            <div class="reality-content">
+                <p class="reality-quote">Reality reframed</p>
+                <p class="reality-quote-accent">by spatial intelligence</p>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section id="products" class="products-section" data-section="products">
+            <div class="container">
+                <div class="section-heading">
+                    <p class="eyebrow">Our Ecosystem</p>
+                    <h2>Products & Platforms</h2>
+                    <p>Production-ready AI tools and experimental research platforms demonstrating our technical capabilities.</p>
+                </div>
+
+                <div class="product-grid">
+                    <!-- Parserator -->
+                    <a href="https://parserator.com" target="_blank" rel="noopener" class="product-card" data-product-card="parserator">
+                        <div class="product-screenshot">
+                            <div class="screenshot-placeholder" style="background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);">
+                                <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="10" y="20" width="60" height="40" rx="4" stroke="white" stroke-width="2"/>
+                                    <line x1="20" y1="30" x2="50" y2="30" stroke="white" stroke-width="2"/>
+                                    <line x1="20" y1="40" x2="60" y2="40" stroke="white" stroke-width="2"/>
+                                    <line x1="20" y1="50" x2="45" y2="50" stroke="white" stroke-width="2"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-header">
+                                <h3>Parserator</h3>
+                                <span class="status-badge">Beta</span>
+                            </div>
+                            <p>AI-powered data parsing API. Transforms unstructured data into agent-ready JSON with 95% accuracy. No vendor lock-in.</p>
+                            <span class="product-link">Visit parserator.com →</span>
+                        </div>
+                    </a>
+
+                    <!-- Nimbus Guardian -->
+                    <a href="https://nimbus-guardian.web.app" target="_blank" rel="noopener" class="product-card" data-product-card="nimbus">
+                        <div class="product-screenshot">
+                            <div class="screenshot-placeholder" style="background: linear-gradient(135deg, #ff006e 0%, #cc0055 100%);">
+                                <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="40" cy="40" r="25" stroke="white" stroke-width="2"/>
+                                    <path d="M40 20 L40 35 M40 45 L40 60 M20 40 L35 40 M45 40 L60 40" stroke="white" stroke-width="2"/>
+                                    <circle cx="40" cy="40" r="5" fill="white"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-header">
+                                <h3>Nimbus Guardian</h3>
+                                <span class="status-badge">Live</span>
+                            </div>
+                            <p>Security scanning platform that stops vulnerable code before deployment. AI-powered threat detection with 100% local processing.</p>
+                            <span class="product-link">Explore Nimbus Guardian →</span>
+                        </div>
+                    </a>
+
+                    <!-- ARIS (Placeholder - Maritime) -->
+                    <div class="product-card" data-product-card="aris">
+                        <div class="product-screenshot">
+                            <div class="screenshot-placeholder" style="background: linear-gradient(135deg, #33ff00 0%, #00cc00 100%);">
+                                <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M40 10 L70 40 L40 70 L10 40 Z" stroke="white" stroke-width="2" fill="none"/>
+                                    <circle cx="40" cy="40" r="8" fill="white"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-header">
+                                <h3>ARIS</h3>
+                                <span class="status-badge status-soon">Coming Soon</span>
+                            </div>
+                            <p>Autonomous Robotic Intelligence System for GPS-denied navigation and maritime operations using 4D spatial cognition.</p>
+                            <span class="product-link">In development →</span>
+                        </div>
+                    </div>
+
+                    <!-- ESYS (Placeholder - Enterprise) -->
+                    <div class="product-card" data-product-card="esys">
+                        <div class="product-screenshot">
+                            <div class="screenshot-placeholder" style="background: linear-gradient(135deg, #c084fc 0%, #9333ea 100%);">
+                                <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="15" y="15" width="50" height="50" rx="6" stroke="white" stroke-width="2"/>
+                                    <line x1="25" y1="30" x2="55" y2="30" stroke="white" stroke-width="2"/>
+                                    <line x1="25" y1="40" x2="55" y2="40" stroke="white" stroke-width="2"/>
+                                    <line x1="25" y1="50" x2="45" y2="50" stroke="white" stroke-width="2"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-header">
+                                <h3>ESYS</h3>
+                                <span class="status-badge status-soon">Coming Soon</span>
+                            </div>
+                            <p>Enterprise Systems Intelligence. Custom AI stacks, knowledge graphs, and adaptive copilots for organizations.</p>
+                            <span class="product-link">Tailored solutions →</span>
+                        </div>
+                    </div>
+
+                    <!-- OUTEK (Placeholder - Autonomous) -->
+                    <div class="product-card" data-product-card="outek">
+                        <div class="product-screenshot">
+                            <div class="screenshot-placeholder" style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);">
+                                <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <polygon points="40,15 65,30 65,50 40,65 15,50 15,30" stroke="white" stroke-width="2" fill="none"/>
+                                    <circle cx="40" cy="40" r="10" stroke="white" stroke-width="2"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-header">
+                                <h3>OUTEK</h3>
+                                <span class="status-badge status-soon">Research</span>
+                            </div>
+                            <p>Autonomous systems for complex environments. Sensor fusion, SLAM, and embodied AI for robotics platforms.</p>
+                            <span class="product-link">Research program →</span>
+                        </div>
+                    </div>
+
+                    <!-- Minoots -->
+                    <a href="https://github.com/Domusgpt/minoots-timer-system/" target="_blank" rel="noopener" class="product-card" data-product-card="minoots">
+                        <div class="product-screenshot">
+                            <div class="screenshot-placeholder" style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);">
+                                <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="40" cy="40" r="28" stroke="white" stroke-width="2"/>
+                                    <line x1="40" y1="40" x2="40" y2="20" stroke="white" stroke-width="2"/>
+                                    <line x1="40" y1="40" x2="55" y2="50" stroke="white" stroke-width="2"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-header">
+                                <h3>Minoots</h3>
+                                <span class="status-badge">Production</span>
+                            </div>
+                            <p>The Metronome for Autonomous AI. Timer service with ±1 second precision for multi-agent coordination.</p>
+                            <span class="product-link">View on GitHub →</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reality Reframed Transition 2 -->
+        <section id="reality-reframed-2" class="reality-section" data-section="reality-2">
+            <div class="reality-content">
+                <p class="reality-quote">Pioneering spatial cognition</p>
+                <p class="reality-quote-accent">for autonomous systems</p>
+            </div>
+        </section>
+
+        <!-- Capabilities Section -->
+        <section id="capabilities" class="capabilities-section" data-section="capabilities">
+            <div class="container">
+                <div class="section-heading">
+                    <p class="eyebrow">What we do</p>
+                    <h2>Custom AI that adapts to your business</h2>
+                    <p>From quick-win automations to transformative spatial AI platforms, we build solutions scaled to your needs.</p>
+                </div>
+
+                <div class="capabilities-grid">
+                    <article class="capability-card" data-product-card="spatial">
+                        <h3>Spatial AI & Robotics</h3>
+                        <p>Advanced perception systems for GPS-denied navigation, autonomous vehicles, and XR devices. Our Polytopal Projection Processing framework enables robust machine cognition.</p>
+                        <ul>
+                            <li>4D state representation & sensor fusion</li>
+                            <li>Visual-inertial odometry & SLAM</li>
+                            <li>Embodied AI for robotics platforms</li>
+                        </ul>
+                    </article>
+
+                    <article class="capability-card" data-product-card="custom">
+                        <h3>Custom AI Development</h3>
+                        <p>Bespoke AI solutions designed around your workflow, data, and goals—from intelligent automation to predictive analytics.</p>
+                        <ul>
+                            <li>Process automation & agentic systems</li>
+                            <li>Custom machine learning models</li>
+                            <li>Data pipelines & intelligence platforms</li>
+                        </ul>
+                    </article>
+
+                    <article class="capability-card" data-product-card="strategy">
+                        <h3>AI Strategy & Research</h3>
+                        <p>Not sure where AI fits? We assess opportunities, create practical roadmaps, and provide ongoing research partnerships.</p>
+                        <ul>
+                            <li>Free AI readiness consultation</li>
+                            <li>ROI-focused opportunity mapping</li>
+                            <li>Research collaboration & IP development</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Research Section -->
+        <section id="research" class="research-section" data-section="research">
+            <div class="container">
+                <div class="section-heading">
+                    <p class="eyebrow">Active research</p>
+                    <h2>Pioneering spatial AI and geometric cognition</h2>
+                    <p>Our research programs push the boundaries of machine perception and 4D cognition.</p>
+                </div>
+
+                <div class="research-grid">
+                    <article class="research-card" data-product-card="ppp">
+                        <h3>Polytopal Projection Processing</h3>
+                        <p>Revolutionary 4D cognition framework enabling GPS-denied navigation through spinorial rotations, metric coupling, and temporal braiding.</p>
+                        <a href="https://domusgpt.github.io/ppp-info-site/" target="_blank" rel="noopener" class="research-link">Explore PPP research →</a>
+                    </article>
+
+                    <article class="research-card" data-product-card="vib3">
+                        <h3>VIB34D XR Quaternion SDK</h3>
+                        <p>Spatial computing toolkit with advanced quaternion mathematics for OpenXR and WebXR platforms.</p>
+                        <a href="https://domusgpt.github.io/vib3-plus-engine/" target="_blank" rel="noopener" class="research-link">View live demo →</a>
+                    </article>
+
+                    <article class="research-card" data-product-card="epo">
+                        <h3>Entropic Principles</h3>
+                        <p>Research exploring how entropic flows produce large-scale organization, with applications in AI ethics frameworks.</p>
+                        <a href="https://entropic-principles.web.app/" target="_blank" rel="noopener" class="research-link">Read the research →</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section" data-section="contact">
+            <div class="container">
+                <div class="contact-content">
+                    <p class="eyebrow">Let's talk</p>
+                    <h2>Ready to build something extraordinary?</h2>
+                    <p>Whether you're exploring AI opportunities or have a specific project in mind, we'd love to hear from you.</p>
+                    <div class="contact-cta">
+                        <a class="btn btn-primary" href="mailto:Paul@clearseassolutions.com">Start a conversation</a>
+                        <a class="btn btn-ghost" href="mailto:Paul@clearseassolutions.com">Free consultation</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div class="footer-brand">
+                <span class="brand-mark">◇</span>
+                <span>Clear Seas Solutions</span>
+            </div>
+            <p class="footer-copy">© <span id="current-year"></span> Clear Seas Solutions. Spatial AI & Geometric Cognition Architecture.</p>
+            <p class="footer-signature">A Paul Phillips Manifestation</p>
+            <p class="footer-philosophy">"The Revolution Will Not Be In A Structured Format"</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="scripts/polytope-shaders.js"></script>
+    <script src="scripts/clear-seas-visualizer.js"></script>
+    <script src="scripts/scroll-choreography.js"></script>
+    <script>
+        // Update year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
