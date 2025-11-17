@@ -15,9 +15,7 @@
     <link rel="stylesheet" href="styles/video-backgrounds.css">
 </head>
 <body>
-<a href="#main-content" class="skip-link">Skip to main content</a>
-
-    <!-- Polytopal Field Canvas Background -->
+<!-- Polytopal Field Canvas Background -->
     <canvas id="polytopal-field" aria-hidden="true"></canvas>
 
     <!-- Visual Codex Holographic Layers -->
@@ -420,60 +418,5 @@
     <script src="scripts/video-backgrounds.js" defer></script>
     <script src="scripts/vib3-card-interactions.js" defer></script>
 
-<script>
-
-// Enhanced Error Handling (Non-Invasive)
-window.addEventListener('error', function(event) {
-  console.error('Global error:', event.error);
-  // Log only - don't hide visualizations
-});
-
-window.addEventListener('unhandledrejection', function(event) {
-  console.error('Unhandled promise rejection:', event.reason);
-});
-
-// WebGL Context Loss Handling
-document.addEventListener('DOMContentLoaded', function() {
-  const canvases = document.querySelectorAll('canvas');
-  canvases.forEach(canvas => {
-    if (canvas.getContext) {
-      canvas.addEventListener('webglcontextlost', function(event) {
-        console.warn('WebGL context lost - will attempt recovery');
-        event.preventDefault();
-      }, false);
-
-      canvas.addEventListener('webglcontextrestored', function() {
-        console.log('WebGL context restored');
-        // Trigger re-initialization event
-        const restoreEvent = new CustomEvent('webgl:restored', { detail: { canvas } });
-        window.dispatchEvent(restoreEvent);
-      }, false);
-    }
-  });
-});
-
-window.addEventListener('unhandledrejection', function(event) {
-  console.error('Unhandled promise rejection:', event.reason);
-});
-
-// WebGL Context Loss Handling
-document.addEventListener('DOMContentLoaded', function() {
-  const canvases = document.querySelectorAll('canvas');
-  canvases.forEach(canvas => {
-    if (canvas.getContext) {
-      canvas.addEventListener('webglcontextlost', function(event) {
-        console.warn('WebGL context lost');
-        event.preventDefault();
-      }, false);
-
-      canvas.addEventListener('webglcontextrestored', function() {
-        console.log('WebGL context restored');
-        // Re-initialize WebGL if needed
-      }, false);
-    }
-  });
-});
-
-</script>
 </body>
 </html>

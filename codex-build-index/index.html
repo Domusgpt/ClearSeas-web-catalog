@@ -69,9 +69,7 @@
     </style>
 </head>
 <body>
-<a href="#main-content" class="skip-link">Skip to main content</a>
-
-    <main id="main-content">
+<main id="main-content">
         <h1>Clear Seas Builds</h1>
         <div class="builds">
             <section class="build-card">
@@ -87,60 +85,5 @@
         </div>
     </main>
 
-<script>
-
-// Enhanced Error Handling (Non-Invasive)
-window.addEventListener('error', function(event) {
-  console.error('Global error:', event.error);
-  // Log only - don't hide visualizations
-});
-
-window.addEventListener('unhandledrejection', function(event) {
-  console.error('Unhandled promise rejection:', event.reason);
-});
-
-// WebGL Context Loss Handling
-document.addEventListener('DOMContentLoaded', function() {
-  const canvases = document.querySelectorAll('canvas');
-  canvases.forEach(canvas => {
-    if (canvas.getContext) {
-      canvas.addEventListener('webglcontextlost', function(event) {
-        console.warn('WebGL context lost - will attempt recovery');
-        event.preventDefault();
-      }, false);
-
-      canvas.addEventListener('webglcontextrestored', function() {
-        console.log('WebGL context restored');
-        // Trigger re-initialization event
-        const restoreEvent = new CustomEvent('webgl:restored', { detail: { canvas } });
-        window.dispatchEvent(restoreEvent);
-      }, false);
-    }
-  });
-});
-
-window.addEventListener('unhandledrejection', function(event) {
-  console.error('Unhandled promise rejection:', event.reason);
-});
-
-// WebGL Context Loss Handling
-document.addEventListener('DOMContentLoaded', function() {
-  const canvases = document.querySelectorAll('canvas');
-  canvases.forEach(canvas => {
-    if (canvas.getContext) {
-      canvas.addEventListener('webglcontextlost', function(event) {
-        console.warn('WebGL context lost');
-        event.preventDefault();
-      }, false);
-
-      canvas.addEventListener('webglcontextrestored', function() {
-        console.log('WebGL context restored');
-        // Re-initialize WebGL if needed
-      }, false);
-    }
-  });
-});
-
-</script>
 </body>
 </html>
