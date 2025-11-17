@@ -1200,3 +1200,57 @@ body[data-visual-system="enhanced"] .nav-cta {
     transform: none;
   }
 }
+
+
+
+/* Accessibility Enhancements */
+*:focus {
+  outline: 2px solid #4A90E2;
+  outline-offset: 2px;
+}
+
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: 2px solid #4A90E2;
+  outline-offset: 2px;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Performance Optimizations */
+.animated-element {
+  will-change: transform, opacity;
+}
+
+canvas {
+  will-change: contents;
+}
+
+/* Skip to main content link */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #000;
+  color: #fff;
+  padding: 8px;
+  text-decoration: none;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  top: 0;
+}
