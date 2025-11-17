@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
     <!-- WebGL Visualizer Canvas Background -->
     <canvas id="visualizer-canvas"></canvas>
 
@@ -29,7 +31,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="hero" class="hero-section" data-visualizer-preset="hero">
+    <section id="main-content" id="hero" class="hero-section" data-visualizer-preset="hero">
         <div class="hero-content">
             <h1 class="hero-title">
                 <span class="title-line animate-in">Clear Seas</span>
@@ -372,5 +374,45 @@
     <!-- Scripts -->
     <script src="scripts/visualizer.js"></script>
     <script src="scripts/app.js"></script>
+
+<script>
+
+// Enhanced Error Handling
+window.addEventListener('error', function(event) {
+  console.error('Global error:', event.error);
+  // Graceful degradation for visualization errors
+  if (event.error && event.error.message &&
+      (event.error.message.includes('WebGL') || event.error.message.includes('canvas'))) {
+    console.warn('Visualization error detected - degrading gracefully');
+    // Hide canvas elements if they're causing issues
+    document.querySelectorAll('canvas').forEach(canvas => {
+      if (canvas.style) canvas.style.opacity = '0';
+    });
+  }
+});
+
+window.addEventListener('unhandledrejection', function(event) {
+  console.error('Unhandled promise rejection:', event.reason);
+});
+
+// WebGL Context Loss Handling
+document.addEventListener('DOMContentLoaded', function() {
+  const canvases = document.querySelectorAll('canvas');
+  canvases.forEach(canvas => {
+    if (canvas.getContext) {
+      canvas.addEventListener('webglcontextlost', function(event) {
+        console.warn('WebGL context lost');
+        event.preventDefault();
+      }, false);
+
+      canvas.addEventListener('webglcontextrestored', function() {
+        console.log('WebGL context restored');
+        // Re-initialize WebGL if needed
+      }, false);
+    }
+  });
+});
+
+</script>
 </body>
 </html>

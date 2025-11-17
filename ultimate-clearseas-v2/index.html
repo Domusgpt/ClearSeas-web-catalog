@@ -19,6 +19,8 @@
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
 </head>
 <body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
     <!-- WebGL Background Visualizer -->
     <canvas id="clear-seas-visualizer" aria-hidden="true"></canvas>
 
@@ -41,7 +43,7 @@
 
     <main class="site-main">
         <!-- Hero Section -->
-        <section id="hero" class="hero-section" data-section="hero">
+        <section id="main-content" id="hero" class="hero-section" data-section="hero">
             <div class="container">
                 <div class="hero-content">
                     <p class="eyebrow">Spatial AI • Geometric Cognition • Custom Intelligence</p>
@@ -320,5 +322,45 @@
         // Update year
         document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>
+
+<script>
+
+// Enhanced Error Handling
+window.addEventListener('error', function(event) {
+  console.error('Global error:', event.error);
+  // Graceful degradation for visualization errors
+  if (event.error && event.error.message &&
+      (event.error.message.includes('WebGL') || event.error.message.includes('canvas'))) {
+    console.warn('Visualization error detected - degrading gracefully');
+    // Hide canvas elements if they're causing issues
+    document.querySelectorAll('canvas').forEach(canvas => {
+      if (canvas.style) canvas.style.opacity = '0';
+    });
+  }
+});
+
+window.addEventListener('unhandledrejection', function(event) {
+  console.error('Unhandled promise rejection:', event.reason);
+});
+
+// WebGL Context Loss Handling
+document.addEventListener('DOMContentLoaded', function() {
+  const canvases = document.querySelectorAll('canvas');
+  canvases.forEach(canvas => {
+    if (canvas.getContext) {
+      canvas.addEventListener('webglcontextlost', function(event) {
+        console.warn('WebGL context lost');
+        event.preventDefault();
+      }, false);
+
+      canvas.addEventListener('webglcontextrestored', function() {
+        console.log('WebGL context restored');
+        // Re-initialize WebGL if needed
+      }, false);
+    }
+  });
+});
+
+</script>
 </body>
 </html>
