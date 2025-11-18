@@ -112,3 +112,11 @@ section {
     object-fit: cover;
     opacity: 0.4;
 }
+
+
+
+
+
+.skip-link:focus {
+  top: 0;
+}

@@ -1368,3 +1368,11 @@ body[data-active-section='contact'] .primary-navigation a[href='#engagement']::a
     transform: none;
   }
 }
+
+
+
+
+
+.skip-link:focus {
+  top: 0;
+}

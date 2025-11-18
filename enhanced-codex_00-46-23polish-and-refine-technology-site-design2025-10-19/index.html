@@ -15,7 +15,9 @@
     <link rel="stylesheet" href="styles/video-backgrounds.css">
 </head>
 <body>
-    <!-- Polytopal Field Canvas Background -->
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<!-- Polytopal Field Canvas Background -->
     <canvas id="polytopal-field" aria-hidden="true"></canvas>
 
     <!-- Visual Codex Holographic Layers -->
@@ -52,7 +54,7 @@
     <main class="site-main">
         <!-- Hero Section -->
         <!-- Tile textures: drop seamless artwork into assets/uploads/tiles/ and update filenames as needed. -->
-        <section id="hero" class="hero"
+        <section id="main-content" id="hero" class="hero"
             style="--hero-tile-image: url('assets/uploads/tiles/pyramids-horizon.png');
                    --hero-tile-size: clamp(540px, 64vw, 780px);
                    --hero-tile-position: 50% 36%;
@@ -458,5 +460,35 @@
     <script src="scripts/clear-seas-home.js" defer></script>
     <script src="scripts/video-backgrounds.js" defer></script>
     <script src="scripts/vib3-card-interactions.js" defer></script>
+
+
+<script>
+
+// Error Logging (Non-Invasive)
+window.addEventListener('error', function(event) {
+  console.error('Error detected:', event.error);
+});
+
+window.addEventListener('unhandledrejection', function(event) {
+  console.warn('Unhandled promise rejection:', event.reason);
+});
+
+// WebGL Context Recovery
+document.addEventListener('DOMContentLoaded', function() {
+  const canvases = document.querySelectorAll('canvas');
+  canvases.forEach(canvas => {
+    canvas.addEventListener('webglcontextlost', function(event) {
+      console.warn('WebGL context lost - attempting recovery');
+      event.preventDefault();
+    }, false);
+
+    canvas.addEventListener('webglcontextrestored', function() {
+      console.log('WebGL context restored');
+      window.dispatchEvent(new CustomEvent('webgl:restored'));
+    }, false);
+  });
+});
+
+</script>
 </body>
 </html>

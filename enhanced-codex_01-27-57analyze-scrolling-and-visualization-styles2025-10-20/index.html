@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="styles/video-backgrounds.css">
 </head>
 <body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
     <!-- Polytopal Field Canvas Background -->
     <canvas id="polytopal-field" aria-hidden="true"></canvas>
 
@@ -57,7 +59,7 @@
 
     <main class="site-main">
         <!-- Hero Section -->
-        <section id="hero" class="hero" data-scroll-scene="hero" data-scroll-index="0">
+        <section id="hero" class="hero" data-scroll-scene="hero" data-scroll-index="0" id="main-content">
             <div class="video-background">
                 <video data-src="assets/videos/hero-bg.mp4" muted loop playsinline class="video-bg-abstract"></video>
             </div>
@@ -417,10 +419,40 @@
 
     <script src="scripts/clear-seas-home.js" defer></script>
     <script src="scripts/video-backgrounds.js" defer></script>
+    <script src="scripts/card-polytope-visualizer.js" defer></script>
     <script src="scripts/card-polytope-smooth-scroll.js" defer></script>
     <script src="https://unpkg.com/lenis@1.0.6/dist/lenis.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
     <script src="scripts/scroll-choreography-phase1.js" defer></script>
+
+<script>
+
+// Error Logging (Non-Invasive)
+window.addEventListener('error', function(event) {
+  console.error('Error detected:', event.error);
+});
+
+window.addEventListener('unhandledrejection', function(event) {
+  console.warn('Unhandled promise rejection:', event.reason);
+});
+
+// WebGL Context Recovery
+document.addEventListener('DOMContentLoaded', function() {
+  const canvases = document.querySelectorAll('canvas');
+  canvases.forEach(canvas => {
+    canvas.addEventListener('webglcontextlost', function(event) {
+      console.warn('WebGL context lost - attempting recovery');
+      event.preventDefault();
+    }, false);
+
+    canvas.addEventListener('webglcontextrestored', function() {
+      console.log('WebGL context restored');
+      window.dispatchEvent(new CustomEvent('webgl:restored'));
+    }, false);
+  });
+});
+
+</script>
 </body>
 </html>

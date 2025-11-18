@@ -1257,3 +1257,11 @@ body.scroll-choreography-fallback .hero-text {
     transform: none;
   }
 }
+
+
+
+
+
+.skip-link:focus {
+  top: 0;
+}

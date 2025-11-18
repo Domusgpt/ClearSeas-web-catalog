@@ -938,3 +938,11 @@ body.scroll-choreo-reduced {
     transform: none;
   }
 }
+
+
+
+
+
+.skip-link:focus {
+  top: 0;
+}

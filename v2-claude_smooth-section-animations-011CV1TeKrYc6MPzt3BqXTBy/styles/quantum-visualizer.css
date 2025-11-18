@@ -109,3 +109,11 @@
  * A Paul Phillips Manifestation
  * © 2025 Clear Seas Solutions LLC - All Rights Reserved
  */
+
+
+
+
+
+.skip-link:focus {
+  top: 0;
+}

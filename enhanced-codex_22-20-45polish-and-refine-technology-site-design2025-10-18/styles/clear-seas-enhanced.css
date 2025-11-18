@@ -406,3 +406,11 @@
  * Paul@clearseassolutions.com
  * "The Revolution Will Not be in a Structured Format"
  */
+
+
+
+
+
+.skip-link:focus {
+  top: 0;
+}

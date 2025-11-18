@@ -470,3 +470,11 @@
 .founder-profile [data-animate="reveal"].is-visible {
     opacity: 1;
 }
+
+
+
+
+
+.skip-link:focus {
+  top: 0;
+}

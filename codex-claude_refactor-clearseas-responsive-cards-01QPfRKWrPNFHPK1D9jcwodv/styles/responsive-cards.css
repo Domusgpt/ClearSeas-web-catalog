@@ -466,3 +466,11 @@ body[data-visual-system="enhanced"] .morph-card::after {
     top: auto;
   }
 }
+
+
+
+
+
+.skip-link:focus {
+  top: 0;
+}

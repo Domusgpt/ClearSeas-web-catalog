@@ -22,6 +22,8 @@
     <script src="https://cdn.jsdelivr.net/npm/split-type@0.3.4/dist/index.min.js"></script>
 </head>
 <body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
     <!-- Polytopal Field Canvas Background -->
     <canvas id="polytopal-field" aria-hidden="true"></canvas>
 
@@ -61,7 +63,7 @@
 
     <main class="site-main">
         <!-- Hero Section -->
-        <section id="hero" class="hero" data-scroll-lock data-geometry="2" data-color-mode="light">
+        <section id="hero" class="hero" data-scroll-lock data-geometry="2" data-color-mode="light" id="main-content">
             <div class="video-background">
                 <video data-src="assets/videos/hero-bg.mp4" muted loop playsinline class="video-bg-abstract"></video>
             </div>
@@ -439,5 +441,34 @@
             console.log('✅ Application available at window.clearSeasApp');
         }
     </script>
+
+<script>
+
+// Error Logging (Non-Invasive)
+window.addEventListener('error', function(event) {
+  console.error('Error detected:', event.error);
+});
+
+window.addEventListener('unhandledrejection', function(event) {
+  console.warn('Unhandled promise rejection:', event.reason);
+});
+
+// WebGL Context Recovery
+document.addEventListener('DOMContentLoaded', function() {
+  const canvases = document.querySelectorAll('canvas');
+  canvases.forEach(canvas => {
+    canvas.addEventListener('webglcontextlost', function(event) {
+      console.warn('WebGL context lost - attempting recovery');
+      event.preventDefault();
+    }, false);
+
+    canvas.addEventListener('webglcontextrestored', function() {
+      console.log('WebGL context restored');
+      window.dispatchEvent(new CustomEvent('webgl:restored'));
+    }, false);
+  });
+});
+
+</script>
 </body>
 </html>

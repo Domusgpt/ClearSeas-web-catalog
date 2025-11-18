@@ -371,3 +371,11 @@ section {
  * © 2025 Clear Seas Solutions
  * Orchestrated for smooth 60fps performance
  */
+
+
+
+
+
+.skip-link:focus {
+  top: 0;
+}

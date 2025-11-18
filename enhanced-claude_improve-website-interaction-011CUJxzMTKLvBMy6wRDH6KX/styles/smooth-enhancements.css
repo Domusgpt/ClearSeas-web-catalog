@@ -352,3 +352,11 @@ body {
  * © 2025 Clear Seas Solutions
  * Smooth as butter 🧈
  */
+
+
+
+
+
+.skip-link:focus {
+  top: 0;
+}

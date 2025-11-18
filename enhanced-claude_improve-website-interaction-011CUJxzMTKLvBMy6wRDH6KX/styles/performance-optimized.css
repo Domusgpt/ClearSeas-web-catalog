@@ -289,3 +289,11 @@ button:focus-visible,
  * © 2025 Clear Seas Solutions
  * Optimized for performance - 60fps guaranteed
  */
+
+
+
+
+
+.skip-link:focus {
+  top: 0;
+}
